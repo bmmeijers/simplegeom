@@ -7,3 +7,5 @@ syntax: regexp
 ^src/simplegeo\.egg-info$
 syntax: regexp
 \.so$
+syntax: regexp
+^src/simplegeom\.egg-info$
