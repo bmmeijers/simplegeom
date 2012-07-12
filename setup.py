@@ -16,7 +16,7 @@ def get_version():
     """
     # we read the file instead of importing it as root sometimes does not
     # have the cwd as part of the PYTHONPATH
-    fn = os.path.join(os.path.dirname(__file__), 'src', 'simplegeo', '__init__.py')
+    fn = os.path.join(os.path.dirname(__file__), 'src', 'simplegeom', '__init__.py')
     try:
         lines = open(fn, 'r').readlines()
     except IOError:
@@ -53,7 +53,7 @@ setup(
             sources = ["src/simplegeom/_wkb.pyx",],
             extra_compile_args=[],
             extra_link_args=[],),
-        Extension("simplegeo._wkt", 
+        Extension("simplegeom._wkt", 
             sources = ["src/simplegeom/_wkt.pyx",],
             extra_compile_args=[],
             extra_link_args=[],),

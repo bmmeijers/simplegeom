@@ -8,17 +8,17 @@ Inheritance of classes
 All geometry classes inherit from the **abstract** Geometry class, as follows:
 
 .. inheritance-diagram:: 
-	simplegeo.geometry.Geometry
-	simplegeo.geometry.Point
-	simplegeo.geometry.LineString
-	simplegeo.geometry.LinearRing
-	simplegeo.geometry.Polygon
-	simplegeo.geometry.Envelope
+	simplegeom.geometry.Geometry
+	simplegeom.geometry.Point
+	simplegeom.geometry.LineString
+	simplegeom.geometry.LinearRing
+	simplegeom.geometry.Polygon
+	simplegeom.geometry.Envelope
 
 Simple Feature Geometry
 -----------------------
 
-.. automodule:: simplegeo.geometry
+.. automodule:: simplegeom.geometry
    :members:
    :inherited-members:
    :show-inheritance:
@@ -29,17 +29,17 @@ Input / Output
 Well Known Binary
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: simplegeo.wkb
+.. automodule:: simplegeom.wkb
    :members:
 
 Well Known Text
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: simplegeo.wkt
+.. automodule:: simplegeom.wkt
    :members:
 
 PostGIS / Psycopg2
 -----------------------
 
-.. automodule:: simplegeo.postgis
+.. automodule:: simplegeom.postgis
    :members:
