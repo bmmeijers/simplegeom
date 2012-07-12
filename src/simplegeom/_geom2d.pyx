@@ -547,9 +547,9 @@ cdef class Point(Geometry):
     
     def __str__(Point self):
         if self._inited == False:
-            return "SRID={};POINT EMPTY".format(self.srid)
+            return "POINT EMPTY"
         else:
-            return "SRID={};POINT({} {})".format(self.srid, self.x, self.y)
+            return "POINT({} {})".format(self.x, self.y)
     
     def __repr__(Point self):
         if self._inited == False:
@@ -657,6 +657,14 @@ cdef class Point(Geometry):
             else:
                 raise ValueError("Point empty -> no Envelope")
 
+    property length:
+        """This property is not implemented for Points
+        
+        :raises: ValueError
+        """
+        def __get__(Point self):
+            raise ValueError("Point has no length")
+
 #==============================================================================
 cdef class LineString(Geometry):
     """
@@ -699,13 +707,13 @@ cdef class LineString(Geometry):
     def __str__(LineString self):
         cdef int i
         if self._path.items == 0:
-            return "SRID={};LINESTRING EMPTY".format(self.srid)
+            return "LINESTRING EMPTY"
         else:
             ret = []
             for i from 0 <= i < self._path.items:
                 ret.append("{} {}".format(self._path.coords[i].x, \
                     self._path.coords[i].y))
-            return "SRID={};LINESTRING({})".format(self.srid, ', '.join(ret))
+            return "LINESTRING({})".format(', '.join(ret))
     
     def __repr__(LineString self):
         cdef int i
@@ -911,6 +919,8 @@ cdef class LineString(Geometry):
                 raise ValueError("LineString empty -> no Envelope")
     
     property length:
+        """Returns the length of this LineString
+        """
         def __get__(self):
             return path_length(self._path)
 
@@ -1055,7 +1065,7 @@ cdef class Polygon(Geometry):
     def __str__(Polygon self):
         cdef int i, j
         if self._surface.items == 0:
-            return "SRID={};POLYGON EMPTY".format(self.srid)
+            return "POLYGON EMPTY"
         else:
             rings = []
             for i from 0 <= i < self._surface.items:
@@ -1064,7 +1074,7 @@ cdef class Polygon(Geometry):
                     ring.append("{} {}".format(self._surface.paths[i].coords[j].x,
                                            self._surface.paths[i].coords[j].y))
                 rings.append("({})".format(', '.join(ring)))
-            return "SRID={};POLYGON({})".format(self.srid, ', '.join(rings))
+            return "POLYGON({})".format(', '.join(rings))
     
     def append(Polygon self, LinearRing ring):
         """Add a LinearRing to the Polygon.
@@ -1160,6 +1170,8 @@ cdef class Polygon(Geometry):
         
         .. warning ::
             The computed Point can be outside the interior of the Polygon.
+            
+        :raises: NotImplementedError, function is not implemented yet
         """
         def __get__(Polygon self):
             raise NotImplementedError("Not there yet")
@@ -1227,7 +1239,7 @@ cdef class Envelope(Geometry):
     def __str__(Envelope self):
         if box_inited(self._mbr) == False:
             raise RuntimeError("Box not inited")
-        return "SRID={};POLYGON(({} {}, {} {}, {} {}, {} {}, {} {}))".format(self.srid,
+        return "POLYGON(({} {}, {} {}, {} {}, {} {}, {} {}))".format(
             self._mbr.xmin, self._mbr.ymin,
             self._mbr.xmin, self._mbr.ymax,
             self._mbr.xmax, self._mbr.ymax,

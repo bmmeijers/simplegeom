@@ -3,7 +3,7 @@ Created on Jul 6, 2012
 
 @author: martijn
 '''
-from simplegeo.geometry import Envelope
+from simplegeom.geometry import Envelope
 
 def _test():
     ev = Envelope()

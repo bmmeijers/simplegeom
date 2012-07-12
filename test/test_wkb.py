@@ -1,5 +1,5 @@
-from simplegeo.geometry import Point, LineString, Polygon, LinearRing
-from simplegeo.wkb import dumps, loads, dump
+from simplegeom.geometry import Point, LineString, Polygon, LinearRing
+from simplegeom.wkb import dumps, loads, dump
 from cStringIO import StringIO
 
 def _test():

@@ -207,11 +207,14 @@ cdef class EWKBWriter(object):
 
 cpdef loads(data, cursor=None):
     """Loads a geometry from *data*"""
-    try:
-        geom = EWKBReader(StringIO(a2b_hex(data))).read_geometry()
-    except:
-        raise ValueError(
-            "Could not create geometry because of errors while reading input.")
+    if data:
+        try:
+            geom = EWKBReader(StringIO(a2b_hex(data))).read_geometry()
+        except:
+            raise ValueError(
+                "Error creating geometry while reading input.")
+    else:
+        geom = None
     return geom
 
 cpdef load(fp):

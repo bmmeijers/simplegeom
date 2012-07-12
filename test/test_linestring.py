@@ -1,4 +1,4 @@
-from simplegeo.geometry import LineString
+from simplegeom.geometry import LineString
     
 if __name__ == "__main__":
     empty = LineString()

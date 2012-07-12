@@ -1,0 +1,9 @@
+
+syntax: regexp
+^build$
+syntax: regexp
+^doc/build$
+syntax: regexp
+^src/simplegeo\.egg-info$
+syntax: regexp
+\.so$

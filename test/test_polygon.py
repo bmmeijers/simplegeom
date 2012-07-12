@@ -1,4 +1,4 @@
-from simplegeo.geometry import LinearRing, Polygon, Point
+from simplegeom.geometry import LinearRing, Polygon, Point
 
 def _test():
     poly = Polygon()

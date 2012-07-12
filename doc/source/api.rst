@@ -1,7 +1,7 @@
 API
 =====================================
 
-The Application Programming Interface of simplegeo.
+The Application Programming Interface of *simplegeom*.
 
 Inheritance of classes
 -----------------------
@@ -20,6 +20,8 @@ Simple Feature Geometry
 
 .. automodule:: simplegeo.geometry
    :members:
+   :inherited-members:
+   :show-inheritance:
 
 Input / Output
 -----------------------

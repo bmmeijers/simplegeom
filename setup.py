@@ -35,7 +35,7 @@ def get_version():
 
 
 setup(
-    name = "simplegeo",
+    name = "simplegeom",
     version = get_version(),
     author = "Martijn Meijers",
     author_email = "b dot m dot meijers at tudelft dot nl",
@@ -45,16 +45,16 @@ setup(
     package_dir = {'':'src'},
     cmdclass = {'build_ext': build_ext},
     ext_modules = [
-        Extension("simplegeo._geom2d", 
-            sources = ["src/simplegeo/_geom2d.pyx",],
+        Extension("simplegeom._geom2d", 
+            sources = ["src/simplegeom/_geom2d.pyx",],
             extra_compile_args=[],
             extra_link_args=[],),
-        Extension("simplegeo._wkb", 
-            sources = ["src/simplegeo/_wkb.pyx",],
+        Extension("simplegeom._wkb", 
+            sources = ["src/simplegeom/_wkb.pyx",],
             extra_compile_args=[],
             extra_link_args=[],),
         Extension("simplegeo._wkt", 
-            sources = ["src/simplegeo/_wkt.pyx",],
+            sources = ["src/simplegeom/_wkt.pyx",],
             extra_compile_args=[],
             extra_link_args=[],),
     ],

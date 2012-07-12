@@ -11,4 +11,4 @@ cdef class WKTReader:
     cdef Point parse_point(self, wkt)
 
 cpdef loads(str text)
-cpdef dumps(Geometry geom)
+cpdef dumps(Geometry geom, bint srid = ?)

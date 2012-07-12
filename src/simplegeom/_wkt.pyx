@@ -137,11 +137,16 @@ def load(fp):
     data = fp.read()
     return loads(data)
 
-cpdef dumps(Geometry geom):
+cpdef dumps(Geometry geom, bint srid = False):
     """
     Return a WKT representation for a Geometry
+    
     """
-    return str(geom)
+    res = ""
+    if srid:
+        res += "SRID={};".format(geom.srid)
+    res += str(geom)
+    return res
 
 def dump(ob, fp):
     """Dump a geometry as WKT string to an open file."""
