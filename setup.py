@@ -44,6 +44,7 @@ setup(
     url = "",
     package_dir = {'':'src'},
     cmdclass = {'build_ext': build_ext},
+    packages=['simplegeom'], 
     ext_modules = [
         Extension("simplegeom._geom2d", 
             sources = ["src/simplegeom/_geom2d.pyx",],

@@ -77,17 +77,17 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/simplegeo.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/simplegeom.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/simplegeo.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/simplegeom.qhc"
 
 devhelp:
 	$(SPHINXBUILD) -b devhelp $(ALLSPHINXOPTS) $(BUILDDIR)/devhelp
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/simplegeo"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/simplegeo"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/simplegeom"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/simplegeom"
 	@echo "# devhelp"
 
 epub:

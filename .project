@@ -3,6 +3,7 @@
 	<name>simplegeom</name>
 	<comment></comment>
 	<projects>
+		<project>connection</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

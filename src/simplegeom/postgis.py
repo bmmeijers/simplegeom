@@ -1,10 +1,9 @@
 import logging
 import psycopg2.extensions
 from connection.connect import ConnectionFactory
-import sys
 
 log = logging.getLogger(__name__)
-from wkb import loads
+from simplegeom.wkb import loads
 
 def register():
     """Find the correct OID and register the input/output function
@@ -13,7 +12,6 @@ def register():
     .. note::
         Should be called once
     """
-    from connection.connect import ConnectionFactory
     factory = ConnectionFactory()
     connection = factory.connection()
     cursor = connection.cursor()
@@ -30,7 +28,8 @@ def _test():
     register()
     
     print "point"
-    pt, = record("SELECT '01010000200000000000000000000014400000000000001840'::geometry;")
+    pt, = record("""SELECT 
+        '01010000200000000000000000000014400000000000001840'::geometry;""")
     print pt
 
     print "point"
@@ -42,38 +41,49 @@ def _test():
         print str(item)
     
     print "polygon"
-    for item, in irecordset("SELECT 'POLYGON ((10 40, 50 50, 0 100, 10 40))'::geometry;"):
+    for item, in irecordset("""SELECT 
+        'POLYGON ((10 40, 50 50, 0 100, 10 40))'::geometry;"""):
         for ring in item:
             print ring
 
     print "polygon 2 rings, invalid"
-    for item, in irecordset("""SELECT 'POLYGON ((10 40, 50 50, 0 100, 10 40),
-    (10 40, 50 50, 0 100, 10 40))'::geometry;"""):
+    for item, in irecordset("""SELECT 
+        'POLYGON ((10 40, 50 50, 0 100, 10 40),
+        (10 40, 50 50, 0 100, 10 40))'::geometry;"""):
         for ring in item:
             print ring    
 
     print "multipoint"
-    for item, in irecordset("SELECT 'MULTIPOINT (10 40, 40 30, 20 20, 30 10)'::geometry;"):
+    for item, in irecordset("""SELECT 
+        'MULTIPOINT (10 40, 40 30, 20 20, 30 10)'::geometry;"""):
         for sub in item:
             print sub
 
     print "multipoint"
-    for item, in irecordset("SELECT 'MULTIPOINT ((10 40), (40 30), (20 20), (30 10))'::geometry;"):
+    for item, in irecordset("""SELECT 
+        'MULTIPOINT ((10 40), (40 30), (20 20), (30 10))'::geometry;"""):
         for sub in item:
             print sub
 
     print "multilinestring"
-    for item, in irecordset("SELECT 'MULTILINESTRING ((10 10, 20 20, 10 40), (40 40, 30 30, 40 20, 30 10))'::geometry;"):
+    for item, in irecordset("""SELECT 
+        'MULTILINESTRING ((10 10, 20 20, 10 40), 
+        (40 40, 30 30, 40 20, 30 10))'::geometry;"""):
         for sub in item:
             print sub 
 
     print "multipoly"
-    for item, in irecordset("SELECT 'MULTIPOLYGON (((40 40, 20 45, 45 30, 40 40)), ((20 35, 45 20, 30 5, 10 10, 10 30, 20 35), (30 20, 20 25, 20 15, 30 20)))'::geometry;"):
+    for item, in irecordset("""SELECT 
+        'MULTIPOLYGON (((40 40, 20 45, 45 30, 40 40)), 
+        ((20 35, 45 20, 30 5, 10 10, 10 30, 20 35), 
+        (30 20, 20 25, 20 15, 30 20)))'::geometry;"""):
         for sub in item:
             print sub
 
     print "collection"
-    for item, in irecordset("SELECT 'GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))'::geometry;"):
+    for item, in irecordset("""SELECT 
+        'GEOMETRYCOLLECTION(POINT(4 6),
+        LINESTRING(4 6,7 10))'::geometry;"""):
         for sub in item:
             print sub
 

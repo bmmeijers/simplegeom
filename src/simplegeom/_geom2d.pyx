@@ -527,7 +527,7 @@ cdef class Point(Geometry):
         """
         :Example:
         
-        >>> from simplegeo.geometry import Point
+        >>> from simplegeom.geometry import Point
         >>> Point(5, 0)
         Point(x=5.0, y=0.0, srid=0)
         >>> Point(5, 0, srid=28992)
@@ -685,7 +685,7 @@ cdef class LineString(Geometry):
         """
         :Example:
         
-        >>> from simplegeo.geometry import LineString
+        >>> from simplegeom.geometry import LineString
         >>> LineString(((0,0), [10,10]))
         LineString([Point(x=0.0, y=0.0, srid=0), Point(x=10.0, y=10.0, srid=0)], srid=0)
         >>> 
@@ -815,7 +815,7 @@ cdef class LineString(Geometry):
 
         :Example:
         
-        >>> from simplegeo.geometry import LineString, Point
+        >>> from simplegeom.geometry import LineString, Point
         >>> ln = LineString([(0,0), (10,10)])
         >>> pt = Point(10,10)
         >>> ln.index(pt)
@@ -841,7 +841,7 @@ cdef class LineString(Geometry):
         
         :Example:
 
-        >>> from simplegeo.geometry import LineString, Point
+        >>> from simplegeom.geometry import LineString, Point
         >>> ln = LineString()
         >>> ln.append(Point(10,10))
         >>> 
