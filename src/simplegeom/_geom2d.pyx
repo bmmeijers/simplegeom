@@ -1,4 +1,4 @@
-# cython: profile=True
+# cython: profile=False
 """Provide Simple Feature like Geometry objects in 2 dimensions.
 
 @see: OGC specifications for Simple Features
@@ -452,6 +452,12 @@ cdef class Geometry:
     def getquoted(self):
         return "'{}'".format(dumps(self))
     # }}}
+    
+    def distance(Geometry self, Geometry other):
+        """
+        Returns the minimum distance (``float``) to the other object.
+        """
+        raise NotImplementedError("A subclass has not implemented this")
 
     property area:
         """Returns the areal size of this Geometry.
@@ -605,6 +611,17 @@ cdef class Point(Geometry):
     
     def __delitem__(Point self, int key):
         raise NotImplementedError
+    
+    def distance(Point self, Point other):
+        """
+        Returns the minimum distance (``float``) to the other Point object.
+        """
+        cdef double dx, dy
+        assert self._inited
+        assert other._inited
+        dx = self._coord.x - other._coord.x
+        dy = self._coord.x - other._coord.x
+        return sqrt(dx * dx + dy * dy)
     
     property x:
         """

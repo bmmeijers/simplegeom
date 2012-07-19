@@ -58,6 +58,10 @@ setup(
             sources = ["src/simplegeom/_wkt.pyx",],
             extra_compile_args=[],
             extra_link_args=[],),
+        Extension("simplegeom._util", 
+            sources = ["src/simplegeom/_util.pyx",],
+            extra_compile_args=[],
+            extra_link_args=[],),
     ],
     classifiers = [
         "Development Status :: 5 - Production/Stable",

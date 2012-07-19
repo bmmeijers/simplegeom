@@ -9,3 +9,5 @@ syntax: regexp
 \.so$
 syntax: regexp
 ^src/simplegeom\.egg-info$
+syntax: regexp
+^dist$
