@@ -40,7 +40,7 @@ cdef inline double cmin(double a, double b)
 cdef inline double cabs(double a)
 
 cdef enum:
-    REALLOC_PATH = 4
+    REALLOC_PATH = 3
     REALLOC_SURFACE = 1
     
 cdef enum:

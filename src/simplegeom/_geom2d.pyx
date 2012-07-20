@@ -614,7 +614,7 @@ cdef class Point(Geometry):
     
     def distance(Point self, Point other):
         """
-        Returns the minimum distance (``float``) to the other Point object.
+        Returns the distance to the other Point object.
         """
         cdef double dx, dy
         assert self._inited
