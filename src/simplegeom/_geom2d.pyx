@@ -590,8 +590,7 @@ cdef class Point(Geometry):
 #      Returns:
 #        int
 #      """
-      return hash((self._coord.x, self._coord.y))
-
+        return hash((self._coord.x, self._coord.y))
     
     def __getitem__(Point self, unsigned int i):
         if i == 0:
@@ -972,6 +971,8 @@ cdef class LinearRing(LineString):
             return "LinearRing([{}], srid={})".format(', '.join(ret), self.srid)
 
     property is_ccw:
+        """Returns whether this LinearRing is oriented counter clock wise.
+        """        
         def __get__(self):
             return is_ccw(self)
 
@@ -1025,7 +1026,7 @@ cdef class Polygon(Geometry):
                 return False
 #
     def __getitem__(Polygon self, int key):
-        cdef LineString l = LineString()
+        cdef LinearRing l = LinearRing()
         cdef int j
         
         if key < 0 or key >= self._surface.items:
@@ -1067,7 +1068,7 @@ cdef class Polygon(Geometry):
         else:
             rings = []
             for i from 0 <= i < self._surface.items:
-                ring = LineString()
+                ring = LinearRing()
                 for j from 0 <= j < self._surface.paths[i].items:
                     ring.append(Point(self._surface.paths[i].coords[j].x,
                                            self._surface.paths[i].coords[j].y))
