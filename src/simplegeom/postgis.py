@@ -10,7 +10,7 @@ def register():
      as psycopg2 extension type for automatic type conversion to happen.
     
     .. note::
-        Should be called once
+        Should be called *only* once
     """
     factory = ConnectionFactory()
     connection = factory.connection()

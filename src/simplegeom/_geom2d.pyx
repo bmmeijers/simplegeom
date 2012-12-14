@@ -548,6 +548,9 @@ cdef class Point(Geometry):
             self._yinit = True
         self.srid = srid
     
+    def __reduce__(Point self):
+        return (Point, (self.x, self.y, self.srid), )
+    
     def __dealloc__(Point self):
         coord_dealloc(self._coord)
     
@@ -716,6 +719,17 @@ cdef class LineString(Geometry):
 
     def __dealloc__(LineString self):
         path_dealloc(self._path)
+    
+    def __reduce__(LineString self):
+        """reduce for Pickle
+        """
+        cdef int i
+        ret = []
+        for i from 0 <= i < self._path.items:
+            ret.append((
+                self._path.coords[i].x,
+                self._path.coords[i].y,))
+        return (LineString, (ret, self.srid), )
     
     def __len__(LineString self):
         return self._path.items
@@ -996,18 +1010,18 @@ cdef class Polygon(Geometry):
         """Inits a polygon with one exterior ring (shell) 
         and zero or more inner rings (holes)
         """
-        try:
-            if shell is not None:
+        if shell is not None:
+            try:
                 self.append(shell)
-        except:
-            raise ValueError('Incorrect shell found, should be of type LineString')
+            except:
+                raise ValueError('Incorrect shell found, should be of type LinearRing')
         
-        try:
-            if holes is not None:
-                for hole in holes:
+        if holes is not None:
+            for hole in holes:
+                try:
                     self.append(hole)
-        except:
-            raise ValueError('Incorrect hole found, all should be of type LineString')
+                except:
+                    raise ValueError('Incorrect hole found, all should be of type LinearRing')
         self.srid = srid
 
     def __dealloc__(Polygon self):
@@ -1026,7 +1040,7 @@ cdef class Polygon(Geometry):
                 return False
 #
     def __getitem__(Polygon self, int key):
-        cdef LinearRing l = LinearRing()
+        cdef LinearRing l = LinearRing(srid = self.srid)
         cdef int j
         
         if key < 0 or key >= self._surface.items:
@@ -1062,6 +1076,8 @@ cdef class Polygon(Geometry):
 #            surface_box(self._surface, self._envelope._mbr)
 
     def __reduce__(Polygon self):
+        """reduce for Pickle
+        """
         cdef int i, j
         if self._surface.items == 0:
             rings = []
@@ -1074,11 +1090,11 @@ cdef class Polygon(Geometry):
                                            self._surface.paths[i].coords[j].y))
                 rings.append(ring)
         if len(rings) == 0:
-            return (Polygon, tuple())
+            return (Polygon, tuple(), self.srid)
         elif len(rings) == 1:
-            return (Polygon, (rings[0],))
+            return (Polygon, (rings[0],), self.srid)
         else: 
-            return (Polygon, (rings[0], rings[1:]))
+            return (Polygon, (rings[0], rings[1:]), self.srid)
 
     def __str__(Polygon self):
         cdef int i, j
