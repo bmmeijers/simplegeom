@@ -1,6 +1,10 @@
 CHANGELOG
 =========
-0.1.38 (unreleased) 
+0.3.0 (unreleased) 
+----------------------
+- Moved postgis.py to connection package
+
+0.2.0 (unreleased) 
 ----------------------
 - __getitem__ of Polygon now returns LinearRing instead of LineString
 - Added util module (angle & coincident methods)
