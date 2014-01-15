@@ -11,3 +11,5 @@ syntax: regexp
 ^src/simplegeom\.egg-info$
 syntax: regexp
 ^dist$
+syntax: regexp
+\.pyd$
