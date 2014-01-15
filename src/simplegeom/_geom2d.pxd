@@ -5,6 +5,10 @@
 
 
 from libc.stdlib cimport malloc, free, realloc
+# cimport _wkb
+# cimport _util
+# cimport _wkt
+
 #from _wkb cimport BinaryGeometryWriter
 #cdef extern from "alloca.h":
 #    void *alloca(int size)

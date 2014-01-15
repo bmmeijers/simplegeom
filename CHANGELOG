@@ -1,8 +1,14 @@
 CHANGELOG
 =========
+0.4.0 (unreleased) 
+----------------------
+- Nothing changed yet.
+
+
 0.3.0 (unreleased) 
 ----------------------
 - Moved postgis.py to connection package
+
 
 0.2.0 (unreleased) 
 ----------------------
@@ -11,9 +17,11 @@ CHANGELOG
 - Added distance on Point class
 - Fixed some docstring after rename to simplegeom
 
+
 0.1.37 (July 12, 2012) 
 ----------------------
 - Changed name of package to simplegeom
+
 
 0.1.36 (July 10, 2012)
 ----------------------

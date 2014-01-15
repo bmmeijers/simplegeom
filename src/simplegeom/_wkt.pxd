@@ -6,6 +6,7 @@ from _geom2d cimport Geometry, Point, LineString, Polygon, \
 cdef class WKTReader:
     cdef object rx_coord_list
     cdef object _wkt_types
+    cdef int _srid
     cdef parse_polygon(self, wkt)
     cdef LineString parse_linestring(self, wkt)
     cdef Point parse_point(self, wkt)

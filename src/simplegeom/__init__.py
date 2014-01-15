@@ -1,4 +1,4 @@
-__version__ = '0.3.0'
+__version__ = '0.4.0.dev0'
 __license__ = 'MIT License'
 __author__ = 'Martijn Meijers'
 __creation_date__ = '2012-07-02'

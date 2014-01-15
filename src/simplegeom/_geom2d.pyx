@@ -791,10 +791,11 @@ cdef class LineString(Geometry):
                 raise IndexError("No point there (#%d) for %s" % (which, self) )
             else:
                 return Point(self._path.coords[which].x,
-                             self._path.coords[which].y)
+                             self._path.coords[which].y,
+                             srid=self.srid)
         elif isinstance(which, slice):
             # find number of items that will be result of slicing
-            ln = LineString()
+            ln = LineString(srid=self.srid)
             ct = 0
             start, stop, step, = which.indices(self._path.items)
             for i in range(start, stop, step):
@@ -831,6 +832,16 @@ cdef class LineString(Geometry):
         for i from 0 <= i < self._path.items:
             ret.append((self._path.coords[i].x, self._path.coords[i].y))
         return (LineString, (ret,)) 
+
+    def pop(LineString self):
+        cdef int key = self._path.items - 1
+        cdef Point result
+        if key < 0:
+            raise IndexError("pop from empty LineString")
+        result = Point(self._path.coords[key].x, self._path.coords[key].y, 
+                       srid = self.srid)
+        self._path.items -= 1
+        return result
 
     def index(LineString self, Point pt):
         """
@@ -1235,7 +1246,7 @@ cdef class Envelope(Geometry):
             self._mbr.ymin = ymin
             self._mbr.xmax = xmax
             self._mbr.ymax = ymax
-            self.srid = srid
+        self.srid = srid
     
     def __getitem__(Envelope self, unsigned int i):
         if i == 0:
@@ -1625,7 +1636,7 @@ cpdef Point point_in_polygon(Polygon poly):
         if max_dist == -1:
             raise ValueError("No place on ray found for putting point")
 
-        return Point(ray_x, ray_y)
+        return Point(ray_x, ray_y, srid=poly.srid)
 
 cdef inline double x_intersection_at_ray(double x0, double y0, 
                                          double x1, double y1, 

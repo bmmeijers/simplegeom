@@ -20,6 +20,7 @@ cdef class WKTReader(object):
         self._wkt_types = ["POLYGON", 
                            "LINESTRING", 
                            "POINT", ]
+        self._srid = 0
 
     def from_wkt(self, wkt):
         """
@@ -36,7 +37,7 @@ cdef class WKTReader(object):
             part = part.strip()
             if part.startswith("SRID"):
                 # ignore SRIDs
-                continue
+                self._srid = int(part[5:])
             else:
                 for geotype in self._wkt_types:
                     if part.startswith(geotype) and geotype == 'POINT':
@@ -54,7 +55,11 @@ cdef class WKTReader(object):
         """Return the POLYGON geometry in wkt as a list of float pairs"""
         cdef int i, j
         cdef path_t * path
-        cdef Polygon p = Polygon()
+        cdef Polygon p
+        if self._srid != 0:
+            p = Polygon(srid = self._srid)
+        else:
+            p = Polygon()
         j = 0
         while wkt:
             match = self.rx_coord_list.match(wkt)
@@ -93,7 +98,11 @@ cdef class WKTReader(object):
     cdef LineString parse_linestring(self, wkt):
         """Return the LINESTRING geometry in wkt as a list of float pairs"""
         cdef int i = 0
-        cdef LineString ln = LineString()
+        cdef LineString ln
+        if self._srid != 0:
+            ln = LineString(srid = self._srid)
+        else:
+            ln = LineString()
         while wkt:
             match = self.rx_coord_list.match(wkt)
             if match:
@@ -123,7 +132,10 @@ cdef class WKTReader(object):
                     # a pair may be a triple actually. For now we just
                     # ignore any third value
                     x, y = map(float, pair.split())[:2]
-                    return Point(x, y)
+                    if self._srid != 0:
+                        return Point(x, y, srid = self._srid)
+                    else:
+                        return Point(x, y)
 
 cpdef loads(str text):
     """
