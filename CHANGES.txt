@@ -3,7 +3,7 @@ CHANGELOG
 0.4.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Testing release again.
 
 
 0.4.1 (2014-02-17)
