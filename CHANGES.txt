@@ -1,7 +1,7 @@
 CHANGELOG
 =========
-0.4.0 (unreleased) 
-----------------------
+0.4.0 (2014-02-17)
+------------------
 - Refactored setup.py to be compatible with easy_install and zest.releaser.
 - Added pop() method on LineString class, so that last point can be removed.
 
