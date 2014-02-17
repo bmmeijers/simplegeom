@@ -3,7 +3,7 @@ CHANGELOG
 0.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Small changes to see if ssh default-push works.
 
 
 0.4.2 (2014-02-17)
