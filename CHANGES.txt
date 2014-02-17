@@ -4,6 +4,7 @@ CHANGELOG
 ------------------
 
 - Remove fake_pyrex branch.
+- Test to release to bitbucket in fullrelease.
 
 
 0.4.0 (2014-02-17)
