@@ -156,10 +156,10 @@ cpdef dumps(Geometry geom, bint srid = False):
     """
     res = ""
     if srid:
-        res += "SRID={};".format(geom.srid)
+        res += "SRID={0};".format(geom.srid)
     res += str(geom)
     return res
 
 def dump(ob, fp):
     """Dump a geometry as WKT string to an open file."""
-    fp.write("{}".format(str(ob)))
+    fp.write("{0}".format(str(ob)))

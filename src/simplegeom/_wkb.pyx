@@ -228,4 +228,4 @@ cpdef dumps(Geometry ob):
 
 cpdef dump(Geometry ob, fp):
     """Dump a geometry as HEXEWKB string to an open file."""
-    fp.write("{}".format(EWKBWriter(ob, ob.srid).as_hex()))
+    fp.write("{0}".format(EWKBWriter(ob, ob.srid).as_hex()))

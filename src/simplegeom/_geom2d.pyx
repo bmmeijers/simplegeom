@@ -450,7 +450,7 @@ cdef class Geometry:
 
     # This method also needs to be there for object conforming to ISQLQuote
     def getquoted(self):
-        return "'{}'".format(dumps(self))
+        return "'{0}'".format(dumps(self))
     # }}}
     
     def distance(Geometry self, Geometry other):
@@ -558,13 +558,13 @@ cdef class Point(Geometry):
         if self._inited == False:
             return "POINT EMPTY"
         else:
-            return "POINT({} {})".format(self.x, self.y)
+            return "POINT({0} {1})".format(self.x, self.y)
     
     def __repr__(Point self):
         if self._inited == False:
-            return "Point(srid={})".format(self.srid)
+            return "Point(srid={0})".format(self.srid)
         else:
-            return "Point(x={}, y={}, srid={})".format(self.x, self.y, self.srid)
+            return "Point(x={0}, y={1}, srid={2})".format(self.x, self.y, self.srid)
     
     def __richcmp__(Point self, Point other not None, int op):
         # ==
@@ -741,22 +741,22 @@ cdef class LineString(Geometry):
         else:
             ret = []
             for i from 0 <= i < self._path.items:
-                ret.append("{} {}".format(self._path.coords[i].x, \
+                ret.append("{0} {1}".format(self._path.coords[i].x, \
                     self._path.coords[i].y))
-            return "LINESTRING({})".format(', '.join(ret))
+            return "LINESTRING({0})".format(', '.join(ret))
     
     def __repr__(LineString self):
         cdef int i
         if self._path.items == 0:
-            return "LineString(srid={})".format(self.srid)
+            return "LineString(srid={0})".format(self.srid)
         else:
             ret = []
             for i from 0 <= i < self._path.items:
-                ret.append("Point(x={}, y={}, srid={})".format(
+                ret.append("Point(x={0}, y={1}, srid={2})".format(
                     self._path.coords[i].x,
                     self._path.coords[i].y,
                     self.srid))
-            return "LineString([{}], srid={})".format(', '.join(ret), self.srid)
+            return "LineString([{0}], srid={1})".format(', '.join(ret), self.srid)
     
     def __richcmp__(LineString self, LineString other not None, int op):
         if op == 2: # ==
@@ -985,15 +985,15 @@ cdef class LinearRing(LineString):
     def __repr__(LinearRing self):
         cdef int i
         if self._path.items == 0:
-            return "LinearRing(srid={})".format(self.srid)
+            return "LinearRing(srid={0})".format(self.srid)
         else:
             ret = []
             for i from 0 <= i < self._path.items:
-                ret.append("Point(x={}, y={}, srid={})".format(
+                ret.append("Point(x={0}, y={1}, srid={2})".format(
                     self._path.coords[i].x,
                     self._path.coords[i].y,
                     self.srid))
-            return "LinearRing([{}], srid={})".format(', '.join(ret), self.srid)
+            return "LinearRing([{0}], srid={1})".format(', '.join(ret), self.srid)
 
     property is_ccw:
         """Returns whether this LinearRing is oriented counter clock wise.
@@ -1116,10 +1116,10 @@ cdef class Polygon(Geometry):
             for i from 0 <= i < self._surface.items:
                 ring = []
                 for j from 0 <= j < self._surface.paths[i].items:
-                    ring.append("{} {}".format(self._surface.paths[i].coords[j].x,
+                    ring.append("{0} {1}".format(self._surface.paths[i].coords[j].x,
                                            self._surface.paths[i].coords[j].y))
-                rings.append("({})".format(', '.join(ring)))
-            return "POLYGON({})".format(', '.join(rings))
+                rings.append("({0})".format(', '.join(ring)))
+            return "POLYGON({0})".format(', '.join(rings))
     
     def append(Polygon self, LinearRing ring):
         """Add a LinearRing to the Polygon.
@@ -1275,7 +1275,7 @@ cdef class Envelope(Geometry):
     def __repr__(Envelope self):
         if box_inited(self._mbr) == False:
             raise RuntimeError("Box not inited")
-        return "SRID={};BOX({} {}, {} {})".format(self.srid,
+        return "SRID={0};BOX({1} {2}, {3} {4})".format(self.srid,
             self._mbr.xmin,
             self._mbr.ymin,
             self._mbr.xmax,
@@ -1284,7 +1284,7 @@ cdef class Envelope(Geometry):
     def __str__(Envelope self):
         if box_inited(self._mbr) == False:
             raise RuntimeError("Box not inited")
-        return "POLYGON(({} {}, {} {}, {} {}, {} {}, {} {}))".format(
+        return "POLYGON(({0} {1}, {2} {3}, {4} {5}, {6} {7}, {8} {9}))".format(
             self._mbr.xmin, self._mbr.ymin,
             self._mbr.xmin, self._mbr.ymax,
             self._mbr.xmax, self._mbr.ymax,
