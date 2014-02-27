@@ -977,6 +977,12 @@ cdef class LinearRing(LineString):
         super(LinearRing, self).__init__(coords)
         self.srid = srid
 
+    def __reduce__(self):
+        ret = []
+        for i from 0 <= i < self._path.items:
+            ret.append((self._path.coords[i].x, self._path.coords[i].y))
+        return (LinearRing, (ret,)) 
+
     def signed_area(self):
         """Returns the area together with a sign (+ or -) of its size.
         """
@@ -1101,11 +1107,11 @@ cdef class Polygon(Geometry):
                                            self._surface.paths[i].coords[j].y))
                 rings.append(ring)
         if len(rings) == 0:
-            return (Polygon, tuple(), self.srid)
+            return (Polygon, tuple(None, None, self.srid))
         elif len(rings) == 1:
-            return (Polygon, (rings[0],), self.srid)
+            return (Polygon, (rings[0], None, self.srid))
         else: 
-            return (Polygon, (rings[0], rings[1:]), self.srid)
+            return (Polygon, (rings[0], rings[1:], self.srid))
 
     def __str__(Polygon self):
         cdef int i, j
