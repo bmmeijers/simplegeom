@@ -1,6 +1,6 @@
 CHANGELOG
 =========
-0.4.3 (unreleased)
+0.4.3 (2014-06-11)
 ------------------
 
 - Fixed pickling support for Polygons 
