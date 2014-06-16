@@ -1311,21 +1311,24 @@ cdef class Envelope(Geometry):
             pl.append(ln)
             return pl
     
-    def enlarge_by(Envelope self, Envelope other):
+    def enlarge_by(Envelope self, Envelope other not None):
         """
         Enlarges the extent of this Envelope with the given Envelope.
         It is an error if one of both Envelopes is not inited.
         """
         # TODO: 
         # make it also possible to give other types to enlarge envelope by?
-        if box_inited(self._mbr) == False:
-            raise RuntimeError("Box not inited")
-        if box_inited(other._mbr) == False:
-            raise RuntimeError("Box not inited")
-        box_box_merge(self._mbr, other._mbr)
+        if isinstance(other, Envelope):
+            if box_inited(self._mbr) == False:
+                raise RuntimeError("Box not inited")
+            if box_inited(other._mbr) == False:
+                raise RuntimeError("Box not inited")
+            box_box_merge(self._mbr, other._mbr)
+        else:
+            raise TypeError("Unknown type given for enlarge_by")
 
     # Binary topological relations
-    def contains(Envelope self, Geometry other):
+    def contains(Envelope self, Geometry other not None):
         """Tests if Geometry *other* lies completely inside this Envelope 
         *self* (boundary is considered inclusive).
         
@@ -1353,12 +1356,12 @@ cdef class Envelope(Geometry):
         else:
             raise NotImplementedError("Unknown type given for contains")
 
-    def covers(Envelope self, Geometry other):
+    def covers(Envelope self, Geometry other not None):
         """Synonym for contains
         """
         return self.contains(other)
     
-    def contains_properly(Envelope self, Geometry other):
+    def contains_properly(Envelope self, Geometry other not None):
         """Returns true if *other* intersects the interior of *self* but not 
         the boundary (or exterior).
         
@@ -1385,7 +1388,7 @@ cdef class Envelope(Geometry):
         else:
             raise NotImplementedError("Unknown type given for contains")
         
-    def intersects(Envelope self, object other):
+    def intersects(Envelope self, object other not None):
         """Tests whether objects are _not_ disjoint
         """
         if box_inited(self._mbr) == False:
@@ -1407,7 +1410,7 @@ cdef class Envelope(Geometry):
             else:
                 return True
 
-    def disjoint(Envelope self, object other):
+    def disjoint(Envelope self, object other not None):
         """Tests whether objects are disjoint
         """
         return not self.intersects(self, other)
