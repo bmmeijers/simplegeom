@@ -1,4 +1,4 @@
-# cython: profile=False
+#cython: profile=False,boundscheck=False
 """Provide Simple Feature like Geometry objects in 2 dimensions.
 
 @see: OGC specifications for Simple Features
@@ -1683,7 +1683,7 @@ cdef double path_signed_area(path_t *path):
     sum = 0.0
     for i in range(npts - 1):
         bx = path.coords[i].x
-        by = path.coords[i].y        
+        by = path.coords[i].y
         cx = path.coords[i+1].x
         cy = path.coords[i+1].y
         sum += (bx+cx)*(cy-by)
@@ -1727,7 +1727,7 @@ cdef extend_slice(LineString to_ln, LineString from_ln, slice slice):
     start, stop, step, = slice.indices(from_ln._path.items)
 #    print start, stop, step, from_ln, range(start, stop, step)
     ct = 0
-    for i in range(start, stop, step):
+    for i in xrange(start, stop, step):
         ct += 1
     try:
         path_grow(to_ln._path, ct)
@@ -1735,7 +1735,7 @@ cdef extend_slice(LineString to_ln, LineString from_ln, slice slice):
     except MemoryError:
         raise
     # fill path with items asked for by slice
-    for i in range(start, stop, step):
+    for i in xrange(start, stop, step):
         path_set_coord(to_ln._path, orig_ct, 
                        from_ln._path.coords[i].x,
                        from_ln._path.coords[i].y)
