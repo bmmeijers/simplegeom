@@ -111,6 +111,7 @@ cdef void path_box(path_t *path, box_t *mbr)
 
 cdef double path_length(path_t *path)
 cdef double path_signed_area(path_t *path)
+cdef inline double path_trapezoid_area(path_t *path)
 
 # --- surface_t struct
 #==============================================================================

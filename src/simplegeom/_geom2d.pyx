@@ -966,6 +966,12 @@ cdef class LineString(Geometry):
             return path_length(self._path)
 
 
+    property trapezoid_area:
+        """Returns signed trapezoid area under the given line.
+        """
+        def __get__(self):
+            return path_trapezoid_area(self._path)
+
 cdef class LinearRing(LineString):
     """LinearRing class"""
     def __init__(LineString self, coords = None, srid = 0):
@@ -1688,6 +1694,30 @@ cdef double path_signed_area(path_t *path):
         cy = path.coords[i+1].y
         sum += (bx+cx)*(cy-by)
     return sum * 0.5
+
+cdef inline double path_trapezoid_area(path_t *path):
+    """
+    Computation of the trapezoid area:
+    
+    0.5 * (y1 + y2) * dx
+    
+    where dx is the width and y1 and y2 are the 2 y-values.
+    """
+    cdef int npts
+    cdef int i
+    cdef double w, b1, b2, sum
+
+    npts = path.items 
+    if (npts < 2):
+        return 0.0
+
+    sum = 0.0
+    for i in range(npts - 1):
+        w = path.coords[i+1].x - path.coords[i].x
+        b1 = path.coords[i].y
+        b2 = path.coords[i+1].y
+        sum += 0.5*(b1+b2)*(w)
+    return sum
 
 #cpdef double signed_area(LineString ring):
 #    """Returns signed area of a ring
