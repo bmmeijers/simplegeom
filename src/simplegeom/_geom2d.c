@@ -546,7 +546,7 @@ struct __pyx_opt_args_10simplegeom_7_geom2d_path_new_coords {
   int ct;
 };
 
-/* "simplegeom/_geom2d.pxd":130
+/* "simplegeom/_geom2d.pxd":131
  * 
  * # --- Geometry
  * cdef class Geometry:             # <<<<<<<<<<<<<<
@@ -560,7 +560,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_Geometry {
 };
 
 
-/* "simplegeom/_geom2d.pxd":134
+/* "simplegeom/_geom2d.pxd":135
  *     cdef int _srid
  * 
  * cdef class Envelope(Geometry):             # <<<<<<<<<<<<<<
@@ -573,7 +573,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_Envelope {
 };
 
 
-/* "simplegeom/_geom2d.pxd":141
+/* "simplegeom/_geom2d.pxd":142
  *     #area
  * 
  * cdef class Point(Geometry):             # <<<<<<<<<<<<<<
@@ -588,7 +588,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_Point {
 };
 
 
-/* "simplegeom/_geom2d.pxd":146
+/* "simplegeom/_geom2d.pxd":147
  *     cdef bint _xinit, _yinit
  * 
  * cdef class LineString(Geometry):             # <<<<<<<<<<<<<<
@@ -601,7 +601,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_LineString {
 };
 
 
-/* "simplegeom/_geom2d.pxd":152
+/* "simplegeom/_geom2d.pxd":153
  *     #cdef void __recalc_bbox(LineString self)
  * 
  * cdef class LinearRing(LineString):             # <<<<<<<<<<<<<<
@@ -613,7 +613,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_LinearRing {
 };
 
 
-/* "simplegeom/_geom2d.pxd":156
+/* "simplegeom/_geom2d.pxd":157
  * #==============================================================================
  * #
  * cdef class Polygon(Geometry):             # <<<<<<<<<<<<<<
@@ -626,7 +626,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_Polygon {
 };
 
 
-/* "simplegeom/_geom2d.pxd":159
+/* "simplegeom/_geom2d.pxd":160
  *     cdef surface_t *_surface
  * 
  * cdef class Segment(Geometry):             # <<<<<<<<<<<<<<
@@ -944,6 +944,7 @@ static int __pyx_f_10simplegeom_7_geom2d_path_eq(struct __pyx_t_10simplegeom_7_g
 static void __pyx_f_10simplegeom_7_geom2d_path_box(struct __pyx_t_10simplegeom_7_geom2d_path_t *, struct __pyx_t_10simplegeom_7_geom2d_box_t *); /*proto*/
 static double __pyx_f_10simplegeom_7_geom2d_path_length(struct __pyx_t_10simplegeom_7_geom2d_path_t *); /*proto*/
 static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10simplegeom_7_geom2d_path_t *); /*proto*/
+static CYTHON_INLINE double __pyx_f_10simplegeom_7_geom2d_path_trapezoid_area(struct __pyx_t_10simplegeom_7_geom2d_path_t *); /*proto*/
 static struct __pyx_t_10simplegeom_7_geom2d_surface_t *__pyx_f_10simplegeom_7_geom2d_surface_new(void); /*proto*/
 static void __pyx_f_10simplegeom_7_geom2d_surface_new_paths(struct __pyx_t_10simplegeom_7_geom2d_surface_t *); /*proto*/
 static void __pyx_f_10simplegeom_7_geom2d_surface_add_path(struct __pyx_t_10simplegeom_7_geom2d_surface_t *, struct __pyx_t_10simplegeom_7_geom2d_path_t *); /*proto*/
@@ -1024,6 +1025,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LineString_32reverse(struct __
 static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LineString_8is_empty___get__(struct __pyx_obj_10simplegeom_7_geom2d_LineString *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LineString_8envelope___get__(struct __pyx_obj_10simplegeom_7_geom2d_LineString *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LineString_6length___get__(struct __pyx_obj_10simplegeom_7_geom2d_LineString *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LineString_14trapezoid_area___get__(struct __pyx_obj_10simplegeom_7_geom2d_LineString *__pyx_v_self); /* proto */
 static int __pyx_pf_10simplegeom_7_geom2d_10LinearRing___init__(struct __pyx_obj_10simplegeom_7_geom2d_LinearRing *__pyx_v_self, PyObject *__pyx_v_coords, PyObject *__pyx_v_srid); /* proto */
 static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_2__reduce__(struct __pyx_obj_10simplegeom_7_geom2d_LinearRing *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_4signed_area(struct __pyx_obj_10simplegeom_7_geom2d_LinearRing *__pyx_v_self); /* proto */
@@ -1214,6 +1216,7 @@ static char __pyx_k_Provide_Simple_Feature_like_Geom[] = "Provide Simple Feature
 static char __pyx_k_Ray_should_intersect_at_least_tw[] = "Ray should intersect at least twice the polygon";
 static char __pyx_k_Returns_a_Point_being_the_centro[] = "Returns a Point being the centroid of the Polygon.\n        \n        .. warning ::\n            The computed Point can be outside the interior of the Polygon.\n            \n        :raises: NotImplementedError, function is not implemented yet\n        ";
 static char __pyx_k_Returns_an_Envelope_axis_aligned[] = "Returns an Envelope (axis-aligned bounding box) for this Polygon.\n        ";
+static char __pyx_k_Returns_signed_trapezoid_area_un[] = "Returns signed trapezoid area under the given line.\n        ";
 static char __pyx_k_Returns_the_HEXEWKB_string_for_t[] = "Returns the HEXEWKB string for this Geometry.\n        ";
 static char __pyx_k_Returns_the_areal_size_of_this_G[] = "Returns the areal size of this Geometry.\n        ";
 static char __pyx_k_Returns_the_length_of_this_Geome[] = "Returns the length of this Geometry.\n        ";
@@ -10564,7 +10567,70 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LineString_6length___get__(str
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":971
+/* "simplegeom/_geom2d.pyx":972
+ *         """Returns signed trapezoid area under the given line.
+ *         """
+ *         def __get__(self):             # <<<<<<<<<<<<<<
+ *             return path_trapezoid_area(self._path)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10simplegeom_7_geom2d_10LineString_14trapezoid_area_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_10simplegeom_7_geom2d_10LineString_14trapezoid_area_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_10simplegeom_7_geom2d_10LineString_14trapezoid_area___get__(((struct __pyx_obj_10simplegeom_7_geom2d_LineString *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LineString_14trapezoid_area___get__(struct __pyx_obj_10simplegeom_7_geom2d_LineString *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__get__", 0);
+
+  /* "simplegeom/_geom2d.pyx":973
+ *         """
+ *         def __get__(self):
+ *             return path_trapezoid_area(self._path)             # <<<<<<<<<<<<<<
+ * 
+ * cdef class LinearRing(LineString):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_10simplegeom_7_geom2d_path_trapezoid_area(__pyx_v_self->_path)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 973; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "simplegeom/_geom2d.pyx":972
+ *         """Returns signed trapezoid area under the given line.
+ *         """
+ *         def __get__(self):             # <<<<<<<<<<<<<<
+ *             return path_trapezoid_area(self._path)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("simplegeom._geom2d.LineString.trapezoid_area.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplegeom/_geom2d.pyx":977
  * cdef class LinearRing(LineString):
  *     """LinearRing class"""
  *     def __init__(LineString self, coords = None, srid = 0):             # <<<<<<<<<<<<<<
@@ -10611,7 +10677,7 @@ static int __pyx_pw_10simplegeom_7_geom2d_10LinearRing_1__init__(PyObject *__pyx
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 971; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -10626,7 +10692,7 @@ static int __pyx_pw_10simplegeom_7_geom2d_10LinearRing_1__init__(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 971; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("simplegeom._geom2d.LinearRing.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -10654,7 +10720,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_10LinearRing___init__(struct __pyx_obj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "simplegeom/_geom2d.pyx":972
+  /* "simplegeom/_geom2d.pyx":978
  *     """LinearRing class"""
  *     def __init__(LineString self, coords = None, srid = 0):
  *         if coords is not None:             # <<<<<<<<<<<<<<
@@ -10665,75 +10731,75 @@ static int __pyx_pf_10simplegeom_7_geom2d_10LinearRing___init__(struct __pyx_obj
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "simplegeom/_geom2d.pyx":973
+    /* "simplegeom/_geom2d.pyx":979
  *     def __init__(LineString self, coords = None, srid = 0):
  *         if coords is not None:
  *             if not len(coords) > 3:             # <<<<<<<<<<<<<<
  *                 raise ValueError("Too little coordinates in LinearRing")
  *             if not coords[0] == coords[-1]:
  */
-    __pyx_t_3 = PyObject_Length(__pyx_v_coords); if (unlikely(__pyx_t_3 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 973; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyObject_Length(__pyx_v_coords); if (unlikely(__pyx_t_3 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 979; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_2 = ((!((__pyx_t_3 > 3) != 0)) != 0);
     if (__pyx_t_2) {
 
-      /* "simplegeom/_geom2d.pyx":974
+      /* "simplegeom/_geom2d.pyx":980
  *         if coords is not None:
  *             if not len(coords) > 3:
  *                 raise ValueError("Too little coordinates in LinearRing")             # <<<<<<<<<<<<<<
  *             if not coords[0] == coords[-1]:
  *                 raise ValueError("Start coordinate does not match end coordinate")
  */
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 974; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 980; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_Raise(__pyx_t_4, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 974; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 980; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "simplegeom/_geom2d.pyx":975
+    /* "simplegeom/_geom2d.pyx":981
  *             if not len(coords) > 3:
  *                 raise ValueError("Too little coordinates in LinearRing")
  *             if not coords[0] == coords[-1]:             # <<<<<<<<<<<<<<
  *                 raise ValueError("Start coordinate does not match end coordinate")
  *         super(LinearRing, self).__init__(coords)
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 975; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_coords, -1, long, 1, __Pyx_PyInt_From_long, 0, 1, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 975; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_coords, -1, long, 1, __Pyx_PyInt_From_long, 0, 1, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_1 = ((!__pyx_t_2) != 0);
     if (__pyx_t_1) {
 
-      /* "simplegeom/_geom2d.pyx":976
+      /* "simplegeom/_geom2d.pyx":982
  *                 raise ValueError("Too little coordinates in LinearRing")
  *             if not coords[0] == coords[-1]:
  *                 raise ValueError("Start coordinate does not match end coordinate")             # <<<<<<<<<<<<<<
  *         super(LinearRing, self).__init__(coords)
  *         self.srid = srid
  */
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 976; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 982; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_Raise(__pyx_t_6, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 976; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 982; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     goto __pyx_L3;
   }
   __pyx_L3:;
 
-  /* "simplegeom/_geom2d.pyx":977
+  /* "simplegeom/_geom2d.pyx":983
  *             if not coords[0] == coords[-1]:
  *                 raise ValueError("Start coordinate does not match end coordinate")
  *         super(LinearRing, self).__init__(coords)             # <<<<<<<<<<<<<<
  *         self.srid = srid
  * 
  */
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)));
   PyTuple_SET_ITEM(__pyx_t_5, 0, ((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)));
@@ -10741,10 +10807,10 @@ static int __pyx_pf_10simplegeom_7_geom2d_10LinearRing___init__(struct __pyx_obj
   __Pyx_INCREF(((PyObject *)__pyx_v_self));
   PyTuple_SET_ITEM(__pyx_t_5, 1, ((PyObject *)__pyx_v_self));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_init); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_init); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -10758,32 +10824,32 @@ static int __pyx_pf_10simplegeom_7_geom2d_10LinearRing___init__(struct __pyx_obj
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_coords); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_coords); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
   } else {
-    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     __Pyx_INCREF(__pyx_v_coords);
     PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_v_coords);
     __Pyx_GIVEREF(__pyx_v_coords);
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "simplegeom/_geom2d.pyx":978
+  /* "simplegeom/_geom2d.pyx":984
  *                 raise ValueError("Start coordinate does not match end coordinate")
  *         super(LinearRing, self).__init__(coords)
  *         self.srid = srid             # <<<<<<<<<<<<<<
  * 
  *     def __reduce__(self):
  */
-  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid, __pyx_v_srid) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 978; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid, __pyx_v_srid) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 984; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "simplegeom/_geom2d.pyx":971
+  /* "simplegeom/_geom2d.pyx":977
  * cdef class LinearRing(LineString):
  *     """LinearRing class"""
  *     def __init__(LineString self, coords = None, srid = 0):             # <<<<<<<<<<<<<<
@@ -10806,7 +10872,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_10LinearRing___init__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":980
+/* "simplegeom/_geom2d.pyx":986
  *         self.srid = srid
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -10842,19 +10908,19 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_2__reduce__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "simplegeom/_geom2d.pyx":981
+  /* "simplegeom/_geom2d.pyx":987
  * 
  *     def __reduce__(self):
  *         ret = []             # <<<<<<<<<<<<<<
  *         for i from 0 <= i < self._path.items:
  *             ret.append((self._path.coords[i].x, self._path.coords[i].y))
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 987; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_ret = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "simplegeom/_geom2d.pyx":982
+  /* "simplegeom/_geom2d.pyx":988
  *     def __reduce__(self):
  *         ret = []
  *         for i from 0 <= i < self._path.items:             # <<<<<<<<<<<<<<
@@ -10864,18 +10930,18 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_2__reduce__(struct 
   __pyx_t_2 = __pyx_v_self->__pyx_base._path->items;
   for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_2; __pyx_v_i++) {
 
-    /* "simplegeom/_geom2d.pyx":983
+    /* "simplegeom/_geom2d.pyx":989
  *         ret = []
  *         for i from 0 <= i < self._path.items:
  *             ret.append((self._path.coords[i].x, self._path.coords[i].y))             # <<<<<<<<<<<<<<
  *         return (LinearRing, (ret,))
  * 
  */
-    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->__pyx_base._path->coords[__pyx_v_i]).x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->__pyx_base._path->coords[__pyx_v_i]).x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 989; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->__pyx_base._path->coords[__pyx_v_i]).y); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->__pyx_base._path->coords[__pyx_v_i]).y); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 989; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 989; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
@@ -10883,11 +10949,11 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_2__reduce__(struct 
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_1 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_ret, __pyx_t_4); if (unlikely(__pyx_t_5 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_ret, __pyx_t_4); if (unlikely(__pyx_t_5 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 989; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
 
-  /* "simplegeom/_geom2d.pyx":984
+  /* "simplegeom/_geom2d.pyx":990
  *         for i from 0 <= i < self._path.items:
  *             ret.append((self._path.coords[i].x, self._path.coords[i].y))
  *         return (LinearRing, (ret,))             # <<<<<<<<<<<<<<
@@ -10895,12 +10961,12 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_2__reduce__(struct 
  *     def signed_area(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 984; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 990; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(__pyx_v_ret);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_ret);
   __Pyx_GIVEREF(__pyx_v_ret);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 984; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 990; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)));
   PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)));
@@ -10912,7 +10978,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_2__reduce__(struct 
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":980
+  /* "simplegeom/_geom2d.pyx":986
  *         self.srid = srid
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -10934,7 +11000,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_2__reduce__(struct 
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":986
+/* "simplegeom/_geom2d.pyx":992
  *         return (LinearRing, (ret,))
  * 
  *     def signed_area(self):             # <<<<<<<<<<<<<<
@@ -10965,7 +11031,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_4signed_area(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("signed_area", 0);
 
-  /* "simplegeom/_geom2d.pyx":989
+  /* "simplegeom/_geom2d.pyx":995
  *         """Returns the area together with a sign (+ or -) of its size.
  *         """
  *         return path_signed_area(self._path)             # <<<<<<<<<<<<<<
@@ -10973,13 +11039,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_4signed_area(struct
  *     def __repr__(LinearRing self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_10simplegeom_7_geom2d_path_signed_area(__pyx_v_self->__pyx_base._path)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 989; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_10simplegeom_7_geom2d_path_signed_area(__pyx_v_self->__pyx_base._path)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 995; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":986
+  /* "simplegeom/_geom2d.pyx":992
  *         return (LinearRing, (ret,))
  * 
  *     def signed_area(self):             # <<<<<<<<<<<<<<
@@ -10998,7 +11064,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_4signed_area(struct
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":991
+/* "simplegeom/_geom2d.pyx":997
  *         return path_signed_area(self._path)
  * 
  *     def __repr__(LinearRing self):             # <<<<<<<<<<<<<<
@@ -11040,7 +11106,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "simplegeom/_geom2d.pyx":993
+  /* "simplegeom/_geom2d.pyx":999
  *     def __repr__(LinearRing self):
  *         cdef int i
  *         if self._path.items == 0:             # <<<<<<<<<<<<<<
@@ -11050,7 +11116,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
   __pyx_t_1 = ((__pyx_v_self->__pyx_base._path->items == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":994
+    /* "simplegeom/_geom2d.pyx":1000
  *         cdef int i
  *         if self._path.items == 0:
  *             return "LinearRing(srid={0})".format(self.srid)             # <<<<<<<<<<<<<<
@@ -11058,9 +11124,9 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
  *             ret = []
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_LinearRing_srid_0, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_LinearRing_srid_0, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_3))) {
@@ -11073,17 +11139,17 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
       }
     }
     if (!__pyx_t_5) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
       PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
@@ -11094,19 +11160,19 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":996
+    /* "simplegeom/_geom2d.pyx":1002
  *             return "LinearRing(srid={0})".format(self.srid)
  *         else:
  *             ret = []             # <<<<<<<<<<<<<<
  *             for i from 0 <= i < self._path.items:
  *                 ret.append("Point(x={0}, y={1}, srid={2})".format(
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 996; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_ret = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "simplegeom/_geom2d.pyx":997
+    /* "simplegeom/_geom2d.pyx":1003
  *         else:
  *             ret = []
  *             for i from 0 <= i < self._path.items:             # <<<<<<<<<<<<<<
@@ -11116,44 +11182,44 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
     __pyx_t_7 = __pyx_v_self->__pyx_base._path->items;
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_7; __pyx_v_i++) {
 
-      /* "simplegeom/_geom2d.pyx":998
+      /* "simplegeom/_geom2d.pyx":1004
  *             ret = []
  *             for i from 0 <= i < self._path.items:
  *                 ret.append("Point(x={0}, y={1}, srid={2})".format(             # <<<<<<<<<<<<<<
  *                     self._path.coords[i].x,
  *                     self._path.coords[i].y,
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Point_x_0_y_1_srid_2, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Point_x_0_y_1_srid_2, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1004; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
 
-      /* "simplegeom/_geom2d.pyx":999
+      /* "simplegeom/_geom2d.pyx":1005
  *             for i from 0 <= i < self._path.items:
  *                 ret.append("Point(x={0}, y={1}, srid={2})".format(
  *                     self._path.coords[i].x,             # <<<<<<<<<<<<<<
  *                     self._path.coords[i].y,
  *                     self.srid))
  */
-      __pyx_t_6 = PyFloat_FromDouble((__pyx_v_self->__pyx_base._path->coords[__pyx_v_i]).x); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 999; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = PyFloat_FromDouble((__pyx_v_self->__pyx_base._path->coords[__pyx_v_i]).x); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1005; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
 
-      /* "simplegeom/_geom2d.pyx":1000
+      /* "simplegeom/_geom2d.pyx":1006
  *                 ret.append("Point(x={0}, y={1}, srid={2})".format(
  *                     self._path.coords[i].x,
  *                     self._path.coords[i].y,             # <<<<<<<<<<<<<<
  *                     self.srid))
  *             return "LinearRing([{0}], srid={1})".format(', '.join(ret), self.srid)
  */
-      __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->__pyx_base._path->coords[__pyx_v_i]).y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->__pyx_base._path->coords[__pyx_v_i]).y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1006; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
 
-      /* "simplegeom/_geom2d.pyx":1001
+      /* "simplegeom/_geom2d.pyx":1007
  *                     self._path.coords[i].x,
  *                     self._path.coords[i].y,
  *                     self.srid))             # <<<<<<<<<<<<<<
  *             return "LinearRing([{0}], srid={1})".format(', '.join(ret), self.srid)
  * 
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1001; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1007; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_8 = NULL;
       __pyx_t_9 = 0;
@@ -11167,7 +11233,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
           __pyx_t_9 = 1;
         }
       }
-      __pyx_t_10 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1004; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_10);
       if (__pyx_t_8) {
         PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
@@ -11181,23 +11247,23 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
       __pyx_t_6 = 0;
       __pyx_t_4 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1004; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "simplegeom/_geom2d.pyx":998
+      /* "simplegeom/_geom2d.pyx":1004
  *             ret = []
  *             for i from 0 <= i < self._path.items:
  *                 ret.append("Point(x={0}, y={1}, srid={2})".format(             # <<<<<<<<<<<<<<
  *                     self._path.coords[i].x,
  *                     self._path.coords[i].y,
  */
-      __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_ret, __pyx_t_2); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_ret, __pyx_t_2); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1004; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
 
-    /* "simplegeom/_geom2d.pyx":1002
+    /* "simplegeom/_geom2d.pyx":1008
  *                     self._path.coords[i].y,
  *                     self.srid))
  *             return "LinearRing([{0}], srid={1})".format(', '.join(ret), self.srid)             # <<<<<<<<<<<<<<
@@ -11205,11 +11271,11 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
  *     property is_ccw:
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_LinearRing_0_srid_1, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_LinearRing_0_srid_1, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1008; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = __Pyx_PyString_Join(__pyx_kp_s__18, __pyx_v_ret); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_10 = __Pyx_PyString_Join(__pyx_kp_s__18, __pyx_v_ret); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1008; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1008; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_4 = NULL;
     __pyx_t_9 = 0;
@@ -11223,7 +11289,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
         __pyx_t_9 = 1;
       }
     }
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1008; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
@@ -11234,7 +11300,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
     __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_10 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1008; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -11243,7 +11309,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
     goto __pyx_L0;
   }
 
-  /* "simplegeom/_geom2d.pyx":991
+  /* "simplegeom/_geom2d.pyx":997
  *         return path_signed_area(self._path)
  * 
  *     def __repr__(LinearRing self):             # <<<<<<<<<<<<<<
@@ -11269,7 +11335,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6__repr__(struct __
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1007
+/* "simplegeom/_geom2d.pyx":1013
  *         """Returns whether this LinearRing is oriented counter clock wise.
  *         """
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -11299,7 +11365,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6is_ccw___get__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1008
+  /* "simplegeom/_geom2d.pyx":1014
  *         """
  *         def __get__(self):
  *             return is_ccw(self)             # <<<<<<<<<<<<<<
@@ -11307,13 +11373,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6is_ccw___get__(str
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_f_10simplegeom_7_geom2d_is_ccw(__pyx_v_self, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1008; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_f_10simplegeom_7_geom2d_is_ccw(__pyx_v_self, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1007
+  /* "simplegeom/_geom2d.pyx":1013
  *         """Returns whether this LinearRing is oriented counter clock wise.
  *         """
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -11332,7 +11398,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_10LinearRing_6is_ccw___get__(str
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1015
+/* "simplegeom/_geom2d.pyx":1021
  *     Polygon class
  *     """
  *     def __cinit__(Polygon self):             # <<<<<<<<<<<<<<
@@ -11372,7 +11438,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1016
+  /* "simplegeom/_geom2d.pyx":1022
  *     """
  *     def __cinit__(Polygon self):
  *         try:             # <<<<<<<<<<<<<<
@@ -11386,14 +11452,14 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1017
+      /* "simplegeom/_geom2d.pyx":1023
  *     def __cinit__(Polygon self):
  *         try:
  *             self._surface = surface_new()             # <<<<<<<<<<<<<<
  *         except MemoryError:
  *             raise
  */
-      __pyx_t_4 = __pyx_f_10simplegeom_7_geom2d_surface_new(); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1017; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_4 = __pyx_f_10simplegeom_7_geom2d_surface_new(); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1023; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __pyx_v_self->_surface = __pyx_t_4;
     }
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11402,7 +11468,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
     goto __pyx_L10_try_end;
     __pyx_L3_error:;
 
-    /* "simplegeom/_geom2d.pyx":1018
+    /* "simplegeom/_geom2d.pyx":1024
  *         try:
  *             self._surface = surface_new()
  *         except MemoryError:             # <<<<<<<<<<<<<<
@@ -11412,12 +11478,12 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
     __pyx_t_5 = PyErr_ExceptionMatches(__pyx_builtin_MemoryError);
     if (__pyx_t_5) {
       __Pyx_AddTraceback("simplegeom._geom2d.Polygon.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_7, &__pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1018; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_7, &__pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1024; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_t_8);
 
-      /* "simplegeom/_geom2d.pyx":1019
+      /* "simplegeom/_geom2d.pyx":1025
  *             self._surface = surface_new()
  *         except MemoryError:
  *             raise             # <<<<<<<<<<<<<<
@@ -11429,7 +11495,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
       __Pyx_XGIVEREF(__pyx_t_8);
       __Pyx_ErrRestore(__pyx_t_6, __pyx_t_7, __pyx_t_8);
       __pyx_t_6 = 0; __pyx_t_7 = 0; __pyx_t_8 = 0; 
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1019; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1025; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
     }
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
@@ -11441,7 +11507,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
     __pyx_L10_try_end:;
   }
 
-  /* "simplegeom/_geom2d.pyx":1020
+  /* "simplegeom/_geom2d.pyx":1026
  *         except MemoryError:
  *             raise
  *         try:             # <<<<<<<<<<<<<<
@@ -11452,7 +11518,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
     if (__pyx_t_3||__pyx_t_2||__pyx_t_1); else {/*mark used*/};
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1021
+      /* "simplegeom/_geom2d.pyx":1027
  *             raise
  *         try:
  *             surface_new_paths(self._surface)             # <<<<<<<<<<<<<<
@@ -11463,7 +11529,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1024
+  /* "simplegeom/_geom2d.pyx":1030
  *         except MemoryError:
  *             raise
  *         self._geom_type = WKB_POLY             # <<<<<<<<<<<<<<
@@ -11472,7 +11538,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
  */
   __pyx_v_self->__pyx_base._geom_type = __pyx_e_10simplegeom_7_geom2d_WKB_POLY;
 
-  /* "simplegeom/_geom2d.pyx":1015
+  /* "simplegeom/_geom2d.pyx":1021
  *     Polygon class
  *     """
  *     def __cinit__(Polygon self):             # <<<<<<<<<<<<<<
@@ -11494,7 +11560,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon___cinit__(struct __pyx_obj_10
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1026
+/* "simplegeom/_geom2d.pyx":1032
  *         self._geom_type = WKB_POLY
  * 
  *     def __init__(Polygon self, shell = None, holes = None, srid = 0):             # <<<<<<<<<<<<<<
@@ -11553,7 +11619,7 @@ static int __pyx_pw_10simplegeom_7_geom2d_7Polygon_3__init__(PyObject *__pyx_v_s
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1026; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1032; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -11570,7 +11636,7 @@ static int __pyx_pw_10simplegeom_7_geom2d_7Polygon_3__init__(PyObject *__pyx_v_s
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1026; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1032; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("simplegeom._geom2d.Polygon.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -11605,7 +11671,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1030
+  /* "simplegeom/_geom2d.pyx":1036
  *         and zero or more inner rings (holes)
  *         """
  *         if shell is not None:             # <<<<<<<<<<<<<<
@@ -11616,7 +11682,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "simplegeom/_geom2d.pyx":1031
+    /* "simplegeom/_geom2d.pyx":1037
  *         """
  *         if shell is not None:
  *             try:             # <<<<<<<<<<<<<<
@@ -11630,14 +11696,14 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
       __Pyx_XGOTREF(__pyx_t_5);
       /*try:*/ {
 
-        /* "simplegeom/_geom2d.pyx":1032
+        /* "simplegeom/_geom2d.pyx":1038
  *         if shell is not None:
  *             try:
  *                 self.append(shell)             # <<<<<<<<<<<<<<
  *             except:
  *                 raise ValueError('Incorrect shell found, should be of type LinearRing')
  */
-        __pyx_t_6 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_self), __pyx_v_shell); if (unlikely(__pyx_t_6 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1032; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+        __pyx_t_6 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_self), __pyx_v_shell); if (unlikely(__pyx_t_6 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1038; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
       }
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -11645,7 +11711,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
       goto __pyx_L11_try_end;
       __pyx_L4_error:;
 
-      /* "simplegeom/_geom2d.pyx":1033
+      /* "simplegeom/_geom2d.pyx":1039
  *             try:
  *                 self.append(shell)
  *             except:             # <<<<<<<<<<<<<<
@@ -11654,23 +11720,23 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
  */
       /*except:*/ {
         __Pyx_AddTraceback("simplegeom._geom2d.Polygon.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-        if (__Pyx_GetException(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1033; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+        if (__Pyx_GetException(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1039; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_GOTREF(__pyx_t_9);
 
-        /* "simplegeom/_geom2d.pyx":1034
+        /* "simplegeom/_geom2d.pyx":1040
  *                 self.append(shell)
  *             except:
  *                 raise ValueError('Incorrect shell found, should be of type LinearRing')             # <<<<<<<<<<<<<<
  * 
  *         if holes is not None:
  */
-        __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1034; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+        __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1040; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_Raise(__pyx_t_10, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1034; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1040; __pyx_clineno = __LINE__; goto __pyx_L6_except_error;}
       }
       __pyx_L6_except_error:;
       __Pyx_XGIVEREF(__pyx_t_3);
@@ -11684,7 +11750,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
   }
   __pyx_L3:;
 
-  /* "simplegeom/_geom2d.pyx":1036
+  /* "simplegeom/_geom2d.pyx":1042
  *                 raise ValueError('Incorrect shell found, should be of type LinearRing')
  * 
  *         if holes is not None:             # <<<<<<<<<<<<<<
@@ -11695,7 +11761,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1037
+    /* "simplegeom/_geom2d.pyx":1043
  * 
  *         if holes is not None:
  *             for hole in holes:             # <<<<<<<<<<<<<<
@@ -11706,25 +11772,25 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
       __pyx_t_9 = __pyx_v_holes; __Pyx_INCREF(__pyx_t_9); __pyx_t_11 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_11 = -1; __pyx_t_9 = PyObject_GetIter(__pyx_v_holes); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1037; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_11 = -1; __pyx_t_9 = PyObject_GetIter(__pyx_v_holes); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_12 = Py_TYPE(__pyx_t_9)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1037; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_12 = Py_TYPE(__pyx_t_9)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     for (;;) {
       if (likely(!__pyx_t_12)) {
         if (likely(PyList_CheckExact(__pyx_t_9))) {
           if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_9)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_8 = PyList_GET_ITEM(__pyx_t_9, __pyx_t_11); __Pyx_INCREF(__pyx_t_8); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1037; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = PyList_GET_ITEM(__pyx_t_9, __pyx_t_11); __Pyx_INCREF(__pyx_t_8); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_8 = PySequence_ITEM(__pyx_t_9, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1037; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = PySequence_ITEM(__pyx_t_9, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #endif
         } else {
           if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_9)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_8 = PyTuple_GET_ITEM(__pyx_t_9, __pyx_t_11); __Pyx_INCREF(__pyx_t_8); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1037; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = PyTuple_GET_ITEM(__pyx_t_9, __pyx_t_11); __Pyx_INCREF(__pyx_t_8); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_8 = PySequence_ITEM(__pyx_t_9, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1037; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = PySequence_ITEM(__pyx_t_9, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #endif
         }
       } else {
@@ -11733,7 +11799,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1037; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           break;
         }
@@ -11742,7 +11808,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
       __Pyx_XDECREF_SET(__pyx_v_hole, __pyx_t_8);
       __pyx_t_8 = 0;
 
-      /* "simplegeom/_geom2d.pyx":1038
+      /* "simplegeom/_geom2d.pyx":1044
  *         if holes is not None:
  *             for hole in holes:
  *                 try:             # <<<<<<<<<<<<<<
@@ -11756,14 +11822,14 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
         __Pyx_XGOTREF(__pyx_t_3);
         /*try:*/ {
 
-          /* "simplegeom/_geom2d.pyx":1039
+          /* "simplegeom/_geom2d.pyx":1045
  *             for hole in holes:
  *                 try:
  *                     self.append(hole)             # <<<<<<<<<<<<<<
  *                 except:
  *                     raise ValueError('Incorrect hole found, all should be of type LinearRing')
  */
-          __pyx_t_6 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_self), __pyx_v_hole); if (unlikely(__pyx_t_6 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1039; __pyx_clineno = __LINE__; goto __pyx_L17_error;}
+          __pyx_t_6 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_self), __pyx_v_hole); if (unlikely(__pyx_t_6 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1045; __pyx_clineno = __LINE__; goto __pyx_L17_error;}
         }
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -11774,7 +11840,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-        /* "simplegeom/_geom2d.pyx":1040
+        /* "simplegeom/_geom2d.pyx":1046
  *                 try:
  *                     self.append(hole)
  *                 except:             # <<<<<<<<<<<<<<
@@ -11783,23 +11849,23 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
  */
         /*except:*/ {
           __Pyx_AddTraceback("simplegeom._geom2d.Polygon.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_8, &__pyx_t_7, &__pyx_t_10) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1040; __pyx_clineno = __LINE__; goto __pyx_L19_except_error;}
+          if (__Pyx_GetException(&__pyx_t_8, &__pyx_t_7, &__pyx_t_10) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1046; __pyx_clineno = __LINE__; goto __pyx_L19_except_error;}
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_GOTREF(__pyx_t_10);
 
-          /* "simplegeom/_geom2d.pyx":1041
+          /* "simplegeom/_geom2d.pyx":1047
  *                     self.append(hole)
  *                 except:
  *                     raise ValueError('Incorrect hole found, all should be of type LinearRing')             # <<<<<<<<<<<<<<
  *         self.srid = srid
  * 
  */
-          __pyx_t_13 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1041; __pyx_clineno = __LINE__; goto __pyx_L19_except_error;}
+          __pyx_t_13 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1047; __pyx_clineno = __LINE__; goto __pyx_L19_except_error;}
           __Pyx_GOTREF(__pyx_t_13);
           __Pyx_Raise(__pyx_t_13, 0, 0, 0);
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1041; __pyx_clineno = __LINE__; goto __pyx_L19_except_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1047; __pyx_clineno = __LINE__; goto __pyx_L19_except_error;}
         }
         __pyx_L19_except_error:;
         __Pyx_XGIVEREF(__pyx_t_5);
@@ -11810,7 +11876,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
         __pyx_L24_try_end:;
       }
 
-      /* "simplegeom/_geom2d.pyx":1037
+      /* "simplegeom/_geom2d.pyx":1043
  * 
  *         if holes is not None:
  *             for hole in holes:             # <<<<<<<<<<<<<<
@@ -11823,16 +11889,16 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
   }
   __pyx_L14:;
 
-  /* "simplegeom/_geom2d.pyx":1042
+  /* "simplegeom/_geom2d.pyx":1048
  *                 except:
  *                     raise ValueError('Incorrect hole found, all should be of type LinearRing')
  *         self.srid = srid             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(Polygon self):
  */
-  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid, __pyx_v_srid) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1042; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid, __pyx_v_srid) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1048; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "simplegeom/_geom2d.pyx":1026
+  /* "simplegeom/_geom2d.pyx":1032
  *         self._geom_type = WKB_POLY
  * 
  *     def __init__(Polygon self, shell = None, holes = None, srid = 0):             # <<<<<<<<<<<<<<
@@ -11857,7 +11923,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_2__init__(struct __pyx_obj_10
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1044
+/* "simplegeom/_geom2d.pyx":1050
  *         self.srid = srid
  * 
  *     def __dealloc__(Polygon self):             # <<<<<<<<<<<<<<
@@ -11880,7 +11946,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_7Polygon_4__dealloc__(struct __pyx_ob
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1045
+  /* "simplegeom/_geom2d.pyx":1051
  * 
  *     def __dealloc__(Polygon self):
  *         surface_dealloc(self._surface)             # <<<<<<<<<<<<<<
@@ -11889,7 +11955,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_7Polygon_4__dealloc__(struct __pyx_ob
  */
   __pyx_f_10simplegeom_7_geom2d_surface_dealloc(__pyx_v_self->_surface);
 
-  /* "simplegeom/_geom2d.pyx":1044
+  /* "simplegeom/_geom2d.pyx":1050
  *         self.srid = srid
  * 
  *     def __dealloc__(Polygon self):             # <<<<<<<<<<<<<<
@@ -11901,7 +11967,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_7Polygon_4__dealloc__(struct __pyx_ob
   __Pyx_RefNannyFinishContext();
 }
 
-/* "simplegeom/_geom2d.pyx":1047
+/* "simplegeom/_geom2d.pyx":1053
  *         surface_dealloc(self._surface)
  * 
  *     def __len__(Polygon self):             # <<<<<<<<<<<<<<
@@ -11927,7 +11993,7 @@ static Py_ssize_t __pyx_pf_10simplegeom_7_geom2d_7Polygon_6__len__(struct __pyx_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1048
+  /* "simplegeom/_geom2d.pyx":1054
  * 
  *     def __len__(Polygon self):
  *         return self._surface.items             # <<<<<<<<<<<<<<
@@ -11937,7 +12003,7 @@ static Py_ssize_t __pyx_pf_10simplegeom_7_geom2d_7Polygon_6__len__(struct __pyx_
   __pyx_r = __pyx_v_self->_surface->items;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1047
+  /* "simplegeom/_geom2d.pyx":1053
  *         surface_dealloc(self._surface)
  * 
  *     def __len__(Polygon self):             # <<<<<<<<<<<<<<
@@ -11951,7 +12017,7 @@ static Py_ssize_t __pyx_pf_10simplegeom_7_geom2d_7Polygon_6__len__(struct __pyx_
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1050
+/* "simplegeom/_geom2d.pyx":1056
  *         return self._surface.items
  * 
  *     def __richcmp__(Polygon self, Polygon other not None, int op):             # <<<<<<<<<<<<<<
@@ -11968,8 +12034,8 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_7Polygon_9__richcmp__(PyObject *
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__richcmp__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_self), __pyx_ptype_10simplegeom_7_geom2d_Polygon, 1, "self", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1050; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Polygon, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1050; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_self), __pyx_ptype_10simplegeom_7_geom2d_Polygon, 1, "self", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1056; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Polygon, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1056; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_7Polygon_8__richcmp__(((struct __pyx_obj_10simplegeom_7_geom2d_Polygon *)__pyx_v_self), ((struct __pyx_obj_10simplegeom_7_geom2d_Polygon *)__pyx_v_other), ((int)__pyx_v_op));
 
   /* function exit code */
@@ -11993,7 +12059,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8__richcmp__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__richcmp__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1052
+  /* "simplegeom/_geom2d.pyx":1058
  *     def __richcmp__(Polygon self, Polygon other not None, int op):
  *         # ==
  *         if op == 2:             # <<<<<<<<<<<<<<
@@ -12003,16 +12069,16 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8__richcmp__(struct __p
   __pyx_t_1 = ((__pyx_v_op == 2) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1053
+    /* "simplegeom/_geom2d.pyx":1059
  *         # ==
  *         if op == 2:
  *             if isinstance(other, self.__class__) and \             # <<<<<<<<<<<<<<
  *                 surface_eq(self._surface, other._surface):
  *                 return True
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1053; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1059; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyObject_IsInstance(((PyObject *)__pyx_v_other), __pyx_t_2); if (unlikely(__pyx_t_3 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1053; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyObject_IsInstance(((PyObject *)__pyx_v_other), __pyx_t_2); if (unlikely(__pyx_t_3 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1059; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_4 = (__pyx_t_3 != 0);
     if (__pyx_t_4) {
@@ -12021,7 +12087,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8__richcmp__(struct __p
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1054
+    /* "simplegeom/_geom2d.pyx":1060
  *         if op == 2:
  *             if isinstance(other, self.__class__) and \
  *                 surface_eq(self._surface, other._surface):             # <<<<<<<<<<<<<<
@@ -12033,7 +12099,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8__richcmp__(struct __p
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_1) {
 
-      /* "simplegeom/_geom2d.pyx":1055
+      /* "simplegeom/_geom2d.pyx":1061
  *             if isinstance(other, self.__class__) and \
  *                 surface_eq(self._surface, other._surface):
  *                 return True             # <<<<<<<<<<<<<<
@@ -12047,7 +12113,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8__richcmp__(struct __p
     }
     /*else*/ {
 
-      /* "simplegeom/_geom2d.pyx":1057
+      /* "simplegeom/_geom2d.pyx":1063
  *                 return True
  *             else:
  *                 return False             # <<<<<<<<<<<<<<
@@ -12061,7 +12127,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8__richcmp__(struct __p
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1050
+  /* "simplegeom/_geom2d.pyx":1056
  *         return self._surface.items
  * 
  *     def __richcmp__(Polygon self, Polygon other not None, int op):             # <<<<<<<<<<<<<<
@@ -12082,7 +12148,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8__richcmp__(struct __p
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1059
+/* "simplegeom/_geom2d.pyx":1065
  *                 return False
  * #
  *     def __getitem__(Polygon self, int key):             # <<<<<<<<<<<<<<
@@ -12101,7 +12167,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_7Polygon_11__getitem__(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
   assert(__pyx_arg_key); {
-    __pyx_v_key = __Pyx_PyInt_As_int(__pyx_arg_key); if (unlikely((__pyx_v_key == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1059; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_key = __Pyx_PyInt_As_int(__pyx_arg_key); if (unlikely((__pyx_v_key == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1065; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -12132,26 +12198,26 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_10__getitem__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1060
+  /* "simplegeom/_geom2d.pyx":1066
  * #
  *     def __getitem__(Polygon self, int key):
  *         cdef LinearRing l = LinearRing(srid = self.srid)             # <<<<<<<<<<<<<<
  *         cdef int j
  * 
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1066; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1066; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_srid, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_srid, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1066; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)), __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)), __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1066; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_l = ((struct __pyx_obj_10simplegeom_7_geom2d_LinearRing *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1063
+  /* "simplegeom/_geom2d.pyx":1069
  *         cdef int j
  * 
  *         if key < 0 or key >= self._surface.items:             # <<<<<<<<<<<<<<
@@ -12169,7 +12235,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_10__getitem__(struct __
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_3) {
 
-    /* "simplegeom/_geom2d.pyx":1064
+    /* "simplegeom/_geom2d.pyx":1070
  * 
  *         if key < 0 or key >= self._surface.items:
  *             raise IndexError             # <<<<<<<<<<<<<<
@@ -12177,11 +12243,11 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_10__getitem__(struct __
  *             try:
  */
     __Pyx_Raise(__pyx_builtin_IndexError, 0, 0, 0);
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1070; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1066
+    /* "simplegeom/_geom2d.pyx":1072
  *             raise IndexError
  *         else:
  *             try:             # <<<<<<<<<<<<<<
@@ -12192,7 +12258,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_10__getitem__(struct __
       if (__pyx_t_5||__pyx_t_6||__pyx_t_7); else {/*mark used*/};
       /*try:*/ {
 
-        /* "simplegeom/_geom2d.pyx":1067
+        /* "simplegeom/_geom2d.pyx":1073
  *         else:
  *             try:
  *                 path_extend(l._path, self._surface.paths[key])             # <<<<<<<<<<<<<<
@@ -12203,7 +12269,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_10__getitem__(struct __
       }
     }
 
-    /* "simplegeom/_geom2d.pyx":1070
+    /* "simplegeom/_geom2d.pyx":1076
  *             except MemoryError:
  *                 raise
  *             return l             # <<<<<<<<<<<<<<
@@ -12216,7 +12282,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_10__getitem__(struct __
     goto __pyx_L0;
   }
 
-  /* "simplegeom/_geom2d.pyx":1059
+  /* "simplegeom/_geom2d.pyx":1065
  *                 return False
  * #
  *     def __getitem__(Polygon self, int key):             # <<<<<<<<<<<<<<
@@ -12237,7 +12303,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_10__getitem__(struct __
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1085
+/* "simplegeom/_geom2d.pyx":1091
  * #
  * 
  *     def __delitem__(Polygon self, int key):             # <<<<<<<<<<<<<<
@@ -12256,7 +12322,7 @@ static int __pyx_pw_10simplegeom_7_geom2d_7Polygon_13__delitem__(PyObject *__pyx
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__delitem__ (wrapper)", 0);
   assert(__pyx_arg_key); {
-    __pyx_v_key = __Pyx_PyInt_As_int(__pyx_arg_key); if (unlikely((__pyx_v_key == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1085; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_key = __Pyx_PyInt_As_int(__pyx_arg_key); if (unlikely((__pyx_v_key == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1091; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -12279,7 +12345,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_12__delitem__(CYTHON_UNUSED s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__delitem__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1086
+  /* "simplegeom/_geom2d.pyx":1092
  * 
  *     def __delitem__(Polygon self, int key):
  *         raise NotImplementedError             # <<<<<<<<<<<<<<
@@ -12287,9 +12353,9 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_12__delitem__(CYTHON_UNUSED s
  * #    def __delitem__(Polygon self, int key):
  */
   __Pyx_Raise(__pyx_builtin_NotImplementedError, 0, 0, 0);
-  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1086; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1092; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "simplegeom/_geom2d.pyx":1085
+  /* "simplegeom/_geom2d.pyx":1091
  * #
  * 
  *     def __delitem__(Polygon self, int key):             # <<<<<<<<<<<<<<
@@ -12305,7 +12371,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Polygon_12__delitem__(CYTHON_UNUSED s
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1095
+/* "simplegeom/_geom2d.pyx":1101
  * #            surface_box(self._surface, self._envelope._mbr)
  * 
  *     def __reduce__(Polygon self):             # <<<<<<<<<<<<<<
@@ -12347,7 +12413,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1099
+  /* "simplegeom/_geom2d.pyx":1105
  *         """
  *         cdef int i, j
  *         if self._surface.items == 0:             # <<<<<<<<<<<<<<
@@ -12357,14 +12423,14 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
   __pyx_t_1 = ((__pyx_v_self->_surface->items == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1100
+    /* "simplegeom/_geom2d.pyx":1106
  *         cdef int i, j
  *         if self._surface.items == 0:
  *             rings = []             # <<<<<<<<<<<<<<
  *         else:
  *             rings = []
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_rings = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
@@ -12372,19 +12438,19 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1102
+    /* "simplegeom/_geom2d.pyx":1108
  *             rings = []
  *         else:
  *             rings = []             # <<<<<<<<<<<<<<
  *             for i from 0 <= i < self._surface.items:
  *                 ring = LinearRing()
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1108; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_rings = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "simplegeom/_geom2d.pyx":1103
+    /* "simplegeom/_geom2d.pyx":1109
  *         else:
  *             rings = []
  *             for i from 0 <= i < self._surface.items:             # <<<<<<<<<<<<<<
@@ -12394,19 +12460,19 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
     __pyx_t_3 = __pyx_v_self->_surface->items;
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_3; __pyx_v_i++) {
 
-      /* "simplegeom/_geom2d.pyx":1104
+      /* "simplegeom/_geom2d.pyx":1110
  *             rings = []
  *             for i from 0 <= i < self._surface.items:
  *                 ring = LinearRing()             # <<<<<<<<<<<<<<
  *                 for j from 0 <= j < self._surface.paths[i].items:
  *                     ring.append(Point(self._surface.paths[i].coords[j].x,
  */
-      __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_ring, ((struct __pyx_obj_10simplegeom_7_geom2d_LinearRing *)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "simplegeom/_geom2d.pyx":1105
+      /* "simplegeom/_geom2d.pyx":1111
  *             for i from 0 <= i < self._surface.items:
  *                 ring = LinearRing()
  *                 for j from 0 <= j < self._surface.paths[i].items:             # <<<<<<<<<<<<<<
@@ -12416,34 +12482,34 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
       __pyx_t_4 = (__pyx_v_self->_surface->paths[__pyx_v_i])->items;
       for (__pyx_v_j = 0; __pyx_v_j < __pyx_t_4; __pyx_v_j++) {
 
-        /* "simplegeom/_geom2d.pyx":1106
+        /* "simplegeom/_geom2d.pyx":1112
  *                 ring = LinearRing()
  *                 for j from 0 <= j < self._surface.paths[i].items:
  *                     ring.append(Point(self._surface.paths[i].coords[j].x,             # <<<<<<<<<<<<<<
  *                                            self._surface.paths[i].coords[j].y))
  *                 rings.append(ring)
  */
-        __pyx_t_2 = PyFloat_FromDouble(((__pyx_v_self->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).x); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = PyFloat_FromDouble(((__pyx_v_self->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).x); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
 
-        /* "simplegeom/_geom2d.pyx":1107
+        /* "simplegeom/_geom2d.pyx":1113
  *                 for j from 0 <= j < self._surface.paths[i].items:
  *                     ring.append(Point(self._surface.paths[i].coords[j].x,
  *                                            self._surface.paths[i].coords[j].y))             # <<<<<<<<<<<<<<
  *                 rings.append(ring)
  *         if len(rings) == 0:
  */
-        __pyx_t_5 = PyFloat_FromDouble(((__pyx_v_self->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).y); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = PyFloat_FromDouble(((__pyx_v_self->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).y); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
 
-        /* "simplegeom/_geom2d.pyx":1106
+        /* "simplegeom/_geom2d.pyx":1112
  *                 ring = LinearRing()
  *                 for j from 0 <= j < self._surface.paths[i].items:
  *                     ring.append(Point(self._surface.paths[i].coords[j].x,             # <<<<<<<<<<<<<<
  *                                            self._surface.paths[i].coords[j].y))
  *                 rings.append(ring)
  */
-        __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
         PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
         __Pyx_GIVEREF(__pyx_t_2);
@@ -12451,37 +12517,37 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
         __Pyx_GIVEREF(__pyx_t_5);
         __pyx_t_2 = 0;
         __pyx_t_5 = 0;
-        __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __pyx_t_7 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ring), __pyx_t_5); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_7 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ring), __pyx_t_5); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
 
-      /* "simplegeom/_geom2d.pyx":1108
+      /* "simplegeom/_geom2d.pyx":1114
  *                     ring.append(Point(self._surface.paths[i].coords[j].x,
  *                                            self._surface.paths[i].coords[j].y))
  *                 rings.append(ring)             # <<<<<<<<<<<<<<
  *         if len(rings) == 0:
  *             return (Polygon, tuple(None, None, self.srid))
  */
-      __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_rings, ((PyObject *)__pyx_v_ring)); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1108; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_rings, ((PyObject *)__pyx_v_ring)); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   __pyx_L3:;
 
-  /* "simplegeom/_geom2d.pyx":1109
+  /* "simplegeom/_geom2d.pyx":1115
  *                                            self._surface.paths[i].coords[j].y))
  *                 rings.append(ring)
  *         if len(rings) == 0:             # <<<<<<<<<<<<<<
  *             return (Polygon, tuple(None, None, self.srid))
  *         elif len(rings) == 1:
  */
-  __pyx_t_8 = PyList_GET_SIZE(__pyx_v_rings); if (unlikely(__pyx_t_8 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1109; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyList_GET_SIZE(__pyx_v_rings); if (unlikely(__pyx_t_8 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1115; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_1 = ((__pyx_t_8 == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1110
+    /* "simplegeom/_geom2d.pyx":1116
  *                 rings.append(ring)
  *         if len(rings) == 0:
  *             return (Polygon, tuple(None, None, self.srid))             # <<<<<<<<<<<<<<
@@ -12489,9 +12555,9 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
  *             return (Polygon, (rings[0], None, self.srid))
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(Py_None);
     PyTuple_SET_ITEM(__pyx_t_6, 0, Py_None);
@@ -12502,10 +12568,10 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
     PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyTuple_Type))), __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyTuple_Type))), __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Polygon)));
     PyTuple_SET_ITEM(__pyx_t_6, 0, ((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Polygon)));
@@ -12518,18 +12584,18 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
     goto __pyx_L0;
   }
 
-  /* "simplegeom/_geom2d.pyx":1111
+  /* "simplegeom/_geom2d.pyx":1117
  *         if len(rings) == 0:
  *             return (Polygon, tuple(None, None, self.srid))
  *         elif len(rings) == 1:             # <<<<<<<<<<<<<<
  *             return (Polygon, (rings[0], None, self.srid))
  *         else:
  */
-  __pyx_t_8 = PyList_GET_SIZE(__pyx_v_rings); if (unlikely(__pyx_t_8 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1111; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyList_GET_SIZE(__pyx_v_rings); if (unlikely(__pyx_t_8 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1117; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_1 = ((__pyx_t_8 == 1) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1112
+    /* "simplegeom/_geom2d.pyx":1118
  *             return (Polygon, tuple(None, None, self.srid))
  *         elif len(rings) == 1:
  *             return (Polygon, (rings[0], None, self.srid))             # <<<<<<<<<<<<<<
@@ -12537,9 +12603,9 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
  *             return (Polygon, (rings[0], rings[1:], self.srid))
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_INCREF(PyList_GET_ITEM(__pyx_v_rings, 0));
     PyTuple_SET_ITEM(__pyx_t_5, 0, PyList_GET_ITEM(__pyx_v_rings, 0));
@@ -12550,7 +12616,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
     PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_6);
     __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Polygon)));
     PyTuple_SET_ITEM(__pyx_t_6, 0, ((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Polygon)));
@@ -12564,7 +12630,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1114
+    /* "simplegeom/_geom2d.pyx":1120
  *             return (Polygon, (rings[0], None, self.srid))
  *         else:
  *             return (Polygon, (rings[0], rings[1:], self.srid))             # <<<<<<<<<<<<<<
@@ -12572,11 +12638,11 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
  *     def __str__(Polygon self):
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_rings, 1, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_rings, 1, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(PyList_GET_ITEM(__pyx_v_rings, 0));
     PyTuple_SET_ITEM(__pyx_t_2, 0, PyList_GET_ITEM(__pyx_v_rings, 0));
@@ -12587,7 +12653,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
     __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_6 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Polygon)));
     PyTuple_SET_ITEM(__pyx_t_5, 0, ((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Polygon)));
@@ -12600,7 +12666,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
     goto __pyx_L0;
   }
 
-  /* "simplegeom/_geom2d.pyx":1095
+  /* "simplegeom/_geom2d.pyx":1101
  * #            surface_box(self._surface, self._envelope._mbr)
  * 
  *     def __reduce__(Polygon self):             # <<<<<<<<<<<<<<
@@ -12623,7 +12689,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_14__reduce__(struct __p
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1116
+/* "simplegeom/_geom2d.pyx":1122
  *             return (Polygon, (rings[0], rings[1:], self.srid))
  * 
  *     def __str__(Polygon self):             # <<<<<<<<<<<<<<
@@ -12667,7 +12733,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1118
+  /* "simplegeom/_geom2d.pyx":1124
  *     def __str__(Polygon self):
  *         cdef int i, j
  *         if self._surface.items == 0:             # <<<<<<<<<<<<<<
@@ -12677,7 +12743,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
   __pyx_t_1 = ((__pyx_v_self->_surface->items == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1119
+    /* "simplegeom/_geom2d.pyx":1125
  *         cdef int i, j
  *         if self._surface.items == 0:
  *             return "POLYGON EMPTY"             # <<<<<<<<<<<<<<
@@ -12691,19 +12757,19 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1121
+    /* "simplegeom/_geom2d.pyx":1127
  *             return "POLYGON EMPTY"
  *         else:
  *             rings = []             # <<<<<<<<<<<<<<
  *             for i from 0 <= i < self._surface.items:
  *                 ring = []
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_rings = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "simplegeom/_geom2d.pyx":1122
+    /* "simplegeom/_geom2d.pyx":1128
  *         else:
  *             rings = []
  *             for i from 0 <= i < self._surface.items:             # <<<<<<<<<<<<<<
@@ -12713,19 +12779,19 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
     __pyx_t_3 = __pyx_v_self->_surface->items;
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_3; __pyx_v_i++) {
 
-      /* "simplegeom/_geom2d.pyx":1123
+      /* "simplegeom/_geom2d.pyx":1129
  *             rings = []
  *             for i from 0 <= i < self._surface.items:
  *                 ring = []             # <<<<<<<<<<<<<<
  *                 for j from 0 <= j < self._surface.paths[i].items:
  *                     ring.append("{0} {1}".format(self._surface.paths[i].coords[j].x,
  */
-      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_ring, ((PyObject*)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "simplegeom/_geom2d.pyx":1124
+      /* "simplegeom/_geom2d.pyx":1130
  *             for i from 0 <= i < self._surface.items:
  *                 ring = []
  *                 for j from 0 <= j < self._surface.paths[i].items:             # <<<<<<<<<<<<<<
@@ -12735,26 +12801,26 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
       __pyx_t_4 = (__pyx_v_self->_surface->paths[__pyx_v_i])->items;
       for (__pyx_v_j = 0; __pyx_v_j < __pyx_t_4; __pyx_v_j++) {
 
-        /* "simplegeom/_geom2d.pyx":1125
+        /* "simplegeom/_geom2d.pyx":1131
  *                 ring = []
  *                 for j from 0 <= j < self._surface.paths[i].items:
  *                     ring.append("{0} {1}".format(self._surface.paths[i].coords[j].x,             # <<<<<<<<<<<<<<
  *                                            self._surface.paths[i].coords[j].y))
  *                 rings.append("({0})".format(', '.join(ring)))
  */
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_0_1, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_0_1, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_6 = PyFloat_FromDouble(((__pyx_v_self->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).x); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = PyFloat_FromDouble(((__pyx_v_self->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).x); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
 
-        /* "simplegeom/_geom2d.pyx":1126
+        /* "simplegeom/_geom2d.pyx":1132
  *                 for j from 0 <= j < self._surface.paths[i].items:
  *                     ring.append("{0} {1}".format(self._surface.paths[i].coords[j].x,
  *                                            self._surface.paths[i].coords[j].y))             # <<<<<<<<<<<<<<
  *                 rings.append("({0})".format(', '.join(ring)))
  *             return "POLYGON({0})".format(', '.join(rings))
  */
-        __pyx_t_7 = PyFloat_FromDouble(((__pyx_v_self->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).y); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_7 = PyFloat_FromDouble(((__pyx_v_self->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).y); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_7);
         __pyx_t_8 = NULL;
         __pyx_t_9 = 0;
@@ -12768,7 +12834,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
             __pyx_t_9 = 1;
           }
         }
-        __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_10);
         if (__pyx_t_8) {
           PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
@@ -12779,32 +12845,32 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
         __Pyx_GIVEREF(__pyx_t_7);
         __pyx_t_6 = 0;
         __pyx_t_7 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "simplegeom/_geom2d.pyx":1125
+        /* "simplegeom/_geom2d.pyx":1131
  *                 ring = []
  *                 for j from 0 <= j < self._surface.paths[i].items:
  *                     ring.append("{0} {1}".format(self._surface.paths[i].coords[j].x,             # <<<<<<<<<<<<<<
  *                                            self._surface.paths[i].coords[j].y))
  *                 rings.append("({0})".format(', '.join(ring)))
  */
-        __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_ring, __pyx_t_2); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_ring, __pyx_t_2); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       }
 
-      /* "simplegeom/_geom2d.pyx":1127
+      /* "simplegeom/_geom2d.pyx":1133
  *                     ring.append("{0} {1}".format(self._surface.paths[i].coords[j].x,
  *                                            self._surface.paths[i].coords[j].y))
  *                 rings.append("({0})".format(', '.join(ring)))             # <<<<<<<<<<<<<<
  *             return "POLYGON({0})".format(', '.join(rings))
  * 
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_0_2, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_0_2, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_10 = __Pyx_PyString_Join(__pyx_kp_s__18, __pyx_v_ring); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = __Pyx_PyString_Join(__pyx_kp_s__18, __pyx_v_ring); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_10);
       __pyx_t_7 = NULL;
       if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
@@ -12817,26 +12883,26 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
         }
       }
       if (!__pyx_t_7) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_10); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_10); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else {
-        __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
         PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_7); __Pyx_GIVEREF(__pyx_t_7); __pyx_t_7 = NULL;
         PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_t_10);
         __Pyx_GIVEREF(__pyx_t_10);
         __pyx_t_10 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_rings, __pyx_t_2); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_rings, __pyx_t_2); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
 
-    /* "simplegeom/_geom2d.pyx":1128
+    /* "simplegeom/_geom2d.pyx":1134
  *                                            self._surface.paths[i].coords[j].y))
  *                 rings.append("({0})".format(', '.join(ring)))
  *             return "POLYGON({0})".format(', '.join(rings))             # <<<<<<<<<<<<<<
@@ -12844,9 +12910,9 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
  *     def append(Polygon self, LinearRing ring):
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_POLYGON_0, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_POLYGON_0, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyString_Join(__pyx_kp_s__18, __pyx_v_rings); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyString_Join(__pyx_kp_s__18, __pyx_v_rings); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_10 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
@@ -12859,17 +12925,17 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
       }
     }
     if (!__pyx_t_10) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_10); __Pyx_GIVEREF(__pyx_t_10); __pyx_t_10 = NULL;
       PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_6);
       __Pyx_GIVEREF(__pyx_t_6);
       __pyx_t_6 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
@@ -12879,7 +12945,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
     goto __pyx_L0;
   }
 
-  /* "simplegeom/_geom2d.pyx":1116
+  /* "simplegeom/_geom2d.pyx":1122
  *             return (Polygon, (rings[0], rings[1:], self.srid))
  * 
  *     def __str__(Polygon self):             # <<<<<<<<<<<<<<
@@ -12905,7 +12971,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_16__str__(struct __pyx_
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1130
+/* "simplegeom/_geom2d.pyx":1136
  *             return "POLYGON({0})".format(', '.join(rings))
  * 
  *     def append(Polygon self, LinearRing ring):             # <<<<<<<<<<<<<<
@@ -12923,7 +12989,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_7Polygon_19append(PyObject *__py
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("append (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ring), __pyx_ptype_10simplegeom_7_geom2d_LinearRing, 1, "ring", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ring), __pyx_ptype_10simplegeom_7_geom2d_LinearRing, 1, "ring", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(((struct __pyx_obj_10simplegeom_7_geom2d_Polygon *)__pyx_v_self), ((struct __pyx_obj_10simplegeom_7_geom2d_LinearRing *)__pyx_v_ring));
 
   /* function exit code */
@@ -12945,7 +13011,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
   struct __pyx_opt_args_10simplegeom_7_geom2d_path_new_coords __pyx_t_4;
   __Pyx_RefNannySetupContext("append", 0);
 
-  /* "simplegeom/_geom2d.pyx":1149
+  /* "simplegeom/_geom2d.pyx":1155
  *         # allocate space for a path and for the number of items now in ln
  *         cdef path_t * path
  *         try:             # <<<<<<<<<<<<<<
@@ -12956,7 +13022,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
     if (__pyx_t_1||__pyx_t_2||__pyx_t_3); else {/*mark used*/};
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1150
+      /* "simplegeom/_geom2d.pyx":1156
  *         cdef path_t * path
  *         try:
  *             path = path_new()             # <<<<<<<<<<<<<<
@@ -12967,7 +13033,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1153
+  /* "simplegeom/_geom2d.pyx":1159
  *         except MemoryError:
  *             raise
  *         try:             # <<<<<<<<<<<<<<
@@ -12978,7 +13044,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
     if (__pyx_t_3||__pyx_t_2||__pyx_t_1); else {/*mark used*/};
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1154
+      /* "simplegeom/_geom2d.pyx":1160
  *             raise
  *         try:
  *             path_new_coords(path, ring._path.items)             # <<<<<<<<<<<<<<
@@ -12991,7 +13057,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1158
+  /* "simplegeom/_geom2d.pyx":1164
  *             raise
  *         # add the path to the surface_t struct
  *         try:             # <<<<<<<<<<<<<<
@@ -13002,7 +13068,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
     if (__pyx_t_1||__pyx_t_2||__pyx_t_3); else {/*mark used*/};
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1159
+      /* "simplegeom/_geom2d.pyx":1165
  *         # add the path to the surface_t struct
  *         try:
  *             surface_add_path(self._surface, path)             # <<<<<<<<<<<<<<
@@ -13013,7 +13079,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1163
+  /* "simplegeom/_geom2d.pyx":1169
  *             raise
  *         # copy the coordinates from the line to the newly added path
  *         try:             # <<<<<<<<<<<<<<
@@ -13024,7 +13090,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
     if (__pyx_t_3||__pyx_t_2||__pyx_t_1); else {/*mark used*/};
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1164
+      /* "simplegeom/_geom2d.pyx":1170
  *         # copy the coordinates from the line to the newly added path
  *         try:
  *             path_extend(self._surface.paths[self._surface.items - 1],             # <<<<<<<<<<<<<<
@@ -13035,7 +13101,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1130
+  /* "simplegeom/_geom2d.pyx":1136
  *             return "POLYGON({0})".format(', '.join(rings))
  * 
  *     def append(Polygon self, LinearRing ring):             # <<<<<<<<<<<<<<
@@ -13050,7 +13116,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_18append(struct __pyx_o
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1173
+/* "simplegeom/_geom2d.pyx":1179
  *         checked whether these rings (LinearRings) are empty.
  *         """
  *         def __get__(Polygon self):             # <<<<<<<<<<<<<<
@@ -13079,7 +13145,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8is_empty___get__(struc
   __pyx_t_10simplegeom_7_geom2d_uint __pyx_t_2;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1174
+  /* "simplegeom/_geom2d.pyx":1180
  *         """
  *         def __get__(Polygon self):
  *             if self._surface.items == 0:             # <<<<<<<<<<<<<<
@@ -13089,7 +13155,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8is_empty___get__(struc
   __pyx_t_1 = ((__pyx_v_self->_surface->items == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1175
+    /* "simplegeom/_geom2d.pyx":1181
  *         def __get__(Polygon self):
  *             if self._surface.items == 0:
  *                 return True             # <<<<<<<<<<<<<<
@@ -13103,7 +13169,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8is_empty___get__(struc
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1177
+    /* "simplegeom/_geom2d.pyx":1183
  *                 return True
  *             else:
  *                 for i from 0 <= i < self._surface.items:             # <<<<<<<<<<<<<<
@@ -13113,7 +13179,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8is_empty___get__(struc
     __pyx_t_2 = __pyx_v_self->_surface->items;
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_2; __pyx_v_i++) {
 
-      /* "simplegeom/_geom2d.pyx":1178
+      /* "simplegeom/_geom2d.pyx":1184
  *             else:
  *                 for i from 0 <= i < self._surface.items:
  *                     if self._surface.paths[i].items == 0:             # <<<<<<<<<<<<<<
@@ -13123,7 +13189,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8is_empty___get__(struc
       __pyx_t_1 = (((__pyx_v_self->_surface->paths[__pyx_v_i])->items == 0) != 0);
       if (__pyx_t_1) {
 
-        /* "simplegeom/_geom2d.pyx":1179
+        /* "simplegeom/_geom2d.pyx":1185
  *                 for i from 0 <= i < self._surface.items:
  *                     if self._surface.paths[i].items == 0:
  *                         return True             # <<<<<<<<<<<<<<
@@ -13137,7 +13203,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8is_empty___get__(struc
       }
     }
 
-    /* "simplegeom/_geom2d.pyx":1180
+    /* "simplegeom/_geom2d.pyx":1186
  *                     if self._surface.paths[i].items == 0:
  *                         return True
  *                 return False             # <<<<<<<<<<<<<<
@@ -13150,7 +13216,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8is_empty___get__(struc
     goto __pyx_L0;
   }
 
-  /* "simplegeom/_geom2d.pyx":1173
+  /* "simplegeom/_geom2d.pyx":1179
  *         checked whether these rings (LinearRings) are empty.
  *         """
  *         def __get__(Polygon self):             # <<<<<<<<<<<<<<
@@ -13165,7 +13231,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8is_empty___get__(struc
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1188
+/* "simplegeom/_geom2d.pyx":1194
  *         # deal with case that there are only linestrings with one coordinate
  *         # -> will give invalid envelope, while surface.items > 0
  *         def __get__(Polygon self):             # <<<<<<<<<<<<<<
@@ -13198,7 +13264,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8envelope___get__(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1190
+  /* "simplegeom/_geom2d.pyx":1196
  *         def __get__(Polygon self):
  *             cdef Envelope ev
  *             if self._surface.items > 0:             # <<<<<<<<<<<<<<
@@ -13208,26 +13274,26 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8envelope___get__(struc
   __pyx_t_1 = ((__pyx_v_self->_surface->items > 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1191
+    /* "simplegeom/_geom2d.pyx":1197
  *             cdef Envelope ev
  *             if self._surface.items > 0:
  *                 ev = Envelope(srid=self.srid)             # <<<<<<<<<<<<<<
  *                 surface_box(self._surface, ev._mbr)
  *                 return ev
  */
-    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_srid, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_srid, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Envelope)), __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Envelope)), __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_ev = ((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "simplegeom/_geom2d.pyx":1192
+    /* "simplegeom/_geom2d.pyx":1198
  *             if self._surface.items > 0:
  *                 ev = Envelope(srid=self.srid)
  *                 surface_box(self._surface, ev._mbr)             # <<<<<<<<<<<<<<
@@ -13236,7 +13302,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8envelope___get__(struc
  */
     __pyx_f_10simplegeom_7_geom2d_surface_box(__pyx_v_self->_surface, __pyx_v_ev->_mbr);
 
-    /* "simplegeom/_geom2d.pyx":1193
+    /* "simplegeom/_geom2d.pyx":1199
  *                 ev = Envelope(srid=self.srid)
  *                 surface_box(self._surface, ev._mbr)
  *                 return ev             # <<<<<<<<<<<<<<
@@ -13250,21 +13316,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8envelope___get__(struc
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1195
+    /* "simplegeom/_geom2d.pyx":1201
  *                 return ev
  *             else:
  *                 raise ValueError("Polygon empty -> no Envelope")             # <<<<<<<<<<<<<<
  * 
  *     def representative_point(Polygon self):
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1195; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1201; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1195; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1201; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1188
+  /* "simplegeom/_geom2d.pyx":1194
  *         # deal with case that there are only linestrings with one coordinate
  *         # -> will give invalid envelope, while surface.items > 0
  *         def __get__(Polygon self):             # <<<<<<<<<<<<<<
@@ -13285,7 +13351,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8envelope___get__(struc
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1197
+/* "simplegeom/_geom2d.pyx":1203
  *                 raise ValueError("Polygon empty -> no Envelope")
  * 
  *     def representative_point(Polygon self):             # <<<<<<<<<<<<<<
@@ -13318,21 +13384,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_20representative_point(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("representative_point", 0);
 
-  /* "simplegeom/_geom2d.pyx":1204
+  /* "simplegeom/_geom2d.pyx":1210
  *         # deal with case that there are only linestrings with one coordinate
  *         # -> will give invalid surface, while surface.items > 0
  *         if not self.is_empty:             # <<<<<<<<<<<<<<
  *             return point_in_polygon(self)
  *         else:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_empty); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1204; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_empty); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1210; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1204; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1210; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = ((!__pyx_t_2) != 0);
   if (__pyx_t_3) {
 
-    /* "simplegeom/_geom2d.pyx":1205
+    /* "simplegeom/_geom2d.pyx":1211
  *         # -> will give invalid surface, while surface.items > 0
  *         if not self.is_empty:
  *             return point_in_polygon(self)             # <<<<<<<<<<<<<<
@@ -13340,7 +13406,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_20representative_point(
  *             raise ValueError("Polygon empty -> no Point")
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = ((PyObject *)__pyx_f_10simplegeom_7_geom2d_point_in_polygon(__pyx_v_self, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1205; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = ((PyObject *)__pyx_f_10simplegeom_7_geom2d_point_in_polygon(__pyx_v_self, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1211; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
@@ -13348,21 +13414,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_20representative_point(
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1207
+    /* "simplegeom/_geom2d.pyx":1213
  *             return point_in_polygon(self)
  *         else:
  *             raise ValueError("Polygon empty -> no Point")             # <<<<<<<<<<<<<<
  * 
  *     property area:
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__27, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1207; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__27, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1213; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1207; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1213; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1197
+  /* "simplegeom/_geom2d.pyx":1203
  *                 raise ValueError("Polygon empty -> no Envelope")
  * 
  *     def representative_point(Polygon self):             # <<<<<<<<<<<<<<
@@ -13381,7 +13447,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_20representative_point(
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1215
+/* "simplegeom/_geom2d.pyx":1221
  *         Simple Feature definitions.
  *         """
  *         def __get__(Polygon self):             # <<<<<<<<<<<<<<
@@ -13411,7 +13477,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_4area___get__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1216
+  /* "simplegeom/_geom2d.pyx":1222
  *         """
  *         def __get__(Polygon self):
  *             return surface_area(self._surface)             # <<<<<<<<<<<<<<
@@ -13419,13 +13485,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_4area___get__(struct __
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_10simplegeom_7_geom2d_surface_area(__pyx_v_self->_surface)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1216; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_10simplegeom_7_geom2d_surface_area(__pyx_v_self->_surface)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1215
+  /* "simplegeom/_geom2d.pyx":1221
  *         Simple Feature definitions.
  *         """
  *         def __get__(Polygon self):             # <<<<<<<<<<<<<<
@@ -13444,7 +13510,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_4area___get__(struct __
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1227
+/* "simplegeom/_geom2d.pyx":1233
  *         :raises: NotImplementedError, function is not implemented yet
  *         """
  *         def __get__(Polygon self):             # <<<<<<<<<<<<<<
@@ -13474,20 +13540,20 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8centroid___get__(CYTHO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1228
+  /* "simplegeom/_geom2d.pyx":1234
  *         """
  *         def __get__(Polygon self):
  *             raise NotImplementedError("Not there yet")             # <<<<<<<<<<<<<<
  * 
  * cdef class Envelope(Geometry):
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__28, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__28, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1234; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1234; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "simplegeom/_geom2d.pyx":1227
+  /* "simplegeom/_geom2d.pyx":1233
  *         :raises: NotImplementedError, function is not implemented yet
  *         """
  *         def __get__(Polygon self):             # <<<<<<<<<<<<<<
@@ -13505,7 +13571,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Polygon_8centroid___get__(CYTHO
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1234
+/* "simplegeom/_geom2d.pyx":1240
  *     Envelope (axis-aligned bounding box) class
  *     """
  *     def __cinit__(Envelope self):             # <<<<<<<<<<<<<<
@@ -13545,7 +13611,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope___cinit__(struct __pyx_obj_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1235
+  /* "simplegeom/_geom2d.pyx":1241
  *     """
  *     def __cinit__(Envelope self):
  *         try:             # <<<<<<<<<<<<<<
@@ -13559,14 +13625,14 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope___cinit__(struct __pyx_obj_1
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1236
+      /* "simplegeom/_geom2d.pyx":1242
  *     def __cinit__(Envelope self):
  *         try:
  *             self._mbr = box_new()             # <<<<<<<<<<<<<<
  *         except MemoryError:
  *             raise
  */
-      __pyx_t_4 = __pyx_f_10simplegeom_7_geom2d_box_new(); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_4 = __pyx_f_10simplegeom_7_geom2d_box_new(); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __pyx_v_self->_mbr = __pyx_t_4;
     }
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -13575,7 +13641,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope___cinit__(struct __pyx_obj_1
     goto __pyx_L10_try_end;
     __pyx_L3_error:;
 
-    /* "simplegeom/_geom2d.pyx":1237
+    /* "simplegeom/_geom2d.pyx":1243
  *         try:
  *             self._mbr = box_new()
  *         except MemoryError:             # <<<<<<<<<<<<<<
@@ -13585,12 +13651,12 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope___cinit__(struct __pyx_obj_1
     __pyx_t_5 = PyErr_ExceptionMatches(__pyx_builtin_MemoryError);
     if (__pyx_t_5) {
       __Pyx_AddTraceback("simplegeom._geom2d.Envelope.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_7, &__pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1237; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_7, &__pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1243; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_t_8);
 
-      /* "simplegeom/_geom2d.pyx":1238
+      /* "simplegeom/_geom2d.pyx":1244
  *             self._mbr = box_new()
  *         except MemoryError:
  *             raise             # <<<<<<<<<<<<<<
@@ -13602,7 +13668,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope___cinit__(struct __pyx_obj_1
       __Pyx_XGIVEREF(__pyx_t_8);
       __Pyx_ErrRestore(__pyx_t_6, __pyx_t_7, __pyx_t_8);
       __pyx_t_6 = 0; __pyx_t_7 = 0; __pyx_t_8 = 0; 
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1238; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1244; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
     }
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
@@ -13614,7 +13680,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope___cinit__(struct __pyx_obj_1
     __pyx_L10_try_end:;
   }
 
-  /* "simplegeom/_geom2d.pyx":1239
+  /* "simplegeom/_geom2d.pyx":1245
  *         except MemoryError:
  *             raise
  *         self._geom_type = WKB_ENVELOPE             # <<<<<<<<<<<<<<
@@ -13623,7 +13689,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope___cinit__(struct __pyx_obj_1
  */
   __pyx_v_self->__pyx_base._geom_type = __pyx_e_10simplegeom_7_geom2d_WKB_ENVELOPE;
 
-  /* "simplegeom/_geom2d.pyx":1234
+  /* "simplegeom/_geom2d.pyx":1240
  *     Envelope (axis-aligned bounding box) class
  *     """
  *     def __cinit__(Envelope self):             # <<<<<<<<<<<<<<
@@ -13645,7 +13711,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope___cinit__(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1241
+/* "simplegeom/_geom2d.pyx":1247
  *         self._geom_type = WKB_ENVELOPE
  * 
  *     def __init__(Envelope self, xmin = None, ymin = None,             # <<<<<<<<<<<<<<
@@ -13673,7 +13739,7 @@ static int __pyx_pw_10simplegeom_7_geom2d_8Envelope_3__init__(PyObject *__pyx_v_
     values[0] = ((PyObject *)Py_None);
     values[1] = ((PyObject *)Py_None);
 
-    /* "simplegeom/_geom2d.pyx":1242
+    /* "simplegeom/_geom2d.pyx":1248
  * 
  *     def __init__(Envelope self, xmin = None, ymin = None,
  *                                 xmax = None, ymax = None, srid = 0):             # <<<<<<<<<<<<<<
@@ -13724,7 +13790,7 @@ static int __pyx_pw_10simplegeom_7_geom2d_8Envelope_3__init__(PyObject *__pyx_v_
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1247; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -13745,7 +13811,7 @@ static int __pyx_pw_10simplegeom_7_geom2d_8Envelope_3__init__(PyObject *__pyx_v_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1247; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("simplegeom._geom2d.Envelope.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -13753,7 +13819,7 @@ static int __pyx_pw_10simplegeom_7_geom2d_8Envelope_3__init__(PyObject *__pyx_v_
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_8Envelope_2__init__(((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_self), __pyx_v_xmin, __pyx_v_ymin, __pyx_v_xmax, __pyx_v_ymax, __pyx_v_srid);
 
-  /* "simplegeom/_geom2d.pyx":1241
+  /* "simplegeom/_geom2d.pyx":1247
  *         self._geom_type = WKB_ENVELOPE
  * 
  *     def __init__(Envelope self, xmin = None, ymin = None,             # <<<<<<<<<<<<<<
@@ -13779,7 +13845,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_2__init__(struct __pyx_obj_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1243
+  /* "simplegeom/_geom2d.pyx":1249
  *     def __init__(Envelope self, xmin = None, ymin = None,
  *                                 xmax = None, ymax = None, srid = 0):
  *         if xmin is not None and \             # <<<<<<<<<<<<<<
@@ -13794,7 +13860,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_2__init__(struct __pyx_obj_1
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "simplegeom/_geom2d.pyx":1244
+  /* "simplegeom/_geom2d.pyx":1250
  *                                 xmax = None, ymax = None, srid = 0):
  *         if xmin is not None and \
  *            ymin is not None and \             # <<<<<<<<<<<<<<
@@ -13809,7 +13875,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_2__init__(struct __pyx_obj_1
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "simplegeom/_geom2d.pyx":1245
+  /* "simplegeom/_geom2d.pyx":1251
  *         if xmin is not None and \
  *            ymin is not None and \
  *            xmax is not None and \             # <<<<<<<<<<<<<<
@@ -13824,7 +13890,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_2__init__(struct __pyx_obj_1
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "simplegeom/_geom2d.pyx":1246
+  /* "simplegeom/_geom2d.pyx":1252
  *            ymin is not None and \
  *            xmax is not None and \
  *            ymax is not None:             # <<<<<<<<<<<<<<
@@ -13837,111 +13903,111 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_2__init__(struct __pyx_obj_1
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1247
+    /* "simplegeom/_geom2d.pyx":1253
  *            xmax is not None and \
  *            ymax is not None:
  *             if xmax < xmin:             # <<<<<<<<<<<<<<
  *                 raise RuntimeError("Invalid BBox given, x direction")
  *             if ymax < ymin:
  */
-    __pyx_t_4 = PyObject_RichCompare(__pyx_v_xmax, __pyx_v_xmin, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyObject_RichCompare(__pyx_v_xmax, __pyx_v_xmin, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_1) {
 
-      /* "simplegeom/_geom2d.pyx":1248
+      /* "simplegeom/_geom2d.pyx":1254
  *            ymax is not None:
  *             if xmax < xmin:
  *                 raise RuntimeError("Invalid BBox given, x direction")             # <<<<<<<<<<<<<<
  *             if ymax < ymin:
  *                 raise RuntimeError("Invalid BBox given, y direction")
  */
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__29, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1248; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__29, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_Raise(__pyx_t_4, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1248; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "simplegeom/_geom2d.pyx":1249
+    /* "simplegeom/_geom2d.pyx":1255
  *             if xmax < xmin:
  *                 raise RuntimeError("Invalid BBox given, x direction")
  *             if ymax < ymin:             # <<<<<<<<<<<<<<
  *                 raise RuntimeError("Invalid BBox given, y direction")
  *             self._mbr.xmin = xmin
  */
-    __pyx_t_4 = PyObject_RichCompare(__pyx_v_ymax, __pyx_v_ymin, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyObject_RichCompare(__pyx_v_ymax, __pyx_v_ymin, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_1) {
 
-      /* "simplegeom/_geom2d.pyx":1250
+      /* "simplegeom/_geom2d.pyx":1256
  *                 raise RuntimeError("Invalid BBox given, x direction")
  *             if ymax < ymin:
  *                 raise RuntimeError("Invalid BBox given, y direction")             # <<<<<<<<<<<<<<
  *             self._mbr.xmin = xmin
  *             self._mbr.ymin = ymin
  */
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1250; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1256; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_Raise(__pyx_t_4, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1250; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1256; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "simplegeom/_geom2d.pyx":1251
+    /* "simplegeom/_geom2d.pyx":1257
  *             if ymax < ymin:
  *                 raise RuntimeError("Invalid BBox given, y direction")
  *             self._mbr.xmin = xmin             # <<<<<<<<<<<<<<
  *             self._mbr.ymin = ymin
  *             self._mbr.xmax = xmax
  */
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_xmin); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_xmin); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_self->_mbr->xmin = __pyx_t_5;
 
-    /* "simplegeom/_geom2d.pyx":1252
+    /* "simplegeom/_geom2d.pyx":1258
  *                 raise RuntimeError("Invalid BBox given, y direction")
  *             self._mbr.xmin = xmin
  *             self._mbr.ymin = ymin             # <<<<<<<<<<<<<<
  *             self._mbr.xmax = xmax
  *             self._mbr.ymax = ymax
  */
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_ymin); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_ymin); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_self->_mbr->ymin = __pyx_t_5;
 
-    /* "simplegeom/_geom2d.pyx":1253
+    /* "simplegeom/_geom2d.pyx":1259
  *             self._mbr.xmin = xmin
  *             self._mbr.ymin = ymin
  *             self._mbr.xmax = xmax             # <<<<<<<<<<<<<<
  *             self._mbr.ymax = ymax
  *         self.srid = srid
  */
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_xmax); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_xmax); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_self->_mbr->xmax = __pyx_t_5;
 
-    /* "simplegeom/_geom2d.pyx":1254
+    /* "simplegeom/_geom2d.pyx":1260
  *             self._mbr.ymin = ymin
  *             self._mbr.xmax = xmax
  *             self._mbr.ymax = ymax             # <<<<<<<<<<<<<<
  *         self.srid = srid
  * 
  */
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_ymax); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_ymax); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_self->_mbr->ymax = __pyx_t_5;
     goto __pyx_L3;
   }
   __pyx_L3:;
 
-  /* "simplegeom/_geom2d.pyx":1255
+  /* "simplegeom/_geom2d.pyx":1261
  *             self._mbr.xmax = xmax
  *             self._mbr.ymax = ymax
  *         self.srid = srid             # <<<<<<<<<<<<<<
  * 
  *     def __getitem__(Envelope self, unsigned int i):
  */
-  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid, __pyx_v_srid) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid, __pyx_v_srid) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "simplegeom/_geom2d.pyx":1241
+  /* "simplegeom/_geom2d.pyx":1247
  *         self._geom_type = WKB_ENVELOPE
  * 
  *     def __init__(Envelope self, xmin = None, ymin = None,             # <<<<<<<<<<<<<<
@@ -13961,7 +14027,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_2__init__(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1257
+/* "simplegeom/_geom2d.pyx":1263
  *         self.srid = srid
  * 
  *     def __getitem__(Envelope self, unsigned int i):             # <<<<<<<<<<<<<<
@@ -13980,7 +14046,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_8Envelope_5__getitem__(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
   assert(__pyx_arg_i); {
-    __pyx_v_i = __Pyx_PyInt_As_unsigned_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1257; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_i = __Pyx_PyInt_As_unsigned_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1263; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -14006,7 +14072,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1260
+  /* "simplegeom/_geom2d.pyx":1266
  *         if i == 0:
  *             return Point(self.xmin, self.ymin)
  *         elif i == 1:             # <<<<<<<<<<<<<<
@@ -14015,7 +14081,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
  */
   switch (__pyx_v_i) {
 
-    /* "simplegeom/_geom2d.pyx":1258
+    /* "simplegeom/_geom2d.pyx":1264
  * 
  *     def __getitem__(Envelope self, unsigned int i):
  *         if i == 0:             # <<<<<<<<<<<<<<
@@ -14024,7 +14090,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
  */
     case 0:
 
-    /* "simplegeom/_geom2d.pyx":1259
+    /* "simplegeom/_geom2d.pyx":1265
  *     def __getitem__(Envelope self, unsigned int i):
  *         if i == 0:
  *             return Point(self.xmin, self.ymin)             # <<<<<<<<<<<<<<
@@ -14032,11 +14098,11 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
  *             return Point(self.xmax, self.ymax)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_xmin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_xmin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
@@ -14044,7 +14110,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_1 = 0;
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_2;
@@ -14052,7 +14118,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
     goto __pyx_L0;
     break;
 
-    /* "simplegeom/_geom2d.pyx":1260
+    /* "simplegeom/_geom2d.pyx":1266
  *         if i == 0:
  *             return Point(self.xmin, self.ymin)
  *         elif i == 1:             # <<<<<<<<<<<<<<
@@ -14061,7 +14127,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
  */
     case 1:
 
-    /* "simplegeom/_geom2d.pyx":1261
+    /* "simplegeom/_geom2d.pyx":1267
  *             return Point(self.xmin, self.ymin)
  *         elif i == 1:
  *             return Point(self.xmax, self.ymax)             # <<<<<<<<<<<<<<
@@ -14069,11 +14135,11 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
  *             raise IndexError("Getitem key")
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_xmax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_xmax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ymax); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ymax); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -14081,7 +14147,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_r = __pyx_t_3;
@@ -14090,22 +14156,22 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
     break;
     default:
 
-    /* "simplegeom/_geom2d.pyx":1263
+    /* "simplegeom/_geom2d.pyx":1269
  *             return Point(self.xmax, self.ymax)
  *         else:
  *             raise IndexError("Getitem key")             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(Envelope self):
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple__31, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple__31, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
   }
 
-  /* "simplegeom/_geom2d.pyx":1257
+  /* "simplegeom/_geom2d.pyx":1263
  *         self.srid = srid
  * 
  *     def __getitem__(Envelope self, unsigned int i):             # <<<<<<<<<<<<<<
@@ -14126,7 +14192,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4__getitem__(struct __
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1265
+/* "simplegeom/_geom2d.pyx":1271
  *             raise IndexError("Getitem key")
  * 
  *     def __dealloc__(Envelope self):             # <<<<<<<<<<<<<<
@@ -14149,7 +14215,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_8Envelope_6__dealloc__(struct __pyx_o
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1266
+  /* "simplegeom/_geom2d.pyx":1272
  * 
  *     def __dealloc__(Envelope self):
  *         box_dealloc(self._mbr)             # <<<<<<<<<<<<<<
@@ -14158,7 +14224,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_8Envelope_6__dealloc__(struct __pyx_o
  */
   __pyx_f_10simplegeom_7_geom2d_box_dealloc(__pyx_v_self->_mbr);
 
-  /* "simplegeom/_geom2d.pyx":1265
+  /* "simplegeom/_geom2d.pyx":1271
  *             raise IndexError("Getitem key")
  * 
  *     def __dealloc__(Envelope self):             # <<<<<<<<<<<<<<
@@ -14170,7 +14236,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_8Envelope_6__dealloc__(struct __pyx_o
   __Pyx_RefNannyFinishContext();
 }
 
-/* "simplegeom/_geom2d.pyx":1268
+/* "simplegeom/_geom2d.pyx":1274
  *         box_dealloc(self._mbr)
  * 
  *     def __richcmp__(Envelope self, Envelope other not None, int op):             # <<<<<<<<<<<<<<
@@ -14187,8 +14253,8 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_8Envelope_9__richcmp__(PyObject 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__richcmp__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_self), __pyx_ptype_10simplegeom_7_geom2d_Envelope, 1, "self", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1268; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Envelope, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1268; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_self), __pyx_ptype_10simplegeom_7_geom2d_Envelope, 1, "self", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Envelope, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_self), ((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_other), ((int)__pyx_v_op));
 
   /* function exit code */
@@ -14212,7 +14278,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__richcmp__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1270
+  /* "simplegeom/_geom2d.pyx":1276
  *     def __richcmp__(Envelope self, Envelope other not None, int op):
  *         # ==
  *         if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -14222,21 +14288,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(struct __
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1271
+    /* "simplegeom/_geom2d.pyx":1277
  *         # ==
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         if box_inited(other._mbr) == False:
  *             raise RuntimeError("Box not inited")
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1272
+  /* "simplegeom/_geom2d.pyx":1278
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")
  *         if box_inited(other._mbr) == False:             # <<<<<<<<<<<<<<
@@ -14246,21 +14312,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(struct __
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_other->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1273
+    /* "simplegeom/_geom2d.pyx":1279
  *             raise RuntimeError("Box not inited")
  *         if box_inited(other._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         if op == 2:
  *             if isinstance(other, self.__class__) and \
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1274
+  /* "simplegeom/_geom2d.pyx":1280
  *         if box_inited(other._mbr) == False:
  *             raise RuntimeError("Box not inited")
  *         if op == 2:             # <<<<<<<<<<<<<<
@@ -14270,16 +14336,16 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(struct __
   __pyx_t_1 = ((__pyx_v_op == 2) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1275
+    /* "simplegeom/_geom2d.pyx":1281
  *             raise RuntimeError("Box not inited")
  *         if op == 2:
  *             if isinstance(other, self.__class__) and \             # <<<<<<<<<<<<<<
  *                 box_eq(self._mbr, other._mbr):
  *                 return True
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyObject_IsInstance(((PyObject *)__pyx_v_other), __pyx_t_2); if (unlikely(__pyx_t_3 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyObject_IsInstance(((PyObject *)__pyx_v_other), __pyx_t_2); if (unlikely(__pyx_t_3 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_4 = (__pyx_t_3 != 0);
     if (__pyx_t_4) {
@@ -14288,7 +14354,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(struct __
       goto __pyx_L7_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1276
+    /* "simplegeom/_geom2d.pyx":1282
  *         if op == 2:
  *             if isinstance(other, self.__class__) and \
  *                 box_eq(self._mbr, other._mbr):             # <<<<<<<<<<<<<<
@@ -14300,7 +14366,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(struct __
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_1) {
 
-      /* "simplegeom/_geom2d.pyx":1277
+      /* "simplegeom/_geom2d.pyx":1283
  *             if isinstance(other, self.__class__) and \
  *                 box_eq(self._mbr, other._mbr):
  *                 return True             # <<<<<<<<<<<<<<
@@ -14314,7 +14380,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(struct __
     }
     /*else*/ {
 
-      /* "simplegeom/_geom2d.pyx":1279
+      /* "simplegeom/_geom2d.pyx":1285
  *                 return True
  *             else:
  *                 return False             # <<<<<<<<<<<<<<
@@ -14328,7 +14394,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(struct __
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1268
+  /* "simplegeom/_geom2d.pyx":1274
  *         box_dealloc(self._mbr)
  * 
  *     def __richcmp__(Envelope self, Envelope other not None, int op):             # <<<<<<<<<<<<<<
@@ -14349,7 +14415,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8__richcmp__(struct __
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1281
+/* "simplegeom/_geom2d.pyx":1287
  *                 return False
  * 
  *     def __repr__(Envelope self):             # <<<<<<<<<<<<<<
@@ -14389,7 +14455,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_10__repr__(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1282
+  /* "simplegeom/_geom2d.pyx":1288
  * 
  *     def __repr__(Envelope self):
  *         if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -14399,21 +14465,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_10__repr__(struct __py
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1283
+    /* "simplegeom/_geom2d.pyx":1289
  *     def __repr__(Envelope self):
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         return "SRID={0};BOX({1} {2}, {3} {4})".format(self.srid,
  *             self._mbr.xmin,
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1284
+  /* "simplegeom/_geom2d.pyx":1290
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")
  *         return "SRID={0};BOX({1} {2}, {3} {4})".format(self.srid,             # <<<<<<<<<<<<<<
@@ -14421,49 +14487,49 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_10__repr__(struct __py
  *             self._mbr.ymin,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_SRID_0_BOX_1_2_3_4, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_SRID_0_BOX_1_2_3_4, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "simplegeom/_geom2d.pyx":1285
+  /* "simplegeom/_geom2d.pyx":1291
  *             raise RuntimeError("Box not inited")
  *         return "SRID={0};BOX({1} {2}, {3} {4})".format(self.srid,
  *             self._mbr.xmin,             # <<<<<<<<<<<<<<
  *             self._mbr.ymin,
  *             self._mbr.xmax,
  */
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1291; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
 
-  /* "simplegeom/_geom2d.pyx":1286
+  /* "simplegeom/_geom2d.pyx":1292
  *         return "SRID={0};BOX({1} {2}, {3} {4})".format(self.srid,
  *             self._mbr.xmin,
  *             self._mbr.ymin,             # <<<<<<<<<<<<<<
  *             self._mbr.xmax,
  *             self._mbr.ymax)
  */
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
 
-  /* "simplegeom/_geom2d.pyx":1287
+  /* "simplegeom/_geom2d.pyx":1293
  *             self._mbr.xmin,
  *             self._mbr.ymin,
  *             self._mbr.xmax,             # <<<<<<<<<<<<<<
  *             self._mbr.ymax)
  * 
  */
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
 
-  /* "simplegeom/_geom2d.pyx":1288
+  /* "simplegeom/_geom2d.pyx":1294
  *             self._mbr.ymin,
  *             self._mbr.xmax,
  *             self._mbr.ymax)             # <<<<<<<<<<<<<<
  * 
  *     def __str__(Envelope self):
  */
-  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1288; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1294; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_9 = NULL;
   __pyx_t_10 = 0;
@@ -14477,7 +14543,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_10__repr__(struct __py
       __pyx_t_10 = 1;
     }
   }
-  __pyx_t_11 = PyTuple_New(5+__pyx_t_10); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_11 = PyTuple_New(5+__pyx_t_10); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_11);
   if (__pyx_t_9) {
     PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_9); __Pyx_GIVEREF(__pyx_t_9); __pyx_t_9 = NULL;
@@ -14497,7 +14563,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_10__repr__(struct __py
   __pyx_t_6 = 0;
   __pyx_t_7 = 0;
   __pyx_t_8 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_11, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_11, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -14505,7 +14571,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_10__repr__(struct __py
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1281
+  /* "simplegeom/_geom2d.pyx":1287
  *                 return False
  * 
  *     def __repr__(Envelope self):             # <<<<<<<<<<<<<<
@@ -14532,7 +14598,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_10__repr__(struct __py
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1290
+/* "simplegeom/_geom2d.pyx":1296
  *             self._mbr.ymax)
  * 
  *     def __str__(Envelope self):             # <<<<<<<<<<<<<<
@@ -14577,7 +14643,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_12__str__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1291
+  /* "simplegeom/_geom2d.pyx":1297
  * 
  *     def __str__(Envelope self):
  *         if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -14587,21 +14653,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_12__str__(struct __pyx
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1292
+    /* "simplegeom/_geom2d.pyx":1298
  *     def __str__(Envelope self):
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         return "POLYGON(({0} {1}, {2} {3}, {4} {5}, {6} {7}, {8} {9}))".format(
  *             self._mbr.xmin, self._mbr.ymin,
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__35, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__35, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1293
+  /* "simplegeom/_geom2d.pyx":1299
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")
  *         return "POLYGON(({0} {1}, {2} {3}, {4} {5}, {6} {7}, {8} {9}))".format(             # <<<<<<<<<<<<<<
@@ -14609,67 +14675,67 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_12__str__(struct __pyx
  *             self._mbr.xmin, self._mbr.ymax,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_POLYGON_0_1_2_3_4_5_6_7_8_9, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_POLYGON_0_1_2_3_4_5_6_7_8_9, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "simplegeom/_geom2d.pyx":1294
+  /* "simplegeom/_geom2d.pyx":1300
  *             raise RuntimeError("Box not inited")
  *         return "POLYGON(({0} {1}, {2} {3}, {4} {5}, {6} {7}, {8} {9}))".format(
  *             self._mbr.xmin, self._mbr.ymin,             # <<<<<<<<<<<<<<
  *             self._mbr.xmin, self._mbr.ymax,
  *             self._mbr.xmax, self._mbr.ymax,
  */
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1294; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1294; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
 
-  /* "simplegeom/_geom2d.pyx":1295
+  /* "simplegeom/_geom2d.pyx":1301
  *         return "POLYGON(({0} {1}, {2} {3}, {4} {5}, {6} {7}, {8} {9}))".format(
  *             self._mbr.xmin, self._mbr.ymin,
  *             self._mbr.xmin, self._mbr.ymax,             # <<<<<<<<<<<<<<
  *             self._mbr.xmax, self._mbr.ymax,
  *             self._mbr.xmax, self._mbr.ymin,
  */
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1295; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1295; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
 
-  /* "simplegeom/_geom2d.pyx":1296
+  /* "simplegeom/_geom2d.pyx":1302
  *             self._mbr.xmin, self._mbr.ymin,
  *             self._mbr.xmin, self._mbr.ymax,
  *             self._mbr.xmax, self._mbr.ymax,             # <<<<<<<<<<<<<<
  *             self._mbr.xmax, self._mbr.ymin,
  *             self._mbr.xmin, self._mbr.ymin)
  */
-  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_9);
 
-  /* "simplegeom/_geom2d.pyx":1297
+  /* "simplegeom/_geom2d.pyx":1303
  *             self._mbr.xmin, self._mbr.ymax,
  *             self._mbr.xmax, self._mbr.ymax,
  *             self._mbr.xmax, self._mbr.ymin,             # <<<<<<<<<<<<<<
  *             self._mbr.xmin, self._mbr.ymin)
  * 
  */
-  __pyx_t_10 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1297; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1303; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1297; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_11 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1303; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_11);
 
-  /* "simplegeom/_geom2d.pyx":1298
+  /* "simplegeom/_geom2d.pyx":1304
  *             self._mbr.xmax, self._mbr.ymax,
  *             self._mbr.xmax, self._mbr.ymin,
  *             self._mbr.xmin, self._mbr.ymin)             # <<<<<<<<<<<<<<
  * 
  *     property polygon:
  */
-  __pyx_t_12 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_12 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_12);
-  __pyx_t_13 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_13 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_13);
   __pyx_t_14 = NULL;
   __pyx_t_15 = 0;
@@ -14683,7 +14749,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_12__str__(struct __pyx
       __pyx_t_15 = 1;
     }
   }
-  __pyx_t_16 = PyTuple_New(10+__pyx_t_15); if (unlikely(!__pyx_t_16)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_16 = PyTuple_New(10+__pyx_t_15); if (unlikely(!__pyx_t_16)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_16);
   if (__pyx_t_14) {
     PyTuple_SET_ITEM(__pyx_t_16, 0, __pyx_t_14); __Pyx_GIVEREF(__pyx_t_14); __pyx_t_14 = NULL;
@@ -14718,7 +14784,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_12__str__(struct __pyx
   __pyx_t_11 = 0;
   __pyx_t_12 = 0;
   __pyx_t_13 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_16, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_16, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -14726,7 +14792,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_12__str__(struct __pyx
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1290
+  /* "simplegeom/_geom2d.pyx":1296
  *             self._mbr.ymax)
  * 
  *     def __str__(Envelope self):             # <<<<<<<<<<<<<<
@@ -14758,7 +14824,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_12__str__(struct __pyx
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1301
+/* "simplegeom/_geom2d.pyx":1307
  * 
  *     property polygon:
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -14793,49 +14859,49 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_7polygon___get__(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1304
+  /* "simplegeom/_geom2d.pyx":1310
  *             cdef Polygon pl
  *             cdef LinearRing ln
  *             pl = Polygon(srid = self.srid)             # <<<<<<<<<<<<<<
  *             ln = LinearRing()
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_srid, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_srid, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Polygon)), __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Polygon)), __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_pl = ((struct __pyx_obj_10simplegeom_7_geom2d_Polygon *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1305
+  /* "simplegeom/_geom2d.pyx":1311
  *             cdef LinearRing ln
  *             pl = Polygon(srid = self.srid)
  *             ln = LinearRing()             # <<<<<<<<<<<<<<
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymax))
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_LinearRing)), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_ln = ((struct __pyx_obj_10simplegeom_7_geom2d_LinearRing *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1306
+  /* "simplegeom/_geom2d.pyx":1312
  *             pl = Polygon(srid = self.srid)
  *             ln = LinearRing()
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))             # <<<<<<<<<<<<<<
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymax))
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymax))
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
@@ -14843,24 +14909,24 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_7polygon___get__(struc
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_2 = 0;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_1); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_1); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1307
+  /* "simplegeom/_geom2d.pyx":1313
  *             ln = LinearRing()
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymax))             # <<<<<<<<<<<<<<
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymax))
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymin))
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -14868,24 +14934,24 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_7polygon___get__(struc
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_3); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_3); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1308
+  /* "simplegeom/_geom2d.pyx":1314
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymax))
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymax))             # <<<<<<<<<<<<<<
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymin))
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_3);
@@ -14893,24 +14959,24 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_7polygon___get__(struc
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_3 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_2); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_2); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1309
+  /* "simplegeom/_geom2d.pyx":1315
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymax))
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymax))
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymin))             # <<<<<<<<<<<<<<
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))
  *             pl.append(ln)
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
@@ -14918,24 +14984,24 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_7polygon___get__(struc
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_2 = 0;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_1); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_1); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1310
+  /* "simplegeom/_geom2d.pyx":1316
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymax))
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymin))
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))             # <<<<<<<<<<<<<<
  *             pl.append(ln)
  *             return pl
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -14943,22 +15009,22 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_7polygon___get__(struc
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_3); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_ln), __pyx_t_3); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1311
+  /* "simplegeom/_geom2d.pyx":1317
  *             ln.append(Point(self._mbr.xmax, self._mbr.ymin))
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))
  *             pl.append(ln)             # <<<<<<<<<<<<<<
  *             return pl
  * 
  */
-  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_pl), ((PyObject *)__pyx_v_ln)); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Append(((PyObject *)__pyx_v_pl), ((PyObject *)__pyx_v_ln)); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "simplegeom/_geom2d.pyx":1312
+  /* "simplegeom/_geom2d.pyx":1318
  *             ln.append(Point(self._mbr.xmin, self._mbr.ymin))
  *             pl.append(ln)
  *             return pl             # <<<<<<<<<<<<<<
@@ -14970,7 +15036,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_7polygon___get__(struc
   __pyx_r = ((PyObject *)__pyx_v_pl);
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1301
+  /* "simplegeom/_geom2d.pyx":1307
  * 
  *     property polygon:
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -14993,7 +15059,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_7polygon___get__(struc
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1314
+/* "simplegeom/_geom2d.pyx":1320
  *             return pl
  * 
  *     def enlarge_by(Envelope self, Envelope other not None):             # <<<<<<<<<<<<<<
@@ -15011,7 +15077,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_8Envelope_15enlarge_by(PyObject 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("enlarge_by (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Envelope, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Envelope, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1320; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_8Envelope_14enlarge_by(((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_self), ((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_other));
 
   /* function exit code */
@@ -15034,7 +15100,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_14enlarge_by(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("enlarge_by", 0);
 
-  /* "simplegeom/_geom2d.pyx":1321
+  /* "simplegeom/_geom2d.pyx":1327
  *         # TODO:
  *         # make it also possible to give other types to enlarge envelope by?
  *         if isinstance(other, Envelope):             # <<<<<<<<<<<<<<
@@ -15045,7 +15111,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_14enlarge_by(struct __
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "simplegeom/_geom2d.pyx":1322
+    /* "simplegeom/_geom2d.pyx":1328
  *         # make it also possible to give other types to enlarge envelope by?
  *         if isinstance(other, Envelope):
  *             if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -15055,21 +15121,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_14enlarge_by(struct __
     __pyx_t_2 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
     if (__pyx_t_2) {
 
-      /* "simplegeom/_geom2d.pyx":1323
+      /* "simplegeom/_geom2d.pyx":1329
  *         if isinstance(other, Envelope):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             if box_inited(other._mbr) == False:
  *                 raise RuntimeError("Box not inited")
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "simplegeom/_geom2d.pyx":1324
+    /* "simplegeom/_geom2d.pyx":1330
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")
  *             if box_inited(other._mbr) == False:             # <<<<<<<<<<<<<<
@@ -15079,50 +15145,50 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_14enlarge_by(struct __
     __pyx_t_2 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_other->_mbr) == 0) != 0);
     if (__pyx_t_2) {
 
-      /* "simplegeom/_geom2d.pyx":1325
+      /* "simplegeom/_geom2d.pyx":1331
  *                 raise RuntimeError("Box not inited")
  *             if box_inited(other._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             box_box_merge(self._mbr, other._mbr)
  *         else:
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__37, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__37, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "simplegeom/_geom2d.pyx":1326
+    /* "simplegeom/_geom2d.pyx":1332
  *             if box_inited(other._mbr) == False:
  *                 raise RuntimeError("Box not inited")
  *             box_box_merge(self._mbr, other._mbr)             # <<<<<<<<<<<<<<
  *         else:
  *             raise TypeError("Unknown type given for enlarge_by")
  */
-    __pyx_t_3 = __pyx_f_10simplegeom_7_geom2d_box_box_merge(__pyx_v_self->_mbr, __pyx_v_other->_mbr); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __pyx_f_10simplegeom_7_geom2d_box_box_merge(__pyx_v_self->_mbr, __pyx_v_other->_mbr); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     goto __pyx_L3;
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1328
+    /* "simplegeom/_geom2d.pyx":1334
  *             box_box_merge(self._mbr, other._mbr)
  *         else:
  *             raise TypeError("Unknown type given for enlarge_by")             # <<<<<<<<<<<<<<
  * 
  *     # Binary topological relations
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_L3:;
 
-  /* "simplegeom/_geom2d.pyx":1314
+  /* "simplegeom/_geom2d.pyx":1320
  *             return pl
  * 
  *     def enlarge_by(Envelope self, Envelope other not None):             # <<<<<<<<<<<<<<
@@ -15143,7 +15209,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_14enlarge_by(struct __
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1331
+/* "simplegeom/_geom2d.pyx":1337
  * 
  *     # Binary topological relations
  *     def contains(Envelope self, Geometry other not None):             # <<<<<<<<<<<<<<
@@ -15161,7 +15227,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_8Envelope_17contains(PyObject *_
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("contains (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Geometry, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Geometry, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_self), ((struct __pyx_obj_10simplegeom_7_geom2d_Geometry *)__pyx_v_other));
 
   /* function exit code */
@@ -15186,7 +15252,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("contains", 0);
 
-  /* "simplegeom/_geom2d.pyx":1337
+  /* "simplegeom/_geom2d.pyx":1343
  *         """
  * #        cdef bint inside
  *         if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -15196,21 +15262,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1338
+    /* "simplegeom/_geom2d.pyx":1344
  * #        cdef bint inside
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  * 
  *         if isinstance(other, Point):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__39, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__39, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1340
+  /* "simplegeom/_geom2d.pyx":1346
  *             raise RuntimeError("Box not inited")
  * 
  *         if isinstance(other, Point):             # <<<<<<<<<<<<<<
@@ -15221,21 +15287,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
   __pyx_t_3 = (__pyx_t_1 != 0);
   if (__pyx_t_3) {
 
-    /* "simplegeom/_geom2d.pyx":1341
+    /* "simplegeom/_geom2d.pyx":1347
  * 
  *         if isinstance(other, Point):
  *             if (other.x < self._mbr.xmin or \             # <<<<<<<<<<<<<<
  *                 other.x > self._mbr.xmax or \
  *                 other.y < self._mbr.ymin or \
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_x); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_x); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1347; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1347; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1347; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1347; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_1) {
     } else {
@@ -15243,21 +15309,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1342
+    /* "simplegeom/_geom2d.pyx":1348
  *         if isinstance(other, Point):
  *             if (other.x < self._mbr.xmin or \
  *                 other.x > self._mbr.xmax or \             # <<<<<<<<<<<<<<
  *                 other.y < self._mbr.ymin or \
  *                 other.y > self._mbr.ymax):
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_x); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_x); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (!__pyx_t_1) {
     } else {
@@ -15265,21 +15331,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1343
+    /* "simplegeom/_geom2d.pyx":1349
  *             if (other.x < self._mbr.xmin or \
  *                 other.x > self._mbr.xmax or \
  *                 other.y < self._mbr.ymin or \             # <<<<<<<<<<<<<<
  *                 other.y > self._mbr.ymax):
  *                 return False
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_1) {
     } else {
@@ -15287,27 +15353,27 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1344
+    /* "simplegeom/_geom2d.pyx":1350
  *                 other.x > self._mbr.xmax or \
  *                 other.y < self._mbr.ymin or \
  *                 other.y > self._mbr.ymax):             # <<<<<<<<<<<<<<
  *                 return False
  *             else:
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_y); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_y); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_3 = __pyx_t_1;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_3) {
 
-      /* "simplegeom/_geom2d.pyx":1345
+      /* "simplegeom/_geom2d.pyx":1351
  *                 other.y < self._mbr.ymin or \
  *                 other.y > self._mbr.ymax):
  *                 return False             # <<<<<<<<<<<<<<
@@ -15321,7 +15387,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
     }
     /*else*/ {
 
-      /* "simplegeom/_geom2d.pyx":1347
+      /* "simplegeom/_geom2d.pyx":1353
  *                 return False
  *             else:
  *                 return True             # <<<<<<<<<<<<<<
@@ -15335,7 +15401,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1348
+  /* "simplegeom/_geom2d.pyx":1354
  *             else:
  *                 return True
  *         elif isinstance(other, Envelope):             # <<<<<<<<<<<<<<
@@ -15346,21 +15412,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
   __pyx_t_1 = (__pyx_t_3 != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1349
+    /* "simplegeom/_geom2d.pyx":1355
  *                 return True
  *         elif isinstance(other, Envelope):
  *             if (other.xmin < self._mbr.xmin or \             # <<<<<<<<<<<<<<
  *                 other.xmax > self._mbr.xmax or \
  *                 other.ymin < self._mbr.ymin or \
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_3) {
     } else {
@@ -15368,21 +15434,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
       goto __pyx_L11_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1350
+    /* "simplegeom/_geom2d.pyx":1356
  *         elif isinstance(other, Envelope):
  *             if (other.xmin < self._mbr.xmin or \
  *                 other.xmax > self._mbr.xmax or \             # <<<<<<<<<<<<<<
  *                 other.ymin < self._mbr.ymin or \
  *                 other.ymax > self._mbr.ymax):
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_xmax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_xmax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (!__pyx_t_3) {
     } else {
@@ -15390,21 +15456,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
       goto __pyx_L11_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1351
+    /* "simplegeom/_geom2d.pyx":1357
  *             if (other.xmin < self._mbr.xmin or \
  *                 other.xmax > self._mbr.xmax or \
  *                 other.ymin < self._mbr.ymin or \             # <<<<<<<<<<<<<<
  *                 other.ymax > self._mbr.ymax):
  *                 return False
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_3) {
     } else {
@@ -15412,27 +15478,27 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
       goto __pyx_L11_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1352
+    /* "simplegeom/_geom2d.pyx":1358
  *                 other.xmax > self._mbr.xmax or \
  *                 other.ymin < self._mbr.ymin or \
  *                 other.ymax > self._mbr.ymax):             # <<<<<<<<<<<<<<
  *                 return False
  *             else:
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_ymax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1352; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_ymax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1352; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1352; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1352; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_1 = __pyx_t_3;
     __pyx_L11_bool_binop_done:;
     if (__pyx_t_1) {
 
-      /* "simplegeom/_geom2d.pyx":1353
+      /* "simplegeom/_geom2d.pyx":1359
  *                 other.ymin < self._mbr.ymin or \
  *                 other.ymax > self._mbr.ymax):
  *                 return False             # <<<<<<<<<<<<<<
@@ -15446,7 +15512,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
     }
     /*else*/ {
 
-      /* "simplegeom/_geom2d.pyx":1355
+      /* "simplegeom/_geom2d.pyx":1361
  *                 return False
  *             else:
  *                 return True             # <<<<<<<<<<<<<<
@@ -15461,21 +15527,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1357
+    /* "simplegeom/_geom2d.pyx":1363
  *                 return True
  *         else:
  *             raise NotImplementedError("Unknown type given for contains")             # <<<<<<<<<<<<<<
  * 
  *     def covers(Envelope self, Geometry other not None):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__40, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__40, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1331
+  /* "simplegeom/_geom2d.pyx":1337
  * 
  *     # Binary topological relations
  *     def contains(Envelope self, Geometry other not None):             # <<<<<<<<<<<<<<
@@ -15496,7 +15562,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_16contains(struct __py
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1359
+/* "simplegeom/_geom2d.pyx":1365
  *             raise NotImplementedError("Unknown type given for contains")
  * 
  *     def covers(Envelope self, Geometry other not None):             # <<<<<<<<<<<<<<
@@ -15514,7 +15580,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_8Envelope_19covers(PyObject *__p
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("covers (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Geometry, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1359; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Geometry, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_8Envelope_18covers(((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_self), ((struct __pyx_obj_10simplegeom_7_geom2d_Geometry *)__pyx_v_other));
 
   /* function exit code */
@@ -15538,7 +15604,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_18covers(struct __pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("covers", 0);
 
-  /* "simplegeom/_geom2d.pyx":1362
+  /* "simplegeom/_geom2d.pyx":1368
  *         """Synonym for contains
  *         """
  *         return self.contains(other)             # <<<<<<<<<<<<<<
@@ -15546,7 +15612,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_18covers(struct __pyx_
  *     def contains_properly(Envelope self, Geometry other not None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_contains); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_contains); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -15559,16 +15625,16 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_18covers(struct __pyx_
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, ((PyObject *)__pyx_v_other)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     __Pyx_INCREF(((PyObject *)__pyx_v_other));
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, ((PyObject *)__pyx_v_other));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_other));
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
@@ -15577,7 +15643,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_18covers(struct __pyx_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1359
+  /* "simplegeom/_geom2d.pyx":1365
  *             raise NotImplementedError("Unknown type given for contains")
  * 
  *     def covers(Envelope self, Geometry other not None):             # <<<<<<<<<<<<<<
@@ -15599,7 +15665,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_18covers(struct __pyx_
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1364
+/* "simplegeom/_geom2d.pyx":1370
  *         return self.contains(other)
  * 
  *     def contains_properly(Envelope self, Geometry other not None):             # <<<<<<<<<<<<<<
@@ -15617,7 +15683,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_8Envelope_21contains_properly(Py
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("contains_properly (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Geometry, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_10simplegeom_7_geom2d_Geometry, 0, "other", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_self), ((struct __pyx_obj_10simplegeom_7_geom2d_Geometry *)__pyx_v_other));
 
   /* function exit code */
@@ -15642,7 +15708,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("contains_properly", 0);
 
-  /* "simplegeom/_geom2d.pyx":1369
+  /* "simplegeom/_geom2d.pyx":1375
  * 
  *         """
  *         if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -15652,21 +15718,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1370
+    /* "simplegeom/_geom2d.pyx":1376
  *         """
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  * 
  *         if isinstance(other, Point):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__41, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__41, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1372
+  /* "simplegeom/_geom2d.pyx":1378
  *             raise RuntimeError("Box not inited")
  * 
  *         if isinstance(other, Point):             # <<<<<<<<<<<<<<
@@ -15677,21 +15743,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
   __pyx_t_3 = (__pyx_t_1 != 0);
   if (__pyx_t_3) {
 
-    /* "simplegeom/_geom2d.pyx":1373
+    /* "simplegeom/_geom2d.pyx":1379
  * 
  *         if isinstance(other, Point):
  *             if self._mbr.xmin < other.x and \             # <<<<<<<<<<<<<<
  *                self._mbr.xmax > other.x and \
  *                self._mbr.ymin < other.y and \
  */
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_x); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_x); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_1) {
     } else {
@@ -15699,21 +15765,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1374
+    /* "simplegeom/_geom2d.pyx":1380
  *         if isinstance(other, Point):
  *             if self._mbr.xmin < other.x and \
  *                self._mbr.xmax > other.x and \             # <<<<<<<<<<<<<<
  *                self._mbr.ymin < other.y and \
  *                self._mbr.ymax > other.y:
  */
-    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_x); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_x); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (__pyx_t_1) {
     } else {
@@ -15721,21 +15787,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1375
+    /* "simplegeom/_geom2d.pyx":1381
  *             if self._mbr.xmin < other.x and \
  *                self._mbr.xmax > other.x and \
  *                self._mbr.ymin < other.y and \             # <<<<<<<<<<<<<<
  *                self._mbr.ymax > other.y:
  *                 return True
  */
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_1) {
     } else {
@@ -15743,27 +15809,27 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1376
+    /* "simplegeom/_geom2d.pyx":1382
  *                self._mbr.xmax > other.x and \
  *                self._mbr.ymin < other.y and \
  *                self._mbr.ymax > other.y:             # <<<<<<<<<<<<<<
  *                 return True
  *             else:
  */
-    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_3 = __pyx_t_1;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_3) {
 
-      /* "simplegeom/_geom2d.pyx":1377
+      /* "simplegeom/_geom2d.pyx":1383
  *                self._mbr.ymin < other.y and \
  *                self._mbr.ymax > other.y:
  *                 return True             # <<<<<<<<<<<<<<
@@ -15777,7 +15843,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
     }
     /*else*/ {
 
-      /* "simplegeom/_geom2d.pyx":1379
+      /* "simplegeom/_geom2d.pyx":1385
  *                 return True
  *             else:
  *                 return False             # <<<<<<<<<<<<<<
@@ -15791,7 +15857,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1380
+  /* "simplegeom/_geom2d.pyx":1386
  *             else:
  *                 return False
  *         elif isinstance(other, Envelope):             # <<<<<<<<<<<<<<
@@ -15802,21 +15868,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
   __pyx_t_1 = (__pyx_t_3 != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1381
+    /* "simplegeom/_geom2d.pyx":1387
  *                 return False
  *         elif isinstance(other, Envelope):
  *             if self._mbr.xmin < other.xmin and \             # <<<<<<<<<<<<<<
  *                self._mbr.xmax > other.xmax and \
  *                self._mbr.ymin < other.ymin and \
  */
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_3) {
     } else {
@@ -15824,21 +15890,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
       goto __pyx_L11_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1382
+    /* "simplegeom/_geom2d.pyx":1388
  *         elif isinstance(other, Envelope):
  *             if self._mbr.xmin < other.xmin and \
  *                self._mbr.xmax > other.xmax and \             # <<<<<<<<<<<<<<
  *                self._mbr.ymin < other.ymin and \
  *                self._mbr.ymax > other.ymax:
  */
-    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (__pyx_t_3) {
     } else {
@@ -15846,21 +15912,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
       goto __pyx_L11_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1383
+    /* "simplegeom/_geom2d.pyx":1389
  *             if self._mbr.xmin < other.xmin and \
  *                self._mbr.xmax > other.xmax and \
  *                self._mbr.ymin < other.ymin and \             # <<<<<<<<<<<<<<
  *                self._mbr.ymax > other.ymax:
  *                 return True
  */
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_3) {
     } else {
@@ -15868,27 +15934,27 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
       goto __pyx_L11_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1384
+    /* "simplegeom/_geom2d.pyx":1390
  *                self._mbr.xmax > other.xmax and \
  *                self._mbr.ymin < other.ymin and \
  *                self._mbr.ymax > other.ymax:             # <<<<<<<<<<<<<<
  *                 return True
  *             else:
  */
-    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_other), __pyx_n_s_ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_1 = __pyx_t_3;
     __pyx_L11_bool_binop_done:;
     if (__pyx_t_1) {
 
-      /* "simplegeom/_geom2d.pyx":1385
+      /* "simplegeom/_geom2d.pyx":1391
  *                self._mbr.ymin < other.ymin and \
  *                self._mbr.ymax > other.ymax:
  *                 return True             # <<<<<<<<<<<<<<
@@ -15902,7 +15968,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
     }
     /*else*/ {
 
-      /* "simplegeom/_geom2d.pyx":1387
+      /* "simplegeom/_geom2d.pyx":1393
  *                 return True
  *             else:
  *                 return False             # <<<<<<<<<<<<<<
@@ -15917,21 +15983,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1389
+    /* "simplegeom/_geom2d.pyx":1395
  *                 return False
  *         else:
  *             raise NotImplementedError("Unknown type given for contains")             # <<<<<<<<<<<<<<
  * 
  *     def intersects(Envelope self, object other not None):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__42, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__42, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1364
+  /* "simplegeom/_geom2d.pyx":1370
  *         return self.contains(other)
  * 
  *     def contains_properly(Envelope self, Geometry other not None):             # <<<<<<<<<<<<<<
@@ -15952,7 +16018,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_20contains_properly(st
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1391
+/* "simplegeom/_geom2d.pyx":1397
  *             raise NotImplementedError("Unknown type given for contains")
  * 
  *     def intersects(Envelope self, object other not None):             # <<<<<<<<<<<<<<
@@ -15971,7 +16037,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_8Envelope_23intersects(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("intersects (wrapper)", 0);
   if (unlikely(((PyObject *)__pyx_v_other) == Py_None)) {
-    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "other"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1391; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "other"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_self), ((PyObject *)__pyx_v_other));
 
@@ -15997,7 +16063,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("intersects", 0);
 
-  /* "simplegeom/_geom2d.pyx":1394
+  /* "simplegeom/_geom2d.pyx":1400
  *         """Tests whether objects are _not_ disjoint
  *         """
  *         if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -16007,21 +16073,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1395
+    /* "simplegeom/_geom2d.pyx":1401
  *         """
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         if isinstance(other, Envelope):
  *             if (other.xmax < self._mbr.xmin or \
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__43, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__43, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1396
+  /* "simplegeom/_geom2d.pyx":1402
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")
  *         if isinstance(other, Envelope):             # <<<<<<<<<<<<<<
@@ -16032,21 +16098,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
   __pyx_t_3 = (__pyx_t_1 != 0);
   if (__pyx_t_3) {
 
-    /* "simplegeom/_geom2d.pyx":1397
+    /* "simplegeom/_geom2d.pyx":1403
  *             raise RuntimeError("Box not inited")
  *         if isinstance(other, Envelope):
  *             if (other.xmax < self._mbr.xmin or \             # <<<<<<<<<<<<<<
  *                 other.ymax < self._mbr.ymin or \
  *                 other.xmin > self._mbr.xmax or \
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_xmax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_xmax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_1) {
     } else {
@@ -16054,21 +16120,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1398
+    /* "simplegeom/_geom2d.pyx":1404
  *         if isinstance(other, Envelope):
  *             if (other.xmax < self._mbr.xmin or \
  *                 other.ymax < self._mbr.ymin or \             # <<<<<<<<<<<<<<
  *                 other.xmin > self._mbr.xmax or \
  *                 other.ymin > self._mbr.ymax):
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_ymax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1398; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_ymax); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1404; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1398; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1404; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1398; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1404; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1398; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1404; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (!__pyx_t_1) {
     } else {
@@ -16076,21 +16142,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1399
+    /* "simplegeom/_geom2d.pyx":1405
  *             if (other.xmax < self._mbr.xmin or \
  *                 other.ymax < self._mbr.ymin or \
  *                 other.xmin > self._mbr.xmax or \             # <<<<<<<<<<<<<<
  *                 other.ymin > self._mbr.ymax):
  *                 return False
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1399; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1399; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1399; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1399; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_1) {
     } else {
@@ -16098,27 +16164,27 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1400
+    /* "simplegeom/_geom2d.pyx":1406
  *                 other.ymax < self._mbr.ymin or \
  *                 other.xmin > self._mbr.xmax or \
  *                 other.ymin > self._mbr.ymax):             # <<<<<<<<<<<<<<
  *                 return False
  *             else:
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_ymin); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_ymin); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_3 = __pyx_t_1;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_3) {
 
-      /* "simplegeom/_geom2d.pyx":1401
+      /* "simplegeom/_geom2d.pyx":1407
  *                 other.xmin > self._mbr.xmax or \
  *                 other.ymin > self._mbr.ymax):
  *                 return False             # <<<<<<<<<<<<<<
@@ -16132,7 +16198,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
     }
     /*else*/ {
 
-      /* "simplegeom/_geom2d.pyx":1403
+      /* "simplegeom/_geom2d.pyx":1409
  *                 return False
  *             else:
  *                 return True             # <<<<<<<<<<<<<<
@@ -16146,7 +16212,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1404
+  /* "simplegeom/_geom2d.pyx":1410
  *             else:
  *                 return True
  *         if isinstance(other, tuple):             # <<<<<<<<<<<<<<
@@ -16157,21 +16223,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
   __pyx_t_1 = (__pyx_t_3 != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1405
+    /* "simplegeom/_geom2d.pyx":1411
  *                 return True
  *         if isinstance(other, tuple):
  *             if (other[2] < self._mbr.xmin or \             # <<<<<<<<<<<<<<
  *                 other[3] < self._mbr.ymin or \
  *                 other[0] > self._mbr.xmax or \
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_other, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1405; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_other, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1411; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_3) {
     } else {
@@ -16179,21 +16245,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
       goto __pyx_L12_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1406
+    /* "simplegeom/_geom2d.pyx":1412
  *         if isinstance(other, tuple):
  *             if (other[2] < self._mbr.xmin or \
  *                 other[3] < self._mbr.ymin or \             # <<<<<<<<<<<<<<
  *                 other[0] > self._mbr.xmax or \
  *                 other[1] > self._mbr.ymax):
  */
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_other, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1406; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_other, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1412; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1412; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1412; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1412; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (!__pyx_t_3) {
     } else {
@@ -16201,21 +16267,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
       goto __pyx_L12_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1407
+    /* "simplegeom/_geom2d.pyx":1413
  *             if (other[2] < self._mbr.xmin or \
  *                 other[3] < self._mbr.ymin or \
  *                 other[0] > self._mbr.xmax or \             # <<<<<<<<<<<<<<
  *                 other[1] > self._mbr.ymax):
  *                 return False
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_other, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1407; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_other, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1413; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1407; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1413; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1407; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1413; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1407; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1413; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_3) {
     } else {
@@ -16223,27 +16289,27 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
       goto __pyx_L12_bool_binop_done;
     }
 
-    /* "simplegeom/_geom2d.pyx":1408
+    /* "simplegeom/_geom2d.pyx":1414
  *                 other[3] < self._mbr.ymin or \
  *                 other[0] > self._mbr.xmax or \
  *                 other[1] > self._mbr.ymax):             # <<<<<<<<<<<<<<
  *                 return False
  *             else:
  */
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_other, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1408; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_other, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1414; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1408; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1414; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1408; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1414; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1408; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1414; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_1 = __pyx_t_3;
     __pyx_L12_bool_binop_done:;
     if (__pyx_t_1) {
 
-      /* "simplegeom/_geom2d.pyx":1409
+      /* "simplegeom/_geom2d.pyx":1415
  *                 other[0] > self._mbr.xmax or \
  *                 other[1] > self._mbr.ymax):
  *                 return False             # <<<<<<<<<<<<<<
@@ -16257,7 +16323,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
     }
     /*else*/ {
 
-      /* "simplegeom/_geom2d.pyx":1411
+      /* "simplegeom/_geom2d.pyx":1417
  *                 return False
  *             else:
  *                 return True             # <<<<<<<<<<<<<<
@@ -16271,7 +16337,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1391
+  /* "simplegeom/_geom2d.pyx":1397
  *             raise NotImplementedError("Unknown type given for contains")
  * 
  *     def intersects(Envelope self, object other not None):             # <<<<<<<<<<<<<<
@@ -16294,7 +16360,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_22intersects(struct __
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1413
+/* "simplegeom/_geom2d.pyx":1419
  *                 return True
  * 
  *     def disjoint(Envelope self, object other not None):             # <<<<<<<<<<<<<<
@@ -16313,7 +16379,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_8Envelope_25disjoint(PyObject *_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("disjoint (wrapper)", 0);
   if (unlikely(((PyObject *)__pyx_v_other) == Py_None)) {
-    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "other"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1413; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "other"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1419; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_8Envelope_24disjoint(((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_v_self), ((PyObject *)__pyx_v_other));
 
@@ -16340,7 +16406,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_24disjoint(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("disjoint", 0);
 
-  /* "simplegeom/_geom2d.pyx":1416
+  /* "simplegeom/_geom2d.pyx":1422
  *         """Tests whether objects are disjoint
  *         """
  *         return not self.intersects(self, other)             # <<<<<<<<<<<<<<
@@ -16348,7 +16414,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_24disjoint(struct __py
  *     property area:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersects); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1416; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_intersects); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -16362,7 +16428,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_24disjoint(struct __py
       __pyx_t_4 = 1;
     }
   }
-  __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1416; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   if (__pyx_t_3) {
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
@@ -16373,19 +16439,19 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_24disjoint(struct __py
   __Pyx_INCREF(__pyx_v_other);
   PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, __pyx_v_other);
   __Pyx_GIVEREF(__pyx_v_other);
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1416; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1416; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyBool_FromLong((!__pyx_t_6)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1416; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyBool_FromLong((!__pyx_t_6)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1413
+  /* "simplegeom/_geom2d.pyx":1419
  *                 return True
  * 
  *     def disjoint(Envelope self, object other not None):             # <<<<<<<<<<<<<<
@@ -16407,7 +16473,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_24disjoint(struct __py
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1419
+/* "simplegeom/_geom2d.pyx":1425
  * 
  *     property area:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -16438,7 +16504,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4area___get__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1420
+  /* "simplegeom/_geom2d.pyx":1426
  *     property area:
  *         def __get__(self):
  *             if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -16448,21 +16514,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4area___get__(struct _
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1421
+    /* "simplegeom/_geom2d.pyx":1427
  *         def __get__(self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return box_area(self._mbr)
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__44, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1421; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__44, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1427; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1421; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1427; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1422
+  /* "simplegeom/_geom2d.pyx":1428
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")
  *             return box_area(self._mbr)             # <<<<<<<<<<<<<<
@@ -16470,13 +16536,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4area___get__(struct _
  *     property xmin:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_f_10simplegeom_7_geom2d_box_area(__pyx_v_self->_mbr)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_f_10simplegeom_7_geom2d_box_area(__pyx_v_self->_mbr)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1428; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1419
+  /* "simplegeom/_geom2d.pyx":1425
  * 
  *     property area:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -16495,7 +16561,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4area___get__(struct _
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1428
+/* "simplegeom/_geom2d.pyx":1434
  *         Returns the value of the smallest ordinate in x-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -16526,7 +16592,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmin___get__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1429
+  /* "simplegeom/_geom2d.pyx":1435
  *         """
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -16536,21 +16602,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmin___get__(struct _
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1430
+    /* "simplegeom/_geom2d.pyx":1436
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.xmin
  *         def __set__(Envelope self, xmin):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__45, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1430; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__45, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1430; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1431
+  /* "simplegeom/_geom2d.pyx":1437
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.xmin             # <<<<<<<<<<<<<<
@@ -16558,13 +16624,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmin___get__(struct _
  *             self._mbr.xmin = xmin
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1428
+  /* "simplegeom/_geom2d.pyx":1434
  *         Returns the value of the smallest ordinate in x-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -16583,7 +16649,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmin___get__(struct _
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1432
+/* "simplegeom/_geom2d.pyx":1438
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.xmin
  *         def __set__(Envelope self, xmin):             # <<<<<<<<<<<<<<
@@ -16613,17 +16679,17 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmin_2__set__(struct __pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1433
+  /* "simplegeom/_geom2d.pyx":1439
  *             return self._mbr.xmin
  *         def __set__(Envelope self, xmin):
  *             self._mbr.xmin = xmin             # <<<<<<<<<<<<<<
  * 
  *     property ymin:
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_xmin); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_xmin); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->_mbr->xmin = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1432
+  /* "simplegeom/_geom2d.pyx":1438
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.xmin
  *         def __set__(Envelope self, xmin):             # <<<<<<<<<<<<<<
@@ -16642,7 +16708,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmin_2__set__(struct __pyx_
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1439
+/* "simplegeom/_geom2d.pyx":1445
  *         Returns the value of the smallest ordinate in y-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -16673,7 +16739,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymin___get__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1440
+  /* "simplegeom/_geom2d.pyx":1446
  *         """
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -16683,21 +16749,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymin___get__(struct _
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1441
+    /* "simplegeom/_geom2d.pyx":1447
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.ymin
  *         def __set__(Envelope self, ymin):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__46, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1441; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__46, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1441; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1442
+  /* "simplegeom/_geom2d.pyx":1448
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.ymin             # <<<<<<<<<<<<<<
@@ -16705,13 +16771,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymin___get__(struct _
  *             self._mbr.ymin = ymin
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1442; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1439
+  /* "simplegeom/_geom2d.pyx":1445
  *         Returns the value of the smallest ordinate in y-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -16730,7 +16796,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymin___get__(struct _
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1443
+/* "simplegeom/_geom2d.pyx":1449
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.ymin
  *         def __set__(Envelope self, ymin):             # <<<<<<<<<<<<<<
@@ -16760,17 +16826,17 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymin_2__set__(struct __pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1444
+  /* "simplegeom/_geom2d.pyx":1450
  *             return self._mbr.ymin
  *         def __set__(Envelope self, ymin):
  *             self._mbr.ymin = ymin             # <<<<<<<<<<<<<<
  * 
  *     property xmax:
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_ymin); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1444; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_ymin); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1450; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->_mbr->ymin = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1443
+  /* "simplegeom/_geom2d.pyx":1449
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.ymin
  *         def __set__(Envelope self, ymin):             # <<<<<<<<<<<<<<
@@ -16789,7 +16855,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymin_2__set__(struct __pyx_
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1450
+/* "simplegeom/_geom2d.pyx":1456
  *         Returns the value of the largest ordinate in x-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -16820,7 +16886,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmax___get__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1451
+  /* "simplegeom/_geom2d.pyx":1457
  *         """
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -16830,21 +16896,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmax___get__(struct _
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1452
+    /* "simplegeom/_geom2d.pyx":1458
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.xmax
  *         def __set__(Envelope self, xmax):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__47, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1452; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__47, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1458; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1452; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1458; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1453
+  /* "simplegeom/_geom2d.pyx":1459
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.xmax             # <<<<<<<<<<<<<<
@@ -16852,13 +16918,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmax___get__(struct _
  *             self._mbr.xmax = xmax
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->xmax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1459; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1450
+  /* "simplegeom/_geom2d.pyx":1456
  *         Returns the value of the largest ordinate in x-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -16877,7 +16943,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmax___get__(struct _
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1454
+/* "simplegeom/_geom2d.pyx":1460
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.xmax
  *         def __set__(Envelope self, xmax):             # <<<<<<<<<<<<<<
@@ -16907,17 +16973,17 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmax_2__set__(struct __pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1455
+  /* "simplegeom/_geom2d.pyx":1461
  *             return self._mbr.xmax
  *         def __set__(Envelope self, xmax):
  *             self._mbr.xmax = xmax             # <<<<<<<<<<<<<<
  * 
  *     property ymax:
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_xmax); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1455; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_xmax); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1461; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->_mbr->xmax = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1454
+  /* "simplegeom/_geom2d.pyx":1460
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.xmax
  *         def __set__(Envelope self, xmax):             # <<<<<<<<<<<<<<
@@ -16936,7 +17002,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_4xmax_2__set__(struct __pyx_
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1461
+/* "simplegeom/_geom2d.pyx":1467
  *         Returns the value of the largest ordinate in y-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -16967,7 +17033,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymax___get__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1462
+  /* "simplegeom/_geom2d.pyx":1468
  *         """
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:             # <<<<<<<<<<<<<<
@@ -16977,21 +17043,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymax___get__(struct _
   __pyx_t_1 = ((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1463
+    /* "simplegeom/_geom2d.pyx":1469
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.ymax
  *         def __set__(Envelope self, ymax):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__48, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1463; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__48, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1469; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1463; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1469; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1464
+  /* "simplegeom/_geom2d.pyx":1470
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.ymax             # <<<<<<<<<<<<<<
@@ -16999,13 +17065,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymax___get__(struct _
  *             self._mbr.ymax = ymax
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1464; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_mbr->ymax); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1470; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1461
+  /* "simplegeom/_geom2d.pyx":1467
  *         Returns the value of the largest ordinate in y-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -17024,7 +17090,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymax___get__(struct _
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1465
+/* "simplegeom/_geom2d.pyx":1471
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.ymax
  *         def __set__(Envelope self, ymax):             # <<<<<<<<<<<<<<
@@ -17054,17 +17120,17 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymax_2__set__(struct __pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1466
+  /* "simplegeom/_geom2d.pyx":1472
  *             return self._mbr.ymax
  *         def __set__(Envelope self, ymax):
  *             self._mbr.ymax = ymax             # <<<<<<<<<<<<<<
  * 
  *     property width:
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_ymax); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1466; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_ymax); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1472; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->_mbr->ymax = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1465
+  /* "simplegeom/_geom2d.pyx":1471
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.ymax
  *         def __set__(Envelope self, ymax):             # <<<<<<<<<<<<<<
@@ -17083,7 +17149,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_8Envelope_4ymax_2__set__(struct __pyx_
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1472
+/* "simplegeom/_geom2d.pyx":1478
  *         Returns the value of the largest ordinate in y-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -17114,7 +17180,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_5width___get__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1473
+  /* "simplegeom/_geom2d.pyx":1479
  *         """
  *         def __get__(Envelope self):
  *             if not box_inited(self._mbr):             # <<<<<<<<<<<<<<
@@ -17124,21 +17190,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_5width___get__(struct 
   __pyx_t_1 = ((!(__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1474
+    /* "simplegeom/_geom2d.pyx":1480
  *         def __get__(Envelope self):
  *             if not box_inited(self._mbr):
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.xmax - self._mbr.xmin
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__49, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1474; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__49, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1480; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1474; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1480; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1475
+  /* "simplegeom/_geom2d.pyx":1481
  *             if not box_inited(self._mbr):
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.xmax - self._mbr.xmin             # <<<<<<<<<<<<<<
@@ -17146,13 +17212,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_5width___get__(struct 
  *     property height:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->_mbr->xmax - __pyx_v_self->_mbr->xmin)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1475; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->_mbr->xmax - __pyx_v_self->_mbr->xmin)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1481; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1472
+  /* "simplegeom/_geom2d.pyx":1478
  *         Returns the value of the largest ordinate in y-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -17171,7 +17237,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_5width___get__(struct 
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1481
+/* "simplegeom/_geom2d.pyx":1487
  *         Returns the value of the largest ordinate in y-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -17202,7 +17268,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_6height___get__(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1482
+  /* "simplegeom/_geom2d.pyx":1488
  *         """
  *         def __get__(Envelope self):
  *             if not box_inited(self._mbr):             # <<<<<<<<<<<<<<
@@ -17212,21 +17278,21 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_6height___get__(struct
   __pyx_t_1 = ((!(__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1483
+    /* "simplegeom/_geom2d.pyx":1489
  *         def __get__(Envelope self):
  *             if not box_inited(self._mbr):
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.ymax - self._mbr.ymin
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__50, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1483; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__50, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1489; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1483; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1489; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1484
+  /* "simplegeom/_geom2d.pyx":1490
  *             if not box_inited(self._mbr):
  *                 raise RuntimeError("Box not inited")
  *             return self._mbr.ymax - self._mbr.ymin             # <<<<<<<<<<<<<<
@@ -17234,13 +17300,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_6height___get__(struct
  *     property is_empty:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->_mbr->ymax - __pyx_v_self->_mbr->ymin)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1484; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->_mbr->ymax - __pyx_v_self->_mbr->ymin)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1490; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1481
+  /* "simplegeom/_geom2d.pyx":1487
  *         Returns the value of the largest ordinate in y-direction
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -17259,7 +17325,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_6height___get__(struct
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1489
+/* "simplegeom/_geom2d.pyx":1495
  *         """Returns whether this Envelope is inited.
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -17289,7 +17355,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8is_empty___get__(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1490
+  /* "simplegeom/_geom2d.pyx":1496
  *         """
  *         def __get__(Envelope self):
  *             return box_inited(self._mbr) == False             # <<<<<<<<<<<<<<
@@ -17297,13 +17363,13 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8is_empty___get__(stru
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1490; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_f_10simplegeom_7_geom2d_box_inited(__pyx_v_self->_mbr) == 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1496; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1489
+  /* "simplegeom/_geom2d.pyx":1495
  *         """Returns whether this Envelope is inited.
  *         """
  *         def __get__(Envelope self):             # <<<<<<<<<<<<<<
@@ -17322,7 +17388,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_8Envelope_8is_empty___get__(stru
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1496
+/* "simplegeom/_geom2d.pyx":1502
  *     """Line Segment
  *     """
  *     def __cinit__(Segment self):             # <<<<<<<<<<<<<<
@@ -17362,7 +17428,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1497
+  /* "simplegeom/_geom2d.pyx":1503
  *     """
  *     def __cinit__(Segment self):
  *         try:             # <<<<<<<<<<<<<<
@@ -17376,14 +17442,14 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1498
+      /* "simplegeom/_geom2d.pyx":1504
  *     def __cinit__(Segment self):
  *         try:
  *             self._start = coord_new()             # <<<<<<<<<<<<<<
  *         except MemoryError:
  *             raise
  */
-      __pyx_t_4 = __pyx_f_10simplegeom_7_geom2d_coord_new(); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1498; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_4 = __pyx_f_10simplegeom_7_geom2d_coord_new(); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1504; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __pyx_v_self->_start = __pyx_t_4;
     }
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -17392,7 +17458,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
     goto __pyx_L10_try_end;
     __pyx_L3_error:;
 
-    /* "simplegeom/_geom2d.pyx":1499
+    /* "simplegeom/_geom2d.pyx":1505
  *         try:
  *             self._start = coord_new()
  *         except MemoryError:             # <<<<<<<<<<<<<<
@@ -17402,12 +17468,12 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
     __pyx_t_5 = PyErr_ExceptionMatches(__pyx_builtin_MemoryError);
     if (__pyx_t_5) {
       __Pyx_AddTraceback("simplegeom._geom2d.Segment.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_7, &__pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1499; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_7, &__pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1505; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_t_8);
 
-      /* "simplegeom/_geom2d.pyx":1500
+      /* "simplegeom/_geom2d.pyx":1506
  *             self._start = coord_new()
  *         except MemoryError:
  *             raise             # <<<<<<<<<<<<<<
@@ -17419,7 +17485,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
       __Pyx_XGIVEREF(__pyx_t_8);
       __Pyx_ErrRestore(__pyx_t_6, __pyx_t_7, __pyx_t_8);
       __pyx_t_6 = 0; __pyx_t_7 = 0; __pyx_t_8 = 0; 
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1500; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1506; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
     }
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
@@ -17431,7 +17497,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
     __pyx_L10_try_end:;
   }
 
-  /* "simplegeom/_geom2d.pyx":1501
+  /* "simplegeom/_geom2d.pyx":1507
  *         except MemoryError:
  *             raise
  *         try:             # <<<<<<<<<<<<<<
@@ -17445,14 +17511,14 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
     __Pyx_XGOTREF(__pyx_t_1);
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1502
+      /* "simplegeom/_geom2d.pyx":1508
  *             raise
  *         try:
  *             self._end = coord_new()             # <<<<<<<<<<<<<<
  *         except MemoryError:
  *             raise
  */
-      __pyx_t_4 = __pyx_f_10simplegeom_7_geom2d_coord_new(); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1502; __pyx_clineno = __LINE__; goto __pyx_L13_error;}
+      __pyx_t_4 = __pyx_f_10simplegeom_7_geom2d_coord_new(); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1508; __pyx_clineno = __LINE__; goto __pyx_L13_error;}
       __pyx_v_self->_end = __pyx_t_4;
     }
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -17464,7 +17530,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "simplegeom/_geom2d.pyx":1503
+    /* "simplegeom/_geom2d.pyx":1509
  *         try:
  *             self._end = coord_new()
  *         except MemoryError:             # <<<<<<<<<<<<<<
@@ -17474,12 +17540,12 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
     __pyx_t_5 = PyErr_ExceptionMatches(__pyx_builtin_MemoryError);
     if (__pyx_t_5) {
       __Pyx_AddTraceback("simplegeom._geom2d.Segment.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_8, &__pyx_t_7, &__pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1503; __pyx_clineno = __LINE__; goto __pyx_L15_except_error;}
+      if (__Pyx_GetException(&__pyx_t_8, &__pyx_t_7, &__pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1509; __pyx_clineno = __LINE__; goto __pyx_L15_except_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_t_6);
 
-      /* "simplegeom/_geom2d.pyx":1504
+      /* "simplegeom/_geom2d.pyx":1510
  *             self._end = coord_new()
  *         except MemoryError:
  *             raise             # <<<<<<<<<<<<<<
@@ -17491,7 +17557,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
       __Pyx_XGIVEREF(__pyx_t_6);
       __Pyx_ErrRestore(__pyx_t_8, __pyx_t_7, __pyx_t_6);
       __pyx_t_8 = 0; __pyx_t_7 = 0; __pyx_t_6 = 0; 
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1504; __pyx_clineno = __LINE__; goto __pyx_L15_except_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1510; __pyx_clineno = __LINE__; goto __pyx_L15_except_error;}
     }
     goto __pyx_L15_except_error;
     __pyx_L15_except_error:;
@@ -17503,7 +17569,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
     __pyx_L20_try_end:;
   }
 
-  /* "simplegeom/_geom2d.pyx":1496
+  /* "simplegeom/_geom2d.pyx":1502
  *     """Line Segment
  *     """
  *     def __cinit__(Segment self):             # <<<<<<<<<<<<<<
@@ -17525,7 +17591,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment___cinit__(struct __pyx_obj_10
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1506
+/* "simplegeom/_geom2d.pyx":1512
  *             raise
  * 
  *     def __dealloc__(Segment self):             # <<<<<<<<<<<<<<
@@ -17548,7 +17614,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_7Segment_2__dealloc__(struct __pyx_ob
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1507
+  /* "simplegeom/_geom2d.pyx":1513
  * 
  *     def __dealloc__(Segment self):
  *         coord_dealloc(self._start)             # <<<<<<<<<<<<<<
@@ -17557,7 +17623,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_7Segment_2__dealloc__(struct __pyx_ob
  */
   __pyx_f_10simplegeom_7_geom2d_coord_dealloc(__pyx_v_self->_start);
 
-  /* "simplegeom/_geom2d.pyx":1508
+  /* "simplegeom/_geom2d.pyx":1514
  *     def __dealloc__(Segment self):
  *         coord_dealloc(self._start)
  *         coord_dealloc(self._end)             # <<<<<<<<<<<<<<
@@ -17566,7 +17632,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_7Segment_2__dealloc__(struct __pyx_ob
  */
   __pyx_f_10simplegeom_7_geom2d_coord_dealloc(__pyx_v_self->_end);
 
-  /* "simplegeom/_geom2d.pyx":1506
+  /* "simplegeom/_geom2d.pyx":1512
  *             raise
  * 
  *     def __dealloc__(Segment self):             # <<<<<<<<<<<<<<
@@ -17578,7 +17644,7 @@ static void __pyx_pf_10simplegeom_7_geom2d_7Segment_2__dealloc__(struct __pyx_ob
   __Pyx_RefNannyFinishContext();
 }
 
-/* "simplegeom/_geom2d.pyx":1510
+/* "simplegeom/_geom2d.pyx":1516
  *         coord_dealloc(self._end)
  * 
  *     def __init__(Segment self, Point start, Point end):             # <<<<<<<<<<<<<<
@@ -17617,11 +17683,11 @@ static int __pyx_pw_10simplegeom_7_geom2d_7Segment_5__init__(PyObject *__pyx_v_s
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_end)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1510; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1516; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1510; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1516; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -17634,14 +17700,14 @@ static int __pyx_pw_10simplegeom_7_geom2d_7Segment_5__init__(PyObject *__pyx_v_s
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1510; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1516; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("simplegeom._geom2d.Segment.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_start), __pyx_ptype_10simplegeom_7_geom2d_Point, 1, "start", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1510; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_end), __pyx_ptype_10simplegeom_7_geom2d_Point, 1, "end", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1510; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_start), __pyx_ptype_10simplegeom_7_geom2d_Point, 1, "start", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_end), __pyx_ptype_10simplegeom_7_geom2d_Point, 1, "end", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_7Segment_4__init__(((struct __pyx_obj_10simplegeom_7_geom2d_Segment *)__pyx_v_self), __pyx_v_start, __pyx_v_end);
 
   /* function exit code */
@@ -17659,7 +17725,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment_4__init__(struct __pyx_obj_10
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1511
+  /* "simplegeom/_geom2d.pyx":1517
  * 
  *     def __init__(Segment self, Point start, Point end):
  *         self._start.x = start._coord.x             # <<<<<<<<<<<<<<
@@ -17669,7 +17735,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment_4__init__(struct __pyx_obj_10
   __pyx_t_1 = __pyx_v_start->_coord->x;
   __pyx_v_self->_start->x = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1512
+  /* "simplegeom/_geom2d.pyx":1518
  *     def __init__(Segment self, Point start, Point end):
  *         self._start.x = start._coord.x
  *         self._start.y = start._coord.y             # <<<<<<<<<<<<<<
@@ -17679,7 +17745,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment_4__init__(struct __pyx_obj_10
   __pyx_t_1 = __pyx_v_start->_coord->y;
   __pyx_v_self->_start->y = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1513
+  /* "simplegeom/_geom2d.pyx":1519
  *         self._start.x = start._coord.x
  *         self._start.y = start._coord.y
  *         self._end.x = end._coord.x             # <<<<<<<<<<<<<<
@@ -17689,7 +17755,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment_4__init__(struct __pyx_obj_10
   __pyx_t_1 = __pyx_v_end->_coord->x;
   __pyx_v_self->_end->x = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1514
+  /* "simplegeom/_geom2d.pyx":1520
  *         self._start.y = start._coord.y
  *         self._end.x = end._coord.x
  *         self._end.y = end._coord.y             # <<<<<<<<<<<<<<
@@ -17699,7 +17765,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment_4__init__(struct __pyx_obj_10
   __pyx_t_1 = __pyx_v_end->_coord->y;
   __pyx_v_self->_end->y = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1510
+  /* "simplegeom/_geom2d.pyx":1516
  *         coord_dealloc(self._end)
  * 
  *     def __init__(Segment self, Point start, Point end):             # <<<<<<<<<<<<<<
@@ -17713,7 +17779,7 @@ static int __pyx_pf_10simplegeom_7_geom2d_7Segment_4__init__(struct __pyx_obj_10
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1516
+/* "simplegeom/_geom2d.pyx":1522
  *         self._end.y = end._coord.y
  * 
  *     def __repr__(Segment self):             # <<<<<<<<<<<<<<
@@ -17747,7 +17813,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_6__repr__(struct __pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1517
+  /* "simplegeom/_geom2d.pyx":1523
  * 
  *     def __repr__(Segment self):
  *         return "Segment(%s %s, %s %s)" % (self._start.x, self._start.y,             # <<<<<<<<<<<<<<
@@ -17755,31 +17821,31 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_6__repr__(struct __pyx_
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_start->x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1517; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_start->x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1523; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_start->y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1517; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_start->y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1523; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "simplegeom/_geom2d.pyx":1518
+  /* "simplegeom/_geom2d.pyx":1524
  *     def __repr__(Segment self):
  *         return "Segment(%s %s, %s %s)" % (self._start.x, self._start.y,
  *                                           self._end.x, self._end.y)             # <<<<<<<<<<<<<<
  * 
  *     def __str__(Segment self):
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_end->x); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1518; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_end->x); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1524; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_end->y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1518; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_end->y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1524; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "simplegeom/_geom2d.pyx":1517
+  /* "simplegeom/_geom2d.pyx":1523
  * 
  *     def __repr__(Segment self):
  *         return "Segment(%s %s, %s %s)" % (self._start.x, self._start.y,             # <<<<<<<<<<<<<<
  *                                           self._end.x, self._end.y)
  * 
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1517; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1523; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -17793,14 +17859,14 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_6__repr__(struct __pyx_
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Segment_s_s_s_s, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1517; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Segment_s_s_s_s, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1523; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1516
+  /* "simplegeom/_geom2d.pyx":1522
  *         self._end.y = end._coord.y
  * 
  *     def __repr__(Segment self):             # <<<<<<<<<<<<<<
@@ -17823,7 +17889,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_6__repr__(struct __pyx_
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1520
+/* "simplegeom/_geom2d.pyx":1526
  *                                           self._end.x, self._end.y)
  * 
  *     def __str__(Segment self):             # <<<<<<<<<<<<<<
@@ -17857,7 +17923,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8__str__(struct __pyx_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1521
+  /* "simplegeom/_geom2d.pyx":1527
  * 
  *     def __str__(Segment self):
  *         return "LINESTRING(%.6f %.6f, %.6f %.6f)" % (self._start.x, self._start.y,             # <<<<<<<<<<<<<<
@@ -17865,31 +17931,31 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8__str__(struct __pyx_o
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_start->x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_start->x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1527; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_start->y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_start->y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1527; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "simplegeom/_geom2d.pyx":1522
+  /* "simplegeom/_geom2d.pyx":1528
  *     def __str__(Segment self):
  *         return "LINESTRING(%.6f %.6f, %.6f %.6f)" % (self._start.x, self._start.y,
  *                                           self._end.x, self._end.y)             # <<<<<<<<<<<<<<
  * 
  *     def reverse(Segment self):
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_end->x); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1522; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->_end->x); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_end->y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1522; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->_end->y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "simplegeom/_geom2d.pyx":1521
+  /* "simplegeom/_geom2d.pyx":1527
  * 
  *     def __str__(Segment self):
  *         return "LINESTRING(%.6f %.6f, %.6f %.6f)" % (self._start.x, self._start.y,             # <<<<<<<<<<<<<<
  *                                           self._end.x, self._end.y)
  * 
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1527; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -17903,14 +17969,14 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8__str__(struct __pyx_o
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_LINESTRING_6f_6f_6f_6f, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_LINESTRING_6f_6f_6f_6f, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1527; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1520
+  /* "simplegeom/_geom2d.pyx":1526
  *                                           self._end.x, self._end.y)
  * 
  *     def __str__(Segment self):             # <<<<<<<<<<<<<<
@@ -17933,7 +17999,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8__str__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1524
+/* "simplegeom/_geom2d.pyx":1530
  *                                           self._end.x, self._end.y)
  * 
  *     def reverse(Segment self):             # <<<<<<<<<<<<<<
@@ -17962,7 +18028,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_10reverse(struct __pyx_
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("reverse", 0);
 
-  /* "simplegeom/_geom2d.pyx":1526
+  /* "simplegeom/_geom2d.pyx":1532
  *     def reverse(Segment self):
  *         cdef double x, y
  *         x = self._start.x             # <<<<<<<<<<<<<<
@@ -17972,7 +18038,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_10reverse(struct __pyx_
   __pyx_t_1 = __pyx_v_self->_start->x;
   __pyx_v_x = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1527
+  /* "simplegeom/_geom2d.pyx":1533
  *         cdef double x, y
  *         x = self._start.x
  *         y = self._start.y             # <<<<<<<<<<<<<<
@@ -17982,7 +18048,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_10reverse(struct __pyx_
   __pyx_t_1 = __pyx_v_self->_start->y;
   __pyx_v_y = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1528
+  /* "simplegeom/_geom2d.pyx":1534
  *         x = self._start.x
  *         y = self._start.y
  *         self._start.x = self._end.x             # <<<<<<<<<<<<<<
@@ -17992,7 +18058,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_10reverse(struct __pyx_
   __pyx_t_1 = __pyx_v_self->_end->x;
   __pyx_v_self->_start->x = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1529
+  /* "simplegeom/_geom2d.pyx":1535
  *         y = self._start.y
  *         self._start.x = self._end.x
  *         self._start.y = self._end.y             # <<<<<<<<<<<<<<
@@ -18002,7 +18068,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_10reverse(struct __pyx_
   __pyx_t_1 = __pyx_v_self->_end->y;
   __pyx_v_self->_start->y = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1530
+  /* "simplegeom/_geom2d.pyx":1536
  *         self._start.x = self._end.x
  *         self._start.y = self._end.y
  *         self._end.x = x             # <<<<<<<<<<<<<<
@@ -18011,7 +18077,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_10reverse(struct __pyx_
  */
   __pyx_v_self->_end->x = __pyx_v_x;
 
-  /* "simplegeom/_geom2d.pyx":1531
+  /* "simplegeom/_geom2d.pyx":1537
  *         self._start.y = self._end.y
  *         self._end.x = x
  *         self._end.y = y             # <<<<<<<<<<<<<<
@@ -18020,7 +18086,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_10reverse(struct __pyx_
  */
   __pyx_v_self->_end->y = __pyx_v_y;
 
-  /* "simplegeom/_geom2d.pyx":1524
+  /* "simplegeom/_geom2d.pyx":1530
  *                                           self._end.x, self._end.y)
  * 
  *     def reverse(Segment self):             # <<<<<<<<<<<<<<
@@ -18035,7 +18101,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_10reverse(struct __pyx_
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1533
+/* "simplegeom/_geom2d.pyx":1539
  *         self._end.y = y
  * 
  *     def __getitem__(Segment self, unsigned int i):             # <<<<<<<<<<<<<<
@@ -18054,7 +18120,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_7Segment_13__getitem__(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
   assert(__pyx_arg_i); {
-    __pyx_v_i = __Pyx_PyInt_As_unsigned_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1533; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_i = __Pyx_PyInt_As_unsigned_int(__pyx_arg_i); if (unlikely((__pyx_v_i == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1539; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -18078,7 +18144,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_12__getitem__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1536
+  /* "simplegeom/_geom2d.pyx":1542
  *         if i == 0:
  *             return self.start
  *         elif i == 1:             # <<<<<<<<<<<<<<
@@ -18087,7 +18153,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_12__getitem__(struct __
  */
   switch (__pyx_v_i) {
 
-    /* "simplegeom/_geom2d.pyx":1534
+    /* "simplegeom/_geom2d.pyx":1540
  * 
  *     def __getitem__(Segment self, unsigned int i):
  *         if i == 0:             # <<<<<<<<<<<<<<
@@ -18096,7 +18162,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_12__getitem__(struct __
  */
     case 0:
 
-    /* "simplegeom/_geom2d.pyx":1535
+    /* "simplegeom/_geom2d.pyx":1541
  *     def __getitem__(Segment self, unsigned int i):
  *         if i == 0:
  *             return self.start             # <<<<<<<<<<<<<<
@@ -18104,14 +18170,14 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_12__getitem__(struct __
  *             return self.end
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_start); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1535; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_start); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L0;
     break;
 
-    /* "simplegeom/_geom2d.pyx":1536
+    /* "simplegeom/_geom2d.pyx":1542
  *         if i == 0:
  *             return self.start
  *         elif i == 1:             # <<<<<<<<<<<<<<
@@ -18120,7 +18186,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_12__getitem__(struct __
  */
     case 1:
 
-    /* "simplegeom/_geom2d.pyx":1537
+    /* "simplegeom/_geom2d.pyx":1543
  *             return self.start
  *         elif i == 1:
  *             return self.end             # <<<<<<<<<<<<<<
@@ -18128,7 +18194,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_12__getitem__(struct __
  *             raise IndexError("Getitem key")
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_end); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_end); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
@@ -18136,22 +18202,22 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_12__getitem__(struct __
     break;
     default:
 
-    /* "simplegeom/_geom2d.pyx":1539
+    /* "simplegeom/_geom2d.pyx":1545
  *             return self.end
  *         else:
  *             raise IndexError("Getitem key")             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple__51, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple__51, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1545; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1545; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     break;
   }
 
-  /* "simplegeom/_geom2d.pyx":1533
+  /* "simplegeom/_geom2d.pyx":1539
  *         self._end.y = y
  * 
  *     def __getitem__(Segment self, unsigned int i):             # <<<<<<<<<<<<<<
@@ -18170,7 +18236,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_12__getitem__(struct __
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1543
+/* "simplegeom/_geom2d.pyx":1549
  * 
  *     property envelope:
  *         def __get__(Segment self):             # <<<<<<<<<<<<<<
@@ -18202,26 +18268,26 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8envelope___get__(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1544
+  /* "simplegeom/_geom2d.pyx":1550
  *     property envelope:
  *         def __get__(Segment self):
  *             cdef Envelope env = Envelope(srid=self.srid)             # <<<<<<<<<<<<<<
  *             env._mbr.xmin = cmin(self._start.x, self._end.x)
  *             env._mbr.xmax = cmax(self._start.x, self._end.x)
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1544; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1544; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_srid); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_srid, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1544; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_srid, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Envelope)), __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1544; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Envelope)), __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_env = ((struct __pyx_obj_10simplegeom_7_geom2d_Envelope *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1545
+  /* "simplegeom/_geom2d.pyx":1551
  *         def __get__(Segment self):
  *             cdef Envelope env = Envelope(srid=self.srid)
  *             env._mbr.xmin = cmin(self._start.x, self._end.x)             # <<<<<<<<<<<<<<
@@ -18230,7 +18296,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8envelope___get__(struc
  */
   __pyx_v_env->_mbr->xmin = __pyx_f_10simplegeom_7_geom2d_cmin(__pyx_v_self->_start->x, __pyx_v_self->_end->x);
 
-  /* "simplegeom/_geom2d.pyx":1546
+  /* "simplegeom/_geom2d.pyx":1552
  *             cdef Envelope env = Envelope(srid=self.srid)
  *             env._mbr.xmin = cmin(self._start.x, self._end.x)
  *             env._mbr.xmax = cmax(self._start.x, self._end.x)             # <<<<<<<<<<<<<<
@@ -18239,7 +18305,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8envelope___get__(struc
  */
   __pyx_v_env->_mbr->xmax = __pyx_f_10simplegeom_7_geom2d_cmax(__pyx_v_self->_start->x, __pyx_v_self->_end->x);
 
-  /* "simplegeom/_geom2d.pyx":1547
+  /* "simplegeom/_geom2d.pyx":1553
  *             env._mbr.xmin = cmin(self._start.x, self._end.x)
  *             env._mbr.xmax = cmax(self._start.x, self._end.x)
  *             env._mbr.ymin = cmin(self._start.y, self._end.y)             # <<<<<<<<<<<<<<
@@ -18248,7 +18314,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8envelope___get__(struc
  */
   __pyx_v_env->_mbr->ymin = __pyx_f_10simplegeom_7_geom2d_cmin(__pyx_v_self->_start->y, __pyx_v_self->_end->y);
 
-  /* "simplegeom/_geom2d.pyx":1548
+  /* "simplegeom/_geom2d.pyx":1554
  *             env._mbr.xmax = cmax(self._start.x, self._end.x)
  *             env._mbr.ymin = cmin(self._start.y, self._end.y)
  *             env._mbr.ymax = cmax(self._start.y, self._end.y)             # <<<<<<<<<<<<<<
@@ -18257,7 +18323,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8envelope___get__(struc
  */
   __pyx_v_env->_mbr->ymax = __pyx_f_10simplegeom_7_geom2d_cmax(__pyx_v_self->_start->y, __pyx_v_self->_end->y);
 
-  /* "simplegeom/_geom2d.pyx":1549
+  /* "simplegeom/_geom2d.pyx":1555
  *             env._mbr.ymin = cmin(self._start.y, self._end.y)
  *             env._mbr.ymax = cmax(self._start.y, self._end.y)
  *             return env             # <<<<<<<<<<<<<<
@@ -18269,7 +18335,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8envelope___get__(struc
   __pyx_r = ((PyObject *)__pyx_v_env);
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1543
+  /* "simplegeom/_geom2d.pyx":1549
  * 
  *     property envelope:
  *         def __get__(Segment self):             # <<<<<<<<<<<<<<
@@ -18290,7 +18356,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_8envelope___get__(struc
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1552
+/* "simplegeom/_geom2d.pyx":1558
  * 
  *     property start:
  *         def __get__(Segment self):             # <<<<<<<<<<<<<<
@@ -18322,7 +18388,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_5start___get__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1553
+  /* "simplegeom/_geom2d.pyx":1559
  *     property start:
  *         def __get__(Segment self):
  *             return Point(self._start.x, self._start.y)             # <<<<<<<<<<<<<<
@@ -18330,11 +18396,11 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_5start___get__(struct _
  *     property end:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_start->x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_start->x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_start->y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_start->y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -18342,14 +18408,14 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_5start___get__(struct _
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1552
+  /* "simplegeom/_geom2d.pyx":1558
  * 
  *     property start:
  *         def __get__(Segment self):             # <<<<<<<<<<<<<<
@@ -18370,7 +18436,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_5start___get__(struct _
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1556
+/* "simplegeom/_geom2d.pyx":1562
  * 
  *     property end:
  *         def __get__(Segment self):             # <<<<<<<<<<<<<<
@@ -18402,7 +18468,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_3end___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simplegeom/_geom2d.pyx":1557
+  /* "simplegeom/_geom2d.pyx":1563
  *     property end:
  *         def __get__(Segment self):
  *             return Point(self._end.x, self._end.y)             # <<<<<<<<<<<<<<
@@ -18410,11 +18476,11 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_3end___get__(struct __p
  * #            return Envelope(xmin = cmin(self._start.x, self._end.x),
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_end->x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1557; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_end->x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_end->y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1557; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_end->y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1557; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -18422,14 +18488,14 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_3end___get__(struct __p
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1557; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1556
+  /* "simplegeom/_geom2d.pyx":1562
  * 
  *     property end:
  *         def __get__(Segment self):             # <<<<<<<<<<<<<<
@@ -18450,7 +18516,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_7Segment_3end___get__(struct __p
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1568
+/* "simplegeom/_geom2d.pyx":1574
  * 
  * 
  * cpdef Point point_in_polygon(Polygon poly):             # <<<<<<<<<<<<<<
@@ -18494,7 +18560,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("point_in_polygon", 0);
 
-  /* "simplegeom/_geom2d.pyx":1586
+  /* "simplegeom/_geom2d.pyx":1592
  *     cdef int i, j
  *     cdef double ray_x, ray_y, x0, y0, x1, y1, max_dist, dist
  *     cdef double eps = 1e-8             # <<<<<<<<<<<<<<
@@ -18503,84 +18569,84 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
  */
   __pyx_v_eps = 1e-8;
 
-  /* "simplegeom/_geom2d.pyx":1589
+  /* "simplegeom/_geom2d.pyx":1595
  *     cdef object ray_x_cross, crossings_per_ring
  * 
  *     ray_x_cross = []             # <<<<<<<<<<<<<<
  *     crossings_per_ring = {}
  *     ray_y = poly.envelope.ymin + \
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1589; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1595; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_ray_x_cross = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1590
+  /* "simplegeom/_geom2d.pyx":1596
  * 
  *     ray_x_cross = []
  *     crossings_per_ring = {}             # <<<<<<<<<<<<<<
  *     ray_y = poly.envelope.ymin + \
  *             ((poly.envelope.ymax - poly.envelope.ymin) / 2)
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1590; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1596; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_crossings_per_ring = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1591
+  /* "simplegeom/_geom2d.pyx":1597
  *     ray_x_cross = []
  *     crossings_per_ring = {}
  *     ray_y = poly.envelope.ymin + \             # <<<<<<<<<<<<<<
  *             ((poly.envelope.ymax - poly.envelope.ymin) / 2)
  *     if poly._surface.items == 0:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_poly), __pyx_n_s_envelope); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1591; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_poly), __pyx_n_s_envelope); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1597; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1591; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ymin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1597; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1592
+  /* "simplegeom/_geom2d.pyx":1598
  *     crossings_per_ring = {}
  *     ray_y = poly.envelope.ymin + \
  *             ((poly.envelope.ymax - poly.envelope.ymin) / 2)             # <<<<<<<<<<<<<<
  *     if poly._surface.items == 0:
  *         raise ValueError("Polygon Empty")
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_poly), __pyx_n_s_envelope); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1592; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_poly), __pyx_n_s_envelope); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ymax); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1592; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ymax); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_poly), __pyx_n_s_envelope); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1592; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_poly), __pyx_n_s_envelope); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1592; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ymin); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1592; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_int_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1592; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_int_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1591
+  /* "simplegeom/_geom2d.pyx":1597
  *     ray_x_cross = []
  *     crossings_per_ring = {}
  *     ray_y = poly.envelope.ymin + \             # <<<<<<<<<<<<<<
  *             ((poly.envelope.ymax - poly.envelope.ymin) / 2)
  *     if poly._surface.items == 0:
  */
-  __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1591; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1597; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1591; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1597; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ray_y = __pyx_t_5;
 
-  /* "simplegeom/_geom2d.pyx":1593
+  /* "simplegeom/_geom2d.pyx":1599
  *     ray_y = poly.envelope.ymin + \
  *             ((poly.envelope.ymax - poly.envelope.ymin) / 2)
  *     if poly._surface.items == 0:             # <<<<<<<<<<<<<<
@@ -18590,22 +18656,22 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
   __pyx_t_6 = ((__pyx_v_poly->_surface->items == 0) != 0);
   if (__pyx_t_6) {
 
-    /* "simplegeom/_geom2d.pyx":1594
+    /* "simplegeom/_geom2d.pyx":1600
  *             ((poly.envelope.ymax - poly.envelope.ymin) / 2)
  *     if poly._surface.items == 0:
  *         raise ValueError("Polygon Empty")             # <<<<<<<<<<<<<<
  *     else:
  *         # Calculate intersections where segments cross the ray and
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__52, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1594; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__52, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1600; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1594; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1600; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1600
+    /* "simplegeom/_geom2d.pyx":1606
  *         # Also keep number of crossings per ring (to see whether
  *         # a crossing is a singularity)
  *         for i from 0 <= i < poly._surface.items:             # <<<<<<<<<<<<<<
@@ -18615,7 +18681,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
     __pyx_t_7 = __pyx_v_poly->_surface->items;
     for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_7; __pyx_v_i++) {
 
-      /* "simplegeom/_geom2d.pyx":1601
+      /* "simplegeom/_geom2d.pyx":1607
  *         # a crossing is a singularity)
  *         for i from 0 <= i < poly._surface.items:
  *             if poly._surface.paths[i].items <= 3:             # <<<<<<<<<<<<<<
@@ -18625,41 +18691,41 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
       __pyx_t_6 = (((__pyx_v_poly->_surface->paths[__pyx_v_i])->items <= 3) != 0);
       if (__pyx_t_6) {
 
-        /* "simplegeom/_geom2d.pyx":1602
+        /* "simplegeom/_geom2d.pyx":1608
  *         for i from 0 <= i < poly._surface.items:
  *             if poly._surface.paths[i].items <= 3:
  *                 raise ValueError("Ring [%d] not enough coords" % (i))             # <<<<<<<<<<<<<<
  *             crossings_per_ring[i] = 0
  *             for j from 1 <= j < poly._surface.paths[i].items:
  */
-        __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1602; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Ring_d_not_enough_coords, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1602; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Ring_d_not_enough_coords, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1602; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
         PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4);
         __Pyx_GIVEREF(__pyx_t_4);
         __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1602; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_Raise(__pyx_t_4, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1602; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
 
-      /* "simplegeom/_geom2d.pyx":1603
+      /* "simplegeom/_geom2d.pyx":1609
  *             if poly._surface.paths[i].items <= 3:
  *                 raise ValueError("Ring [%d] not enough coords" % (i))
  *             crossings_per_ring[i] = 0             # <<<<<<<<<<<<<<
  *             for j from 1 <= j < poly._surface.paths[i].items:
  *                 # TODO: introduce tolerance here?
  */
-      if (unlikely(__Pyx_SetItemInt(__pyx_v_crossings_per_ring, __pyx_v_i, __pyx_int_0, int, 1, __Pyx_PyInt_From_int, 0, 1, 0) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1603; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__Pyx_SetItemInt(__pyx_v_crossings_per_ring, __pyx_v_i, __pyx_int_0, int, 1, __Pyx_PyInt_From_int, 0, 1, 0) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1609; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-      /* "simplegeom/_geom2d.pyx":1604
+      /* "simplegeom/_geom2d.pyx":1610
  *                 raise ValueError("Ring [%d] not enough coords" % (i))
  *             crossings_per_ring[i] = 0
  *             for j from 1 <= j < poly._surface.paths[i].items:             # <<<<<<<<<<<<<<
@@ -18669,7 +18735,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
       __pyx_t_8 = (__pyx_v_poly->_surface->paths[__pyx_v_i])->items;
       for (__pyx_v_j = 1; __pyx_v_j < __pyx_t_8; __pyx_v_j++) {
 
-        /* "simplegeom/_geom2d.pyx":1606
+        /* "simplegeom/_geom2d.pyx":1612
  *             for j from 1 <= j < poly._surface.paths[i].items:
  *                 # TODO: introduce tolerance here?
  *                 y0 = poly._surface.paths[i].coords[j - 1].y             # <<<<<<<<<<<<<<
@@ -18679,7 +18745,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
         __pyx_t_5 = ((__pyx_v_poly->_surface->paths[__pyx_v_i])->coords[(__pyx_v_j - 1)]).y;
         __pyx_v_y0 = __pyx_t_5;
 
-        /* "simplegeom/_geom2d.pyx":1607
+        /* "simplegeom/_geom2d.pyx":1613
  *                 # TODO: introduce tolerance here?
  *                 y0 = poly._surface.paths[i].coords[j - 1].y
  *                 y1 = poly._surface.paths[i].coords[j].y             # <<<<<<<<<<<<<<
@@ -18689,7 +18755,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
         __pyx_t_5 = ((__pyx_v_poly->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).y;
         __pyx_v_y1 = __pyx_t_5;
 
-        /* "simplegeom/_geom2d.pyx":1608
+        /* "simplegeom/_geom2d.pyx":1614
  *                 y0 = poly._surface.paths[i].coords[j - 1].y
  *                 y1 = poly._surface.paths[i].coords[j].y
  *                 if (not ((y0 > ray_y and y1 >= ray_y) or \             # <<<<<<<<<<<<<<
@@ -18709,7 +18775,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
         }
         __pyx_L11_next_or:;
 
-        /* "simplegeom/_geom2d.pyx":1609
+        /* "simplegeom/_geom2d.pyx":1615
  *                 y1 = poly._surface.paths[i].coords[j].y
  *                 if (not ((y0 > ray_y and y1 >= ray_y) or \
  *                          (y0 < ray_y and y1 <= ray_y))):             # <<<<<<<<<<<<<<
@@ -18726,7 +18792,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
         __pyx_t_6 = __pyx_t_9;
         __pyx_L10_bool_binop_done:;
 
-        /* "simplegeom/_geom2d.pyx":1608
+        /* "simplegeom/_geom2d.pyx":1614
  *                 y0 = poly._surface.paths[i].coords[j - 1].y
  *                 y1 = poly._surface.paths[i].coords[j].y
  *                 if (not ((y0 > ray_y and y1 >= ray_y) or \             # <<<<<<<<<<<<<<
@@ -18736,7 +18802,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
         __pyx_t_9 = ((!__pyx_t_6) != 0);
         if (__pyx_t_9) {
 
-          /* "simplegeom/_geom2d.pyx":1610
+          /* "simplegeom/_geom2d.pyx":1616
  *                 if (not ((y0 > ray_y and y1 >= ray_y) or \
  *                          (y0 < ray_y and y1 <= ray_y))):
  *                     crossings_per_ring[i] += 1             # <<<<<<<<<<<<<<
@@ -18744,15 +18810,15 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
  *                         x0 = poly._surface.paths[i].coords[j - 1].x
  */
           __pyx_t_10 = __pyx_v_i;
-          __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_crossings_per_ring, __pyx_t_10, int, 1, __Pyx_PyInt_From_int, 0, 1, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1610; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+          __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_crossings_per_ring, __pyx_t_10, int, 1, __Pyx_PyInt_From_int, 0, 1, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1616; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_4, __pyx_int_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_4, __pyx_int_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1616; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(__Pyx_SetItemInt(__pyx_v_crossings_per_ring, __pyx_t_10, __pyx_t_1, int, 1, __Pyx_PyInt_From_int, 0, 1, 0) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          if (unlikely(__Pyx_SetItemInt(__pyx_v_crossings_per_ring, __pyx_t_10, __pyx_t_1, int, 1, __Pyx_PyInt_From_int, 0, 1, 0) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1616; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-          /* "simplegeom/_geom2d.pyx":1611
+          /* "simplegeom/_geom2d.pyx":1617
  *                          (y0 < ray_y and y1 <= ray_y))):
  *                     crossings_per_ring[i] += 1
  *                     if y0 == ray_y:             # <<<<<<<<<<<<<<
@@ -18762,7 +18828,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
           __pyx_t_9 = ((__pyx_v_y0 == __pyx_v_ray_y) != 0);
           if (__pyx_t_9) {
 
-            /* "simplegeom/_geom2d.pyx":1612
+            /* "simplegeom/_geom2d.pyx":1618
  *                     crossings_per_ring[i] += 1
  *                     if y0 == ray_y:
  *                         x0 = poly._surface.paths[i].coords[j - 1].x             # <<<<<<<<<<<<<<
@@ -18772,18 +18838,18 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
             __pyx_t_5 = ((__pyx_v_poly->_surface->paths[__pyx_v_i])->coords[(__pyx_v_j - 1)]).x;
             __pyx_v_x0 = __pyx_t_5;
 
-            /* "simplegeom/_geom2d.pyx":1613
+            /* "simplegeom/_geom2d.pyx":1619
  *                     if y0 == ray_y:
  *                         x0 = poly._surface.paths[i].coords[j - 1].x
  *                         ray_x_cross.append((x0, i))             # <<<<<<<<<<<<<<
  *                     else:
  *                         x0 = poly._surface.paths[i].coords[j - 1].x
  */
-            __pyx_t_1 = PyFloat_FromDouble(__pyx_v_x0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_1 = PyFloat_FromDouble(__pyx_v_x0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_4);
-            __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_2);
             PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
             __Pyx_GIVEREF(__pyx_t_1);
@@ -18791,13 +18857,13 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
             __Pyx_GIVEREF(__pyx_t_4);
             __pyx_t_1 = 0;
             __pyx_t_4 = 0;
-            __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_ray_x_cross, __pyx_t_2); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_ray_x_cross, __pyx_t_2); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
             goto __pyx_L14;
           }
           /*else*/ {
 
-            /* "simplegeom/_geom2d.pyx":1615
+            /* "simplegeom/_geom2d.pyx":1621
  *                         ray_x_cross.append((x0, i))
  *                     else:
  *                         x0 = poly._surface.paths[i].coords[j - 1].x             # <<<<<<<<<<<<<<
@@ -18807,7 +18873,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
             __pyx_t_5 = ((__pyx_v_poly->_surface->paths[__pyx_v_i])->coords[(__pyx_v_j - 1)]).x;
             __pyx_v_x0 = __pyx_t_5;
 
-            /* "simplegeom/_geom2d.pyx":1616
+            /* "simplegeom/_geom2d.pyx":1622
  *                     else:
  *                         x0 = poly._surface.paths[i].coords[j - 1].x
  *                         x1 = poly._surface.paths[i].coords[j].x             # <<<<<<<<<<<<<<
@@ -18817,34 +18883,34 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
             __pyx_t_5 = ((__pyx_v_poly->_surface->paths[__pyx_v_i])->coords[__pyx_v_j]).x;
             __pyx_v_x1 = __pyx_t_5;
 
-            /* "simplegeom/_geom2d.pyx":1617
+            /* "simplegeom/_geom2d.pyx":1623
  *                         x0 = poly._surface.paths[i].coords[j - 1].x
  *                         x1 = poly._surface.paths[i].coords[j].x
  *                         ray_x_cross.append((x_intersection_at_ray(x0, y0,             # <<<<<<<<<<<<<<
  *                                                                   x1, y1,
  *                                                                   ray_y), i))
  */
-            __pyx_t_2 = PyFloat_FromDouble(__pyx_f_10simplegeom_7_geom2d_x_intersection_at_ray(__pyx_v_x0, __pyx_v_y0, __pyx_v_x1, __pyx_v_y1, __pyx_v_ray_y)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_2 = PyFloat_FromDouble(__pyx_f_10simplegeom_7_geom2d_x_intersection_at_ray(__pyx_v_x0, __pyx_v_y0, __pyx_v_x1, __pyx_v_y1, __pyx_v_ray_y)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1623; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_2);
 
-            /* "simplegeom/_geom2d.pyx":1619
+            /* "simplegeom/_geom2d.pyx":1625
  *                         ray_x_cross.append((x_intersection_at_ray(x0, y0,
  *                                                                   x1, y1,
  *                                                                   ray_y), i))             # <<<<<<<<<<<<<<
  * 
  *         if len(ray_x_cross) < 2:
  */
-            __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_4);
 
-            /* "simplegeom/_geom2d.pyx":1617
+            /* "simplegeom/_geom2d.pyx":1623
  *                         x0 = poly._surface.paths[i].coords[j - 1].x
  *                         x1 = poly._surface.paths[i].coords[j].x
  *                         ray_x_cross.append((x_intersection_at_ray(x0, y0,             # <<<<<<<<<<<<<<
  *                                                                   x1, y1,
  *                                                                   ray_y), i))
  */
-            __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1623; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_1);
             PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
             __Pyx_GIVEREF(__pyx_t_2);
@@ -18852,7 +18918,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
             __Pyx_GIVEREF(__pyx_t_4);
             __pyx_t_2 = 0;
             __pyx_t_4 = 0;
-            __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_ray_x_cross, __pyx_t_1); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_ray_x_cross, __pyx_t_1); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1623; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           }
           __pyx_L14:;
@@ -18862,39 +18928,39 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
       }
     }
 
-    /* "simplegeom/_geom2d.pyx":1621
+    /* "simplegeom/_geom2d.pyx":1627
  *                                                                   ray_y), i))
  * 
  *         if len(ray_x_cross) < 2:             # <<<<<<<<<<<<<<
  *             raise ValueError("Ray should intersect at least twice the polygon")
  * 
  */
-    __pyx_t_12 = PyObject_Length(__pyx_v_ray_x_cross); if (unlikely(__pyx_t_12 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_12 = PyObject_Length(__pyx_v_ray_x_cross); if (unlikely(__pyx_t_12 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_9 = ((__pyx_t_12 < 2) != 0);
     if (__pyx_t_9) {
 
-      /* "simplegeom/_geom2d.pyx":1622
+      /* "simplegeom/_geom2d.pyx":1628
  * 
  *         if len(ray_x_cross) < 2:
  *             raise ValueError("Ray should intersect at least twice the polygon")             # <<<<<<<<<<<<<<
  * 
  *         # Sort intersections
  */
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__53, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1622; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__53, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1628; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_Raise(__pyx_t_1, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1622; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1628; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "simplegeom/_geom2d.pyx":1626
+    /* "simplegeom/_geom2d.pyx":1632
  *         # Sort intersections
  *         # First on x ordinate, then on ring number
  *         ray_x_cross.sort()             # <<<<<<<<<<<<<<
  * 
  *         # Walk over ray, with segment crossings,
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_ray_x_cross, __pyx_n_s_sort); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1626; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_ray_x_cross, __pyx_n_s_sort); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1632; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_2 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
@@ -18907,16 +18973,16 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
       }
     }
     if (__pyx_t_2) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1626; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1632; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1626; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1632; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplegeom/_geom2d.pyx":1631
+    /* "simplegeom/_geom2d.pyx":1637
  *         # from left to right to find largest piece of ray that is inside
  *         # the polygon
  *         max_dist = -1             # <<<<<<<<<<<<<<
@@ -18925,7 +18991,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
  */
     __pyx_v_max_dist = -1.0;
 
-    /* "simplegeom/_geom2d.pyx":1632
+    /* "simplegeom/_geom2d.pyx":1638
  *         # the polygon
  *         max_dist = -1
  *         ray_x = -1             # <<<<<<<<<<<<<<
@@ -18934,7 +19000,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
  */
     __pyx_v_ray_x = -1.0;
 
-    /* "simplegeom/_geom2d.pyx":1633
+    /* "simplegeom/_geom2d.pyx":1639
  *         max_dist = -1
  *         ray_x = -1
  *         j = 0             # <<<<<<<<<<<<<<
@@ -18943,40 +19009,40 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
  */
     __pyx_v_j = 0;
 
-    /* "simplegeom/_geom2d.pyx":1634
+    /* "simplegeom/_geom2d.pyx":1640
  *         ray_x = -1
  *         j = 0
  *         for i in xrange(0, len(ray_x_cross) - 1):             # <<<<<<<<<<<<<<
  *             if (crossings_per_ring[ray_x_cross[i][1]] != 1):
  *                 j += 1
  */
-    __pyx_t_12 = PyObject_Length(__pyx_v_ray_x_cross); if (unlikely(__pyx_t_12 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1634; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_12 = PyObject_Length(__pyx_v_ray_x_cross); if (unlikely(__pyx_t_12 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1640; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_13 = (__pyx_t_12 - 1);
     for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_13; __pyx_t_10+=1) {
       __pyx_v_i = __pyx_t_10;
 
-      /* "simplegeom/_geom2d.pyx":1635
+      /* "simplegeom/_geom2d.pyx":1641
  *         j = 0
  *         for i in xrange(0, len(ray_x_cross) - 1):
  *             if (crossings_per_ring[ray_x_cross[i][1]] != 1):             # <<<<<<<<<<<<<<
  *                 j += 1
  *             if (j % 2): # only after an odd number of crossings we're inside
  */
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_ray_x_cross, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_ray_x_cross, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1641; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1641; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyObject_GetItem(__pyx_v_crossings_per_ring, __pyx_t_4); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+      __pyx_t_1 = PyObject_GetItem(__pyx_v_crossings_per_ring, __pyx_t_4); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1641; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (__pyx_t_9) {
 
-        /* "simplegeom/_geom2d.pyx":1636
+        /* "simplegeom/_geom2d.pyx":1642
  *         for i in xrange(0, len(ray_x_cross) - 1):
  *             if (crossings_per_ring[ray_x_cross[i][1]] != 1):
  *                 j += 1             # <<<<<<<<<<<<<<
@@ -18988,7 +19054,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
       }
       __pyx_L18:;
 
-      /* "simplegeom/_geom2d.pyx":1637
+      /* "simplegeom/_geom2d.pyx":1643
  *             if (crossings_per_ring[ray_x_cross[i][1]] != 1):
  *                 j += 1
  *             if (j % 2): # only after an odd number of crossings we're inside             # <<<<<<<<<<<<<<
@@ -18998,7 +19064,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
       __pyx_t_9 = (__Pyx_mod_long(__pyx_v_j, 2) != 0);
       if (__pyx_t_9) {
 
-        /* "simplegeom/_geom2d.pyx":1638
+        /* "simplegeom/_geom2d.pyx":1644
  *                 j += 1
  *             if (j % 2): # only after an odd number of crossings we're inside
  *                 dist = ray_x_cross[i + 1][0] - ray_x_cross[i][0]             # <<<<<<<<<<<<<<
@@ -19006,25 +19072,25 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
  *                     # here we are on a piece of the ray,
  */
         __pyx_t_14 = (__pyx_v_i + 1);
-        __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_ray_x_cross, __pyx_t_14, long, 1, __Pyx_PyInt_From_long, 0, 1, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1638; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+        __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_ray_x_cross, __pyx_t_14, long, 1, __Pyx_PyInt_From_long, 0, 1, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1644; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1638; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+        __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1644; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_ray_x_cross, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1638; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+        __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_ray_x_cross, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1644; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1638; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+        __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1644; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_4 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1644; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1644; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_v_dist = __pyx_t_5;
 
-        /* "simplegeom/_geom2d.pyx":1639
+        /* "simplegeom/_geom2d.pyx":1645
  *             if (j % 2): # only after an odd number of crossings we're inside
  *                 dist = ray_x_cross[i + 1][0] - ray_x_cross[i][0]
  *                 if (dist > eps) and (dist > max_dist):             # <<<<<<<<<<<<<<
@@ -19042,29 +19108,29 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
         __pyx_L21_bool_binop_done:;
         if (__pyx_t_9) {
 
-          /* "simplegeom/_geom2d.pyx":1642
+          /* "simplegeom/_geom2d.pyx":1648
  *                     # here we are on a piece of the ray,
  *                     # that lies on the interior of the polygon
  *                     ray_x = ray_x_cross[i][0] + (dist / 2)             # <<<<<<<<<<<<<<
  *                     max_dist = dist
  * 
  */
-          __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_ray_x_cross, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1642; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+          __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_ray_x_cross, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1642; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+          __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __pyx_t_4 = PyFloat_FromDouble((__pyx_v_dist / 2.0)); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1642; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_4 = PyFloat_FromDouble((__pyx_v_dist / 2.0)); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1642; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1642; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __pyx_v_ray_x = __pyx_t_5;
 
-          /* "simplegeom/_geom2d.pyx":1643
+          /* "simplegeom/_geom2d.pyx":1649
  *                     # that lies on the interior of the polygon
  *                     ray_x = ray_x_cross[i][0] + (dist / 2)
  *                     max_dist = dist             # <<<<<<<<<<<<<<
@@ -19080,7 +19146,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
       __pyx_L19:;
     }
 
-    /* "simplegeom/_geom2d.pyx":1645
+    /* "simplegeom/_geom2d.pyx":1651
  *                     max_dist = dist
  * 
  *         if max_dist == -1:             # <<<<<<<<<<<<<<
@@ -19090,21 +19156,21 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
     __pyx_t_9 = ((__pyx_v_max_dist == -1.0) != 0);
     if (__pyx_t_9) {
 
-      /* "simplegeom/_geom2d.pyx":1646
+      /* "simplegeom/_geom2d.pyx":1652
  * 
  *         if max_dist == -1:
  *             raise ValueError("No place on ray found for putting point")             # <<<<<<<<<<<<<<
  * 
  *         return Point(ray_x, ray_y, srid=poly.srid)
  */
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__54, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1646; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__54, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_Raise(__pyx_t_1, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1646; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "simplegeom/_geom2d.pyx":1648
+    /* "simplegeom/_geom2d.pyx":1654
  *             raise ValueError("No place on ray found for putting point")
  * 
  *         return Point(ray_x, ray_y, srid=poly.srid)             # <<<<<<<<<<<<<<
@@ -19112,11 +19178,11 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
  * cdef inline double x_intersection_at_ray(double x0, double y0,
  */
     __Pyx_XDECREF(((PyObject *)__pyx_r));
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_ray_x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_ray_x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_ray_y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_ray_y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
@@ -19124,13 +19190,13 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_1 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_poly), __pyx_n_s_srid); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_poly), __pyx_n_s_srid); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_srid, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_srid, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1648; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_10simplegeom_7_geom2d_Point)), __pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1654; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -19139,7 +19205,7 @@ static struct __pyx_obj_10simplegeom_7_geom2d_Point *__pyx_f_10simplegeom_7_geom
     goto __pyx_L0;
   }
 
-  /* "simplegeom/_geom2d.pyx":1568
+  /* "simplegeom/_geom2d.pyx":1574
  * 
  * 
  * cpdef Point point_in_polygon(Polygon poly):             # <<<<<<<<<<<<<<
@@ -19173,7 +19239,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_1point_in_polygon(PyObject *__py
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("point_in_polygon (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_poly), __pyx_ptype_10simplegeom_7_geom2d_Polygon, 1, "poly", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1568; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_poly), __pyx_ptype_10simplegeom_7_geom2d_Polygon, 1, "poly", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1574; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_point_in_polygon(__pyx_self, ((struct __pyx_obj_10simplegeom_7_geom2d_Polygon *)__pyx_v_poly));
 
   /* function exit code */
@@ -19194,7 +19260,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_point_in_polygon(CYTHON_UNUSED P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("point_in_polygon", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_10simplegeom_7_geom2d_point_in_polygon(__pyx_v_poly, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1568; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)__pyx_f_10simplegeom_7_geom2d_point_in_polygon(__pyx_v_poly, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1574; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19211,7 +19277,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_point_in_polygon(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1650
+/* "simplegeom/_geom2d.pyx":1656
  *         return Point(ray_x, ray_y, srid=poly.srid)
  * 
  * cdef inline double x_intersection_at_ray(double x0, double y0,             # <<<<<<<<<<<<<<
@@ -19231,7 +19297,7 @@ static CYTHON_INLINE double __pyx_f_10simplegeom_7_geom2d_x_intersection_at_ray(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("x_intersection_at_ray", 0);
 
-  /* "simplegeom/_geom2d.pyx":1662
+  /* "simplegeom/_geom2d.pyx":1668
  *     """
  *     cdef double u
  *     if (y1 - y0) == 0:             # <<<<<<<<<<<<<<
@@ -19241,7 +19307,7 @@ static CYTHON_INLINE double __pyx_f_10simplegeom_7_geom2d_x_intersection_at_ray(
   __pyx_t_1 = (((__pyx_v_y1 - __pyx_v_y0) == 0.0) != 0);
   if (__pyx_t_1) {
 
-    /* "simplegeom/_geom2d.pyx":1663
+    /* "simplegeom/_geom2d.pyx":1669
  *     cdef double u
  *     if (y1 - y0) == 0:
  *         u = 0             # <<<<<<<<<<<<<<
@@ -19253,7 +19319,7 @@ static CYTHON_INLINE double __pyx_f_10simplegeom_7_geom2d_x_intersection_at_ray(
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1665
+    /* "simplegeom/_geom2d.pyx":1671
  *         u = 0
  *     else:
  *         u = (ray_y - y0) / (y1 - y0)             # <<<<<<<<<<<<<<
@@ -19270,13 +19336,13 @@ static CYTHON_INLINE double __pyx_f_10simplegeom_7_geom2d_x_intersection_at_ray(
       #ifdef WITH_THREAD
       PyGILState_Release(__pyx_gilstate_save);
       #endif
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __pyx_v_u = (__pyx_t_2 / __pyx_t_3);
   }
   __pyx_L3:;
 
-  /* "simplegeom/_geom2d.pyx":1666
+  /* "simplegeom/_geom2d.pyx":1672
  *     else:
  *         u = (ray_y - y0) / (y1 - y0)
  *     return x0 + u * (x1 - x0)             # <<<<<<<<<<<<<<
@@ -19286,7 +19352,7 @@ static CYTHON_INLINE double __pyx_f_10simplegeom_7_geom2d_x_intersection_at_ray(
   __pyx_r = (__pyx_v_x0 + (__pyx_v_u * (__pyx_v_x1 - __pyx_v_x0)));
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1650
+  /* "simplegeom/_geom2d.pyx":1656
  *         return Point(ray_x, ray_y, srid=poly.srid)
  * 
  * cdef inline double x_intersection_at_ray(double x0, double y0,             # <<<<<<<<<<<<<<
@@ -19303,7 +19369,7 @@ static CYTHON_INLINE double __pyx_f_10simplegeom_7_geom2d_x_intersection_at_ray(
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1670
+/* "simplegeom/_geom2d.pyx":1676
  * 
  * 
  * cdef double path_signed_area(path_t *path):             # <<<<<<<<<<<<<<
@@ -19328,7 +19394,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
   double __pyx_t_5;
   __Pyx_RefNannySetupContext("path_signed_area", 0);
 
-  /* "simplegeom/_geom2d.pyx":1679
+  /* "simplegeom/_geom2d.pyx":1685
  *     cdef double sum
  * 
  *     npts = path.items             # <<<<<<<<<<<<<<
@@ -19338,7 +19404,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
   __pyx_t_1 = __pyx_v_path->items;
   __pyx_v_npts = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1680
+  /* "simplegeom/_geom2d.pyx":1686
  * 
  *     npts = path.items
  *     if (npts < 3):             # <<<<<<<<<<<<<<
@@ -19348,7 +19414,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
   __pyx_t_2 = ((__pyx_v_npts < 3) != 0);
   if (__pyx_t_2) {
 
-    /* "simplegeom/_geom2d.pyx":1681
+    /* "simplegeom/_geom2d.pyx":1687
  *     npts = path.items
  *     if (npts < 3):
  *         return 0.0             # <<<<<<<<<<<<<<
@@ -19359,7 +19425,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
     goto __pyx_L0;
   }
 
-  /* "simplegeom/_geom2d.pyx":1683
+  /* "simplegeom/_geom2d.pyx":1689
  *         return 0.0
  * 
  *     sum = 0.0             # <<<<<<<<<<<<<<
@@ -19368,7 +19434,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
  */
   __pyx_v_sum = 0.0;
 
-  /* "simplegeom/_geom2d.pyx":1684
+  /* "simplegeom/_geom2d.pyx":1690
  * 
  *     sum = 0.0
  *     for i in range(npts - 1):             # <<<<<<<<<<<<<<
@@ -19379,7 +19445,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
   for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
     __pyx_v_i = __pyx_t_4;
 
-    /* "simplegeom/_geom2d.pyx":1685
+    /* "simplegeom/_geom2d.pyx":1691
  *     sum = 0.0
  *     for i in range(npts - 1):
  *         bx = path.coords[i].x             # <<<<<<<<<<<<<<
@@ -19389,7 +19455,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
     __pyx_t_5 = (__pyx_v_path->coords[__pyx_v_i]).x;
     __pyx_v_bx = __pyx_t_5;
 
-    /* "simplegeom/_geom2d.pyx":1686
+    /* "simplegeom/_geom2d.pyx":1692
  *     for i in range(npts - 1):
  *         bx = path.coords[i].x
  *         by = path.coords[i].y             # <<<<<<<<<<<<<<
@@ -19399,7 +19465,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
     __pyx_t_5 = (__pyx_v_path->coords[__pyx_v_i]).y;
     __pyx_v_by = __pyx_t_5;
 
-    /* "simplegeom/_geom2d.pyx":1687
+    /* "simplegeom/_geom2d.pyx":1693
  *         bx = path.coords[i].x
  *         by = path.coords[i].y
  *         cx = path.coords[i+1].x             # <<<<<<<<<<<<<<
@@ -19409,7 +19475,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
     __pyx_t_5 = (__pyx_v_path->coords[(__pyx_v_i + 1)]).x;
     __pyx_v_cx = __pyx_t_5;
 
-    /* "simplegeom/_geom2d.pyx":1688
+    /* "simplegeom/_geom2d.pyx":1694
  *         by = path.coords[i].y
  *         cx = path.coords[i+1].x
  *         cy = path.coords[i+1].y             # <<<<<<<<<<<<<<
@@ -19419,7 +19485,7 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
     __pyx_t_5 = (__pyx_v_path->coords[(__pyx_v_i + 1)]).y;
     __pyx_v_cy = __pyx_t_5;
 
-    /* "simplegeom/_geom2d.pyx":1689
+    /* "simplegeom/_geom2d.pyx":1695
  *         cx = path.coords[i+1].x
  *         cy = path.coords[i+1].y
  *         sum += (bx+cx)*(cy-by)             # <<<<<<<<<<<<<<
@@ -19429,17 +19495,17 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
     __pyx_v_sum = (__pyx_v_sum + ((__pyx_v_bx + __pyx_v_cx) * (__pyx_v_cy - __pyx_v_by)));
   }
 
-  /* "simplegeom/_geom2d.pyx":1690
+  /* "simplegeom/_geom2d.pyx":1696
  *         cy = path.coords[i+1].y
  *         sum += (bx+cx)*(cy-by)
  *     return sum * 0.5             # <<<<<<<<<<<<<<
  * 
- * #cpdef double signed_area(LineString ring):
+ * cdef inline double path_trapezoid_area(path_t *path):
  */
   __pyx_r = (__pyx_v_sum * 0.5);
   goto __pyx_L0;
 
-  /* "simplegeom/_geom2d.pyx":1670
+  /* "simplegeom/_geom2d.pyx":1676
  * 
  * 
  * cdef double path_signed_area(path_t *path):             # <<<<<<<<<<<<<<
@@ -19453,7 +19519,145 @@ static double __pyx_f_10simplegeom_7_geom2d_path_signed_area(struct __pyx_t_10si
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1706
+/* "simplegeom/_geom2d.pyx":1698
+ *     return sum * 0.5
+ * 
+ * cdef inline double path_trapezoid_area(path_t *path):             # <<<<<<<<<<<<<<
+ *     """
+ *     Computation of the trapezoid area:
+ */
+
+static CYTHON_INLINE double __pyx_f_10simplegeom_7_geom2d_path_trapezoid_area(struct __pyx_t_10simplegeom_7_geom2d_path_t *__pyx_v_path) {
+  int __pyx_v_npts;
+  int __pyx_v_i;
+  double __pyx_v_w;
+  double __pyx_v_b1;
+  double __pyx_v_b2;
+  double __pyx_v_sum;
+  double __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __pyx_t_10simplegeom_7_geom2d_uint __pyx_t_1;
+  int __pyx_t_2;
+  long __pyx_t_3;
+  int __pyx_t_4;
+  double __pyx_t_5;
+  __Pyx_RefNannySetupContext("path_trapezoid_area", 0);
+
+  /* "simplegeom/_geom2d.pyx":1710
+ *     cdef double w, b1, b2, sum
+ * 
+ *     npts = path.items             # <<<<<<<<<<<<<<
+ *     if (npts < 2):
+ *         return 0.0
+ */
+  __pyx_t_1 = __pyx_v_path->items;
+  __pyx_v_npts = __pyx_t_1;
+
+  /* "simplegeom/_geom2d.pyx":1711
+ * 
+ *     npts = path.items
+ *     if (npts < 2):             # <<<<<<<<<<<<<<
+ *         return 0.0
+ * 
+ */
+  __pyx_t_2 = ((__pyx_v_npts < 2) != 0);
+  if (__pyx_t_2) {
+
+    /* "simplegeom/_geom2d.pyx":1712
+ *     npts = path.items
+ *     if (npts < 2):
+ *         return 0.0             # <<<<<<<<<<<<<<
+ * 
+ *     sum = 0.0
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+  }
+
+  /* "simplegeom/_geom2d.pyx":1714
+ *         return 0.0
+ * 
+ *     sum = 0.0             # <<<<<<<<<<<<<<
+ *     for i in range(npts - 1):
+ *         w = path.coords[i+1].x - path.coords[i].x
+ */
+  __pyx_v_sum = 0.0;
+
+  /* "simplegeom/_geom2d.pyx":1715
+ * 
+ *     sum = 0.0
+ *     for i in range(npts - 1):             # <<<<<<<<<<<<<<
+ *         w = path.coords[i+1].x - path.coords[i].x
+ *         b1 = path.coords[i].y
+ */
+  __pyx_t_3 = (__pyx_v_npts - 1);
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
+
+    /* "simplegeom/_geom2d.pyx":1716
+ *     sum = 0.0
+ *     for i in range(npts - 1):
+ *         w = path.coords[i+1].x - path.coords[i].x             # <<<<<<<<<<<<<<
+ *         b1 = path.coords[i].y
+ *         b2 = path.coords[i+1].y
+ */
+    __pyx_v_w = ((__pyx_v_path->coords[(__pyx_v_i + 1)]).x - (__pyx_v_path->coords[__pyx_v_i]).x);
+
+    /* "simplegeom/_geom2d.pyx":1717
+ *     for i in range(npts - 1):
+ *         w = path.coords[i+1].x - path.coords[i].x
+ *         b1 = path.coords[i].y             # <<<<<<<<<<<<<<
+ *         b2 = path.coords[i+1].y
+ *         sum += 0.5*(b1+b2)*(w)
+ */
+    __pyx_t_5 = (__pyx_v_path->coords[__pyx_v_i]).y;
+    __pyx_v_b1 = __pyx_t_5;
+
+    /* "simplegeom/_geom2d.pyx":1718
+ *         w = path.coords[i+1].x - path.coords[i].x
+ *         b1 = path.coords[i].y
+ *         b2 = path.coords[i+1].y             # <<<<<<<<<<<<<<
+ *         sum += 0.5*(b1+b2)*(w)
+ *     return sum
+ */
+    __pyx_t_5 = (__pyx_v_path->coords[(__pyx_v_i + 1)]).y;
+    __pyx_v_b2 = __pyx_t_5;
+
+    /* "simplegeom/_geom2d.pyx":1719
+ *         b1 = path.coords[i].y
+ *         b2 = path.coords[i+1].y
+ *         sum += 0.5*(b1+b2)*(w)             # <<<<<<<<<<<<<<
+ *     return sum
+ * 
+ */
+    __pyx_v_sum = (__pyx_v_sum + ((0.5 * (__pyx_v_b1 + __pyx_v_b2)) * __pyx_v_w));
+  }
+
+  /* "simplegeom/_geom2d.pyx":1720
+ *         b2 = path.coords[i+1].y
+ *         sum += 0.5*(b1+b2)*(w)
+ *     return sum             # <<<<<<<<<<<<<<
+ * 
+ * #cpdef double signed_area(LineString ring):
+ */
+  __pyx_r = __pyx_v_sum;
+  goto __pyx_L0;
+
+  /* "simplegeom/_geom2d.pyx":1698
+ *     return sum * 0.5
+ * 
+ * cdef inline double path_trapezoid_area(path_t *path):             # <<<<<<<<<<<<<<
+ *     """
+ *     Computation of the trapezoid area:
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplegeom/_geom2d.pyx":1736
  * 
  * 
  * cpdef bint is_ccw(LinearRing ring):             # <<<<<<<<<<<<<<
@@ -19476,14 +19680,14 @@ static int __pyx_f_10simplegeom_7_geom2d_is_ccw(struct __pyx_obj_10simplegeom_7_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_ccw", 0);
 
-  /* "simplegeom/_geom2d.pyx":1715
+  /* "simplegeom/_geom2d.pyx":1745
  *      < 0 for clockwise
  *     """
  *     cdef double area = ring.signed_area()             # <<<<<<<<<<<<<<
  *     if area > 0:
  *         return True
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_ring), __pyx_n_s_signed_area); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_ring), __pyx_n_s_signed_area); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -19496,18 +19700,18 @@ static int __pyx_f_10simplegeom_7_geom2d_is_ccw(struct __pyx_obj_10simplegeom_7_
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_4 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_4 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_area = __pyx_t_4;
 
-  /* "simplegeom/_geom2d.pyx":1716
+  /* "simplegeom/_geom2d.pyx":1746
  *     """
  *     cdef double area = ring.signed_area()
  *     if area > 0:             # <<<<<<<<<<<<<<
@@ -19517,7 +19721,7 @@ static int __pyx_f_10simplegeom_7_geom2d_is_ccw(struct __pyx_obj_10simplegeom_7_
   __pyx_t_5 = ((__pyx_v_area > 0.0) != 0);
   if (__pyx_t_5) {
 
-    /* "simplegeom/_geom2d.pyx":1717
+    /* "simplegeom/_geom2d.pyx":1747
  *     cdef double area = ring.signed_area()
  *     if area > 0:
  *         return True             # <<<<<<<<<<<<<<
@@ -19528,7 +19732,7 @@ static int __pyx_f_10simplegeom_7_geom2d_is_ccw(struct __pyx_obj_10simplegeom_7_
     goto __pyx_L0;
   }
 
-  /* "simplegeom/_geom2d.pyx":1718
+  /* "simplegeom/_geom2d.pyx":1748
  *     if area > 0:
  *         return True
  *     elif area < 0:             # <<<<<<<<<<<<<<
@@ -19538,7 +19742,7 @@ static int __pyx_f_10simplegeom_7_geom2d_is_ccw(struct __pyx_obj_10simplegeom_7_
   __pyx_t_5 = ((__pyx_v_area < 0.0) != 0);
   if (__pyx_t_5) {
 
-    /* "simplegeom/_geom2d.pyx":1719
+    /* "simplegeom/_geom2d.pyx":1749
  *         return True
  *     elif area < 0:
  *         return False             # <<<<<<<<<<<<<<
@@ -19550,21 +19754,21 @@ static int __pyx_f_10simplegeom_7_geom2d_is_ccw(struct __pyx_obj_10simplegeom_7_
   }
   /*else*/ {
 
-    /* "simplegeom/_geom2d.pyx":1721
+    /* "simplegeom/_geom2d.pyx":1751
  *         return False
  *     else:
  *         raise ValueError("Degenerate ring has no orientation")             # <<<<<<<<<<<<<<
  * 
  * cdef extend_slice(LineString to_ln, LineString from_ln, slice slice):
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__55, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__55, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1751; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1751; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "simplegeom/_geom2d.pyx":1706
+  /* "simplegeom/_geom2d.pyx":1736
  * 
  * 
  * cpdef bint is_ccw(LinearRing ring):             # <<<<<<<<<<<<<<
@@ -19594,7 +19798,7 @@ static PyObject *__pyx_pw_10simplegeom_7_geom2d_3is_ccw(PyObject *__pyx_self, Py
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("is_ccw (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ring), __pyx_ptype_10simplegeom_7_geom2d_LinearRing, 1, "ring", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ring), __pyx_ptype_10simplegeom_7_geom2d_LinearRing, 1, "ring", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_10simplegeom_7_geom2d_2is_ccw(__pyx_self, ((struct __pyx_obj_10simplegeom_7_geom2d_LinearRing *)__pyx_v_ring));
 
   /* function exit code */
@@ -19615,7 +19819,7 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_2is_ccw(CYTHON_UNUSED PyObject *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_ccw", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_f_10simplegeom_7_geom2d_is_ccw(__pyx_v_ring, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_f_10simplegeom_7_geom2d_is_ccw(__pyx_v_ring, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19632,11 +19836,11 @@ static PyObject *__pyx_pf_10simplegeom_7_geom2d_2is_ccw(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "simplegeom/_geom2d.pyx":1723
+/* "simplegeom/_geom2d.pyx":1753
  *         raise ValueError("Degenerate ring has no orientation")
  * 
  * cdef extend_slice(LineString to_ln, LineString from_ln, slice slice):             # <<<<<<<<<<<<<<
- *     cdef int ct, i, j, start, stop, step, length, count
+ *     cdef int ct, i, j, start, stop, step
  *     cdef int orig_ct = to_ln._path.items
  */
 
@@ -19646,8 +19850,6 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
   int __pyx_v_start;
   int __pyx_v_stop;
   int __pyx_v_step;
-  int __pyx_v_length;
-  int __pyx_v_count;
   int __pyx_v_orig_ct;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -19671,9 +19873,9 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("extend_slice", 0);
 
-  /* "simplegeom/_geom2d.pyx":1725
+  /* "simplegeom/_geom2d.pyx":1755
  * cdef extend_slice(LineString to_ln, LineString from_ln, slice slice):
- *     cdef int ct, i, j, start, stop, step, length, count
+ *     cdef int ct, i, j, start, stop, step
  *     cdef int orig_ct = to_ln._path.items             # <<<<<<<<<<<<<<
  *     # get range for values to copy
  *     start, stop, step, = slice.indices(from_ln._path.items)
@@ -19681,16 +19883,16 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
   __pyx_t_1 = __pyx_v_to_ln->_path->items;
   __pyx_v_orig_ct = __pyx_t_1;
 
-  /* "simplegeom/_geom2d.pyx":1727
+  /* "simplegeom/_geom2d.pyx":1757
  *     cdef int orig_ct = to_ln._path.items
  *     # get range for values to copy
  *     start, stop, step, = slice.indices(from_ln._path.items)             # <<<<<<<<<<<<<<
- *     length = len(xrange(start, stop, step))
  * #    print start, stop, step, from_ln, range(start, stop, step)
+ *     ct = 0
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_slice, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_slice, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyInt_From_unsigned_int(__pyx_v_from_ln->_path->items); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyInt_From_unsigned_int(__pyx_v_from_ln->_path->items); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_3))) {
@@ -19703,17 +19905,17 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
     PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -19728,7 +19930,7 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
     if (unlikely(size != 3)) {
       if (size > 3) __Pyx_RaiseTooManyValuesError(3);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     #if CYTHON_COMPILING_IN_CPYTHON
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -19744,17 +19946,17 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
     __Pyx_INCREF(__pyx_t_6);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_7 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -19764,7 +19966,7 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
     __Pyx_GOTREF(__pyx_t_6);
     index = 2; __pyx_t_4 = __pyx_t_7(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_5), 3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_5), 3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_7 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     goto __pyx_L4_unpacking_done;
@@ -19772,33 +19974,42 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_7 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_L4_unpacking_done:;
   }
-  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_6); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_6); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_start = __pyx_t_8;
   __pyx_v_stop = __pyx_t_9;
   __pyx_v_step = __pyx_t_10;
 
-  /* "simplegeom/_geom2d.pyx":1728
- *     # get range for values to copy
+  /* "simplegeom/_geom2d.pyx":1759
  *     start, stop, step, = slice.indices(from_ln._path.items)
- *     length = len(xrange(start, stop, step))             # <<<<<<<<<<<<<<
+ * #    print start, stop, step, from_ln, range(start, stop, step)
+ *     ct = 0             # <<<<<<<<<<<<<<
+ *     for i in xrange(start, stop, step):
+ *         ct += 1
+ */
+  __pyx_v_ct = 0;
+
+  /* "simplegeom/_geom2d.pyx":1760
  * #    print start, stop, step, from_ln, range(start, stop, step)
  *     ct = 0
+ *     for i in xrange(start, stop, step):             # <<<<<<<<<<<<<<
+ *         ct += 1
+ *     try:
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_start); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_start); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_stop); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_stop); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_step); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_step); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
@@ -19809,92 +20020,52 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
   __pyx_t_2 = 0;
   __pyx_t_4 = 0;
   __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_xrange, __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_xrange, __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_11 = PyObject_Length(__pyx_t_6); if (unlikely(__pyx_t_11 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_v_length = __pyx_t_11;
-
-  /* "simplegeom/_geom2d.pyx":1730
- *     length = len(xrange(start, stop, step))
- * #    print start, stop, step, from_ln, range(start, stop, step)
- *     ct = 0             # <<<<<<<<<<<<<<
- *     for i in xrange(start, stop, step):
- *         ct += 1
- */
-  __pyx_v_ct = 0;
-
-  /* "simplegeom/_geom2d.pyx":1731
- * #    print start, stop, step, from_ln, range(start, stop, step)
- *     ct = 0
- *     for i in xrange(start, stop, step):             # <<<<<<<<<<<<<<
- *         ct += 1
- *     try:
- */
-  __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_start); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_stop); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_step); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_6);
-  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_t_6 = 0;
-  __pyx_t_3 = 0;
-  __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_xrange, __pyx_t_2, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
-    __pyx_t_2 = __pyx_t_4; __Pyx_INCREF(__pyx_t_2); __pyx_t_11 = 0;
+  if (likely(PyList_CheckExact(__pyx_t_6)) || PyTuple_CheckExact(__pyx_t_6)) {
+    __pyx_t_3 = __pyx_t_6; __Pyx_INCREF(__pyx_t_3); __pyx_t_11 = 0;
     __pyx_t_12 = NULL;
   } else {
-    __pyx_t_11 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_12 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   for (;;) {
     if (likely(!__pyx_t_12)) {
-      if (likely(PyList_CheckExact(__pyx_t_2))) {
-        if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_2)) break;
+      if (likely(PyList_CheckExact(__pyx_t_3))) {
+        if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #endif
       } else {
-        if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
+        if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #endif
       }
     } else {
-      __pyx_t_4 = __pyx_t_12(__pyx_t_2);
-      if (unlikely(!__pyx_t_4)) {
+      __pyx_t_6 = __pyx_t_12(__pyx_t_3);
+      if (unlikely(!__pyx_t_6)) {
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         break;
       }
-      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_GOTREF(__pyx_t_6);
     }
-    __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_6); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_v_i = __pyx_t_10;
 
-    /* "simplegeom/_geom2d.pyx":1732
+    /* "simplegeom/_geom2d.pyx":1761
  *     ct = 0
  *     for i in xrange(start, stop, step):
  *         ct += 1             # <<<<<<<<<<<<<<
@@ -19903,7 +20074,7 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
  */
     __pyx_v_ct = (__pyx_v_ct + 1);
 
-    /* "simplegeom/_geom2d.pyx":1731
+    /* "simplegeom/_geom2d.pyx":1760
  * #    print start, stop, step, from_ln, range(start, stop, step)
  *     ct = 0
  *     for i in xrange(start, stop, step):             # <<<<<<<<<<<<<<
@@ -19911,9 +20082,9 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
  *     try:
  */
   }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplegeom/_geom2d.pyx":1733
+  /* "simplegeom/_geom2d.pyx":1762
  *     for i in xrange(start, stop, step):
  *         ct += 1
  *     try:             # <<<<<<<<<<<<<<
@@ -19924,7 +20095,7 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
     if (__pyx_t_13||__pyx_t_14||__pyx_t_15); else {/*mark used*/};
     /*try:*/ {
 
-      /* "simplegeom/_geom2d.pyx":1734
+      /* "simplegeom/_geom2d.pyx":1763
  *         ct += 1
  *     try:
  *         path_grow(to_ln._path, ct)             # <<<<<<<<<<<<<<
@@ -19933,7 +20104,7 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
  */
       __pyx_f_10simplegeom_7_geom2d_path_grow(__pyx_v_to_ln->_path, __pyx_v_ct);
 
-      /* "simplegeom/_geom2d.pyx":1735
+      /* "simplegeom/_geom2d.pyx":1764
  *     try:
  *         path_grow(to_ln._path, ct)
  *         to_ln._path.items += ct             # <<<<<<<<<<<<<<
@@ -19944,48 +20115,106 @@ static PyObject *__pyx_f_10simplegeom_7_geom2d_extend_slice(struct __pyx_obj_10s
     }
   }
 
-  /* "simplegeom/_geom2d.pyx":1740
+  /* "simplegeom/_geom2d.pyx":1768
+ *         raise
  *     # fill path with items asked for by slice
- *     #for i in xrange(start, stop, step):
- *     for count in range(length):             # <<<<<<<<<<<<<<
- *         i = start + count * step
- *         path_set_coord(to_ln._path, orig_ct,
- */
-  __pyx_t_10 = __pyx_v_length;
-  for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_10; __pyx_t_9+=1) {
-    __pyx_v_count = __pyx_t_9;
-
-    /* "simplegeom/_geom2d.pyx":1741
- *     #for i in xrange(start, stop, step):
- *     for count in range(length):
- *         i = start + count * step             # <<<<<<<<<<<<<<
+ *     for i in xrange(start, stop, step):             # <<<<<<<<<<<<<<
  *         path_set_coord(to_ln._path, orig_ct,
  *                        from_ln._path.coords[i].x,
  */
-    __pyx_v_i = (__pyx_v_start + (__pyx_v_count * __pyx_v_step));
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_start); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_stop); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_step); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_6);
+  PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_4);
+  __Pyx_GIVEREF(__pyx_t_4);
+  __pyx_t_3 = 0;
+  __pyx_t_6 = 0;
+  __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_xrange, __pyx_t_2, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
+    __pyx_t_2 = __pyx_t_4; __Pyx_INCREF(__pyx_t_2); __pyx_t_11 = 0;
+    __pyx_t_12 = NULL;
+  } else {
+    __pyx_t_11 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_12 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_12)) {
+      if (likely(PyList_CheckExact(__pyx_t_2))) {
+        if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_COMPILING_IN_CPYTHON
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        #else
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        #endif
+      } else {
+        if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_COMPILING_IN_CPYTHON
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        #else
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        #endif
+      }
+    } else {
+      __pyx_t_4 = __pyx_t_12(__pyx_t_2);
+      if (unlikely(!__pyx_t_4)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_4);
+    }
+    __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_v_i = __pyx_t_10;
 
-    /* "simplegeom/_geom2d.pyx":1742
- *     for count in range(length):
- *         i = start + count * step
+    /* "simplegeom/_geom2d.pyx":1769
+ *     # fill path with items asked for by slice
+ *     for i in xrange(start, stop, step):
  *         path_set_coord(to_ln._path, orig_ct,             # <<<<<<<<<<<<<<
  *                        from_ln._path.coords[i].x,
  *                        from_ln._path.coords[i].y)
  */
     __pyx_f_10simplegeom_7_geom2d_path_set_coord(__pyx_v_to_ln->_path, __pyx_v_orig_ct, (__pyx_v_from_ln->_path->coords[__pyx_v_i]).x, (__pyx_v_from_ln->_path->coords[__pyx_v_i]).y);
 
-    /* "simplegeom/_geom2d.pyx":1745
+    /* "simplegeom/_geom2d.pyx":1772
  *                        from_ln._path.coords[i].x,
  *                        from_ln._path.coords[i].y)
  *         orig_ct += 1             # <<<<<<<<<<<<<<
  */
     __pyx_v_orig_ct = (__pyx_v_orig_ct + 1);
-  }
 
-  /* "simplegeom/_geom2d.pyx":1723
+    /* "simplegeom/_geom2d.pyx":1768
+ *         raise
+ *     # fill path with items asked for by slice
+ *     for i in xrange(start, stop, step):             # <<<<<<<<<<<<<<
+ *         path_set_coord(to_ln._path, orig_ct,
+ *                        from_ln._path.coords[i].x,
+ */
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplegeom/_geom2d.pyx":1753
  *         raise ValueError("Degenerate ring has no orientation")
  * 
  * cdef extend_slice(LineString to_ln, LineString from_ln, slice slice):             # <<<<<<<<<<<<<<
- *     cdef int ct, i, j, start, stop, step, length, count
+ *     cdef int ct, i, j, start, stop, step
  *     cdef int orig_ct = to_ln._path.items
  */
 
@@ -20584,6 +20813,10 @@ static PyObject *__pyx_getprop_10simplegeom_7_geom2d_10LineString_length(PyObjec
   return __pyx_pw_10simplegeom_7_geom2d_10LineString_6length_1__get__(o);
 }
 
+static PyObject *__pyx_getprop_10simplegeom_7_geom2d_10LineString_trapezoid_area(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_10simplegeom_7_geom2d_10LineString_14trapezoid_area_1__get__(o);
+}
+
 static PyMethodDef __pyx_methods_10simplegeom_7_geom2d_LineString[] = {
   {"__reduce__", (PyCFunction)__pyx_pw_10simplegeom_7_geom2d_10LineString_7__reduce__, METH_NOARGS, __pyx_doc_10simplegeom_7_geom2d_10LineString_6__reduce__},
   {"__reduce__", (PyCFunction)__pyx_pw_10simplegeom_7_geom2d_10LineString_23__reduce__, METH_NOARGS, 0},
@@ -20599,6 +20832,7 @@ static struct PyGetSetDef __pyx_getsets_10simplegeom_7_geom2d_LineString[] = {
   {(char *)"is_empty", __pyx_getprop_10simplegeom_7_geom2d_10LineString_is_empty, 0, __pyx_k_Returns_whether_this_LineString, 0},
   {(char *)"envelope", __pyx_getprop_10simplegeom_7_geom2d_10LineString_envelope, 0, __pyx_k_Returns_an_Envelope_axis_aligne_2, 0},
   {(char *)"length", __pyx_getprop_10simplegeom_7_geom2d_10LineString_length, 0, __pyx_k_Returns_the_length_of_this_LineS, 0},
+  {(char *)"trapezoid_area", __pyx_getprop_10simplegeom_7_geom2d_10LineString_trapezoid_area, 0, __pyx_k_Returns_signed_trapezoid_area_un, 0},
   {0, 0, 0, 0, 0}
 };
 
@@ -21196,13 +21430,13 @@ static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_IndexError = __Pyx_GetBuiltinName(__pyx_n_s_IndexError); if (!__pyx_builtin_IndexError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 801; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 811; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_super = __Pyx_GetBuiltinName(__pyx_n_s_super); if (!__pyx_builtin_super) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1248; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_super = __Pyx_GetBuiltinName(__pyx_n_s_super); if (!__pyx_builtin_super) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #if PY_MAJOR_VERSION >= 3
-  __pyx_builtin_xrange = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_xrange) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1634; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_xrange = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_xrange) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1640; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #else
-  __pyx_builtin_xrange = __Pyx_GetBuiltinName(__pyx_n_s_xrange); if (!__pyx_builtin_xrange) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1634; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_xrange = __Pyx_GetBuiltinName(__pyx_n_s_xrange); if (!__pyx_builtin_xrange) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1640; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #endif
   return 0;
   __pyx_L1_error:;
@@ -21433,377 +21667,377 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "simplegeom/_geom2d.pyx":974
+  /* "simplegeom/_geom2d.pyx":980
  *         if coords is not None:
  *             if not len(coords) > 3:
  *                 raise ValueError("Too little coordinates in LinearRing")             # <<<<<<<<<<<<<<
  *             if not coords[0] == coords[-1]:
  *                 raise ValueError("Start coordinate does not match end coordinate")
  */
-  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_s_Too_little_coordinates_in_Linear); if (unlikely(!__pyx_tuple__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 974; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_s_Too_little_coordinates_in_Linear); if (unlikely(!__pyx_tuple__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 980; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
 
-  /* "simplegeom/_geom2d.pyx":976
+  /* "simplegeom/_geom2d.pyx":982
  *                 raise ValueError("Too little coordinates in LinearRing")
  *             if not coords[0] == coords[-1]:
  *                 raise ValueError("Start coordinate does not match end coordinate")             # <<<<<<<<<<<<<<
  *         super(LinearRing, self).__init__(coords)
  *         self.srid = srid
  */
-  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_Start_coordinate_does_not_match); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 976; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_Start_coordinate_does_not_match); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 982; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "simplegeom/_geom2d.pyx":1034
+  /* "simplegeom/_geom2d.pyx":1040
  *                 self.append(shell)
  *             except:
  *                 raise ValueError('Incorrect shell found, should be of type LinearRing')             # <<<<<<<<<<<<<<
  * 
  *         if holes is not None:
  */
-  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_s_Incorrect_shell_found_should_be); if (unlikely(!__pyx_tuple__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1034; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_s_Incorrect_shell_found_should_be); if (unlikely(!__pyx_tuple__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1040; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
 
-  /* "simplegeom/_geom2d.pyx":1041
+  /* "simplegeom/_geom2d.pyx":1047
  *                     self.append(hole)
  *                 except:
  *                     raise ValueError('Incorrect hole found, all should be of type LinearRing')             # <<<<<<<<<<<<<<
  *         self.srid = srid
  * 
  */
-  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_s_Incorrect_hole_found_all_should); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1041; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_s_Incorrect_hole_found_all_should); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1047; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
 
-  /* "simplegeom/_geom2d.pyx":1195
+  /* "simplegeom/_geom2d.pyx":1201
  *                 return ev
  *             else:
  *                 raise ValueError("Polygon empty -> no Envelope")             # <<<<<<<<<<<<<<
  * 
  *     def representative_point(Polygon self):
  */
-  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_Polygon_empty_no_Envelope); if (unlikely(!__pyx_tuple__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1195; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_Polygon_empty_no_Envelope); if (unlikely(!__pyx_tuple__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1201; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
 
-  /* "simplegeom/_geom2d.pyx":1207
+  /* "simplegeom/_geom2d.pyx":1213
  *             return point_in_polygon(self)
  *         else:
  *             raise ValueError("Polygon empty -> no Point")             # <<<<<<<<<<<<<<
  * 
  *     property area:
  */
-  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_kp_s_Polygon_empty_no_Point); if (unlikely(!__pyx_tuple__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1207; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_kp_s_Polygon_empty_no_Point); if (unlikely(!__pyx_tuple__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1213; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
 
-  /* "simplegeom/_geom2d.pyx":1228
+  /* "simplegeom/_geom2d.pyx":1234
  *         """
  *         def __get__(Polygon self):
  *             raise NotImplementedError("Not there yet")             # <<<<<<<<<<<<<<
  * 
  * cdef class Envelope(Geometry):
  */
-  __pyx_tuple__28 = PyTuple_Pack(1, __pyx_kp_s_Not_there_yet); if (unlikely(!__pyx_tuple__28)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__28 = PyTuple_Pack(1, __pyx_kp_s_Not_there_yet); if (unlikely(!__pyx_tuple__28)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1234; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__28);
   __Pyx_GIVEREF(__pyx_tuple__28);
 
-  /* "simplegeom/_geom2d.pyx":1248
+  /* "simplegeom/_geom2d.pyx":1254
  *            ymax is not None:
  *             if xmax < xmin:
  *                 raise RuntimeError("Invalid BBox given, x direction")             # <<<<<<<<<<<<<<
  *             if ymax < ymin:
  *                 raise RuntimeError("Invalid BBox given, y direction")
  */
-  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_kp_s_Invalid_BBox_given_x_direction); if (unlikely(!__pyx_tuple__29)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1248; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_kp_s_Invalid_BBox_given_x_direction); if (unlikely(!__pyx_tuple__29)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
 
-  /* "simplegeom/_geom2d.pyx":1250
+  /* "simplegeom/_geom2d.pyx":1256
  *                 raise RuntimeError("Invalid BBox given, x direction")
  *             if ymax < ymin:
  *                 raise RuntimeError("Invalid BBox given, y direction")             # <<<<<<<<<<<<<<
  *             self._mbr.xmin = xmin
  *             self._mbr.ymin = ymin
  */
-  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_kp_s_Invalid_BBox_given_y_direction); if (unlikely(!__pyx_tuple__30)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1250; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_kp_s_Invalid_BBox_given_y_direction); if (unlikely(!__pyx_tuple__30)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1256; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__30);
   __Pyx_GIVEREF(__pyx_tuple__30);
 
-  /* "simplegeom/_geom2d.pyx":1263
+  /* "simplegeom/_geom2d.pyx":1269
  *             return Point(self.xmax, self.ymax)
  *         else:
  *             raise IndexError("Getitem key")             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(Envelope self):
  */
-  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_kp_s_Getitem_key); if (unlikely(!__pyx_tuple__31)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_kp_s_Getitem_key); if (unlikely(!__pyx_tuple__31)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
 
-  /* "simplegeom/_geom2d.pyx":1271
+  /* "simplegeom/_geom2d.pyx":1277
  *         # ==
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         if box_inited(other._mbr) == False:
  *             raise RuntimeError("Box not inited")
  */
-  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__32)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__32)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__32);
   __Pyx_GIVEREF(__pyx_tuple__32);
 
-  /* "simplegeom/_geom2d.pyx":1273
+  /* "simplegeom/_geom2d.pyx":1279
  *             raise RuntimeError("Box not inited")
  *         if box_inited(other._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         if op == 2:
  *             if isinstance(other, self.__class__) and \
  */
-  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__33)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__33)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__33);
   __Pyx_GIVEREF(__pyx_tuple__33);
 
-  /* "simplegeom/_geom2d.pyx":1283
+  /* "simplegeom/_geom2d.pyx":1289
  *     def __repr__(Envelope self):
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         return "SRID={0};BOX({1} {2}, {3} {4})".format(self.srid,
  *             self._mbr.xmin,
  */
-  __pyx_tuple__34 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__34)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__34 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__34)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__34);
   __Pyx_GIVEREF(__pyx_tuple__34);
 
-  /* "simplegeom/_geom2d.pyx":1292
+  /* "simplegeom/_geom2d.pyx":1298
  *     def __str__(Envelope self):
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         return "POLYGON(({0} {1}, {2} {3}, {4} {5}, {6} {7}, {8} {9}))".format(
  *             self._mbr.xmin, self._mbr.ymin,
  */
-  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__35)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__35)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__35);
   __Pyx_GIVEREF(__pyx_tuple__35);
 
-  /* "simplegeom/_geom2d.pyx":1323
+  /* "simplegeom/_geom2d.pyx":1329
  *         if isinstance(other, Envelope):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             if box_inited(other._mbr) == False:
  *                 raise RuntimeError("Box not inited")
  */
-  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__36)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__36)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__36);
   __Pyx_GIVEREF(__pyx_tuple__36);
 
-  /* "simplegeom/_geom2d.pyx":1325
+  /* "simplegeom/_geom2d.pyx":1331
  *                 raise RuntimeError("Box not inited")
  *             if box_inited(other._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             box_box_merge(self._mbr, other._mbr)
  *         else:
  */
-  __pyx_tuple__37 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__37)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__37 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__37)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__37);
   __Pyx_GIVEREF(__pyx_tuple__37);
 
-  /* "simplegeom/_geom2d.pyx":1328
+  /* "simplegeom/_geom2d.pyx":1334
  *             box_box_merge(self._mbr, other._mbr)
  *         else:
  *             raise TypeError("Unknown type given for enlarge_by")             # <<<<<<<<<<<<<<
  * 
  *     # Binary topological relations
  */
-  __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_Unknown_type_given_for_enlarge_b); if (unlikely(!__pyx_tuple__38)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_Unknown_type_given_for_enlarge_b); if (unlikely(!__pyx_tuple__38)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__38);
   __Pyx_GIVEREF(__pyx_tuple__38);
 
-  /* "simplegeom/_geom2d.pyx":1338
+  /* "simplegeom/_geom2d.pyx":1344
  * #        cdef bint inside
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  * 
  *         if isinstance(other, Point):
  */
-  __pyx_tuple__39 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__39 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__39);
   __Pyx_GIVEREF(__pyx_tuple__39);
 
-  /* "simplegeom/_geom2d.pyx":1357
+  /* "simplegeom/_geom2d.pyx":1363
  *                 return True
  *         else:
  *             raise NotImplementedError("Unknown type given for contains")             # <<<<<<<<<<<<<<
  * 
  *     def covers(Envelope self, Geometry other not None):
  */
-  __pyx_tuple__40 = PyTuple_Pack(1, __pyx_kp_s_Unknown_type_given_for_contains); if (unlikely(!__pyx_tuple__40)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__40 = PyTuple_Pack(1, __pyx_kp_s_Unknown_type_given_for_contains); if (unlikely(!__pyx_tuple__40)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__40);
   __Pyx_GIVEREF(__pyx_tuple__40);
 
-  /* "simplegeom/_geom2d.pyx":1370
+  /* "simplegeom/_geom2d.pyx":1376
  *         """
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  * 
  *         if isinstance(other, Point):
  */
-  __pyx_tuple__41 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__41)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__41 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__41)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__41);
   __Pyx_GIVEREF(__pyx_tuple__41);
 
-  /* "simplegeom/_geom2d.pyx":1389
+  /* "simplegeom/_geom2d.pyx":1395
  *                 return False
  *         else:
  *             raise NotImplementedError("Unknown type given for contains")             # <<<<<<<<<<<<<<
  * 
  *     def intersects(Envelope self, object other not None):
  */
-  __pyx_tuple__42 = PyTuple_Pack(1, __pyx_kp_s_Unknown_type_given_for_contains); if (unlikely(!__pyx_tuple__42)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__42 = PyTuple_Pack(1, __pyx_kp_s_Unknown_type_given_for_contains); if (unlikely(!__pyx_tuple__42)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__42);
   __Pyx_GIVEREF(__pyx_tuple__42);
 
-  /* "simplegeom/_geom2d.pyx":1395
+  /* "simplegeom/_geom2d.pyx":1401
  *         """
  *         if box_inited(self._mbr) == False:
  *             raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *         if isinstance(other, Envelope):
  *             if (other.xmax < self._mbr.xmin or \
  */
-  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__43)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__43)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__43);
   __Pyx_GIVEREF(__pyx_tuple__43);
 
-  /* "simplegeom/_geom2d.pyx":1421
+  /* "simplegeom/_geom2d.pyx":1427
  *         def __get__(self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return box_area(self._mbr)
  * 
  */
-  __pyx_tuple__44 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__44)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1421; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__44 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__44)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1427; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__44);
   __Pyx_GIVEREF(__pyx_tuple__44);
 
-  /* "simplegeom/_geom2d.pyx":1430
+  /* "simplegeom/_geom2d.pyx":1436
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.xmin
  *         def __set__(Envelope self, xmin):
  */
-  __pyx_tuple__45 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__45)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1430; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__45 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__45)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__45);
   __Pyx_GIVEREF(__pyx_tuple__45);
 
-  /* "simplegeom/_geom2d.pyx":1441
+  /* "simplegeom/_geom2d.pyx":1447
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.ymin
  *         def __set__(Envelope self, ymin):
  */
-  __pyx_tuple__46 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__46)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1441; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__46 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__46)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__46);
   __Pyx_GIVEREF(__pyx_tuple__46);
 
-  /* "simplegeom/_geom2d.pyx":1452
+  /* "simplegeom/_geom2d.pyx":1458
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.xmax
  *         def __set__(Envelope self, xmax):
  */
-  __pyx_tuple__47 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__47)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1452; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__47 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__47)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1458; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__47);
   __Pyx_GIVEREF(__pyx_tuple__47);
 
-  /* "simplegeom/_geom2d.pyx":1463
+  /* "simplegeom/_geom2d.pyx":1469
  *         def __get__(Envelope self):
  *             if box_inited(self._mbr) == False:
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.ymax
  *         def __set__(Envelope self, ymax):
  */
-  __pyx_tuple__48 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__48)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1463; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__48 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__48)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1469; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__48);
   __Pyx_GIVEREF(__pyx_tuple__48);
 
-  /* "simplegeom/_geom2d.pyx":1474
+  /* "simplegeom/_geom2d.pyx":1480
  *         def __get__(Envelope self):
  *             if not box_inited(self._mbr):
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.xmax - self._mbr.xmin
  * 
  */
-  __pyx_tuple__49 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__49)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1474; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__49 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__49)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1480; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__49);
   __Pyx_GIVEREF(__pyx_tuple__49);
 
-  /* "simplegeom/_geom2d.pyx":1483
+  /* "simplegeom/_geom2d.pyx":1489
  *         def __get__(Envelope self):
  *             if not box_inited(self._mbr):
  *                 raise RuntimeError("Box not inited")             # <<<<<<<<<<<<<<
  *             return self._mbr.ymax - self._mbr.ymin
  * 
  */
-  __pyx_tuple__50 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__50)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1483; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__50 = PyTuple_Pack(1, __pyx_kp_s_Box_not_inited); if (unlikely(!__pyx_tuple__50)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1489; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__50);
   __Pyx_GIVEREF(__pyx_tuple__50);
 
-  /* "simplegeom/_geom2d.pyx":1539
+  /* "simplegeom/_geom2d.pyx":1545
  *             return self.end
  *         else:
  *             raise IndexError("Getitem key")             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_tuple__51 = PyTuple_Pack(1, __pyx_kp_s_Getitem_key); if (unlikely(!__pyx_tuple__51)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__51 = PyTuple_Pack(1, __pyx_kp_s_Getitem_key); if (unlikely(!__pyx_tuple__51)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1545; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__51);
   __Pyx_GIVEREF(__pyx_tuple__51);
 
-  /* "simplegeom/_geom2d.pyx":1594
+  /* "simplegeom/_geom2d.pyx":1600
  *             ((poly.envelope.ymax - poly.envelope.ymin) / 2)
  *     if poly._surface.items == 0:
  *         raise ValueError("Polygon Empty")             # <<<<<<<<<<<<<<
  *     else:
  *         # Calculate intersections where segments cross the ray and
  */
-  __pyx_tuple__52 = PyTuple_Pack(1, __pyx_kp_s_Polygon_Empty); if (unlikely(!__pyx_tuple__52)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1594; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__52 = PyTuple_Pack(1, __pyx_kp_s_Polygon_Empty); if (unlikely(!__pyx_tuple__52)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1600; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__52);
   __Pyx_GIVEREF(__pyx_tuple__52);
 
-  /* "simplegeom/_geom2d.pyx":1622
+  /* "simplegeom/_geom2d.pyx":1628
  * 
  *         if len(ray_x_cross) < 2:
  *             raise ValueError("Ray should intersect at least twice the polygon")             # <<<<<<<<<<<<<<
  * 
  *         # Sort intersections
  */
-  __pyx_tuple__53 = PyTuple_Pack(1, __pyx_kp_s_Ray_should_intersect_at_least_tw); if (unlikely(!__pyx_tuple__53)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1622; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__53 = PyTuple_Pack(1, __pyx_kp_s_Ray_should_intersect_at_least_tw); if (unlikely(!__pyx_tuple__53)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1628; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__53);
   __Pyx_GIVEREF(__pyx_tuple__53);
 
-  /* "simplegeom/_geom2d.pyx":1646
+  /* "simplegeom/_geom2d.pyx":1652
  * 
  *         if max_dist == -1:
  *             raise ValueError("No place on ray found for putting point")             # <<<<<<<<<<<<<<
  * 
  *         return Point(ray_x, ray_y, srid=poly.srid)
  */
-  __pyx_tuple__54 = PyTuple_Pack(1, __pyx_kp_s_No_place_on_ray_found_for_puttin); if (unlikely(!__pyx_tuple__54)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1646; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__54 = PyTuple_Pack(1, __pyx_kp_s_No_place_on_ray_found_for_puttin); if (unlikely(!__pyx_tuple__54)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__54);
   __Pyx_GIVEREF(__pyx_tuple__54);
 
-  /* "simplegeom/_geom2d.pyx":1721
+  /* "simplegeom/_geom2d.pyx":1751
  *         return False
  *     else:
  *         raise ValueError("Degenerate ring has no orientation")             # <<<<<<<<<<<<<<
  * 
  * cdef extend_slice(LineString to_ln, LineString from_ln, slice slice):
  */
-  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_kp_s_Degenerate_ring_has_no_orientati); if (unlikely(!__pyx_tuple__55)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_kp_s_Degenerate_ring_has_no_orientati); if (unlikely(!__pyx_tuple__55)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1751; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__55);
   __Pyx_GIVEREF(__pyx_tuple__55);
   __Pyx_RefNannyFinishContext();
@@ -21930,6 +22164,7 @@ PyMODINIT_FUNC PyInit__geom2d(void)
   if (__Pyx_ExportFunction("path_box", (void (*)(void))__pyx_f_10simplegeom_7_geom2d_path_box, "void (struct __pyx_t_10simplegeom_7_geom2d_path_t *, struct __pyx_t_10simplegeom_7_geom2d_box_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("path_length", (void (*)(void))__pyx_f_10simplegeom_7_geom2d_path_length, "double (struct __pyx_t_10simplegeom_7_geom2d_path_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("path_signed_area", (void (*)(void))__pyx_f_10simplegeom_7_geom2d_path_signed_area, "double (struct __pyx_t_10simplegeom_7_geom2d_path_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportFunction("path_trapezoid_area", (void (*)(void))__pyx_f_10simplegeom_7_geom2d_path_trapezoid_area, "double (struct __pyx_t_10simplegeom_7_geom2d_path_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("surface_new", (void (*)(void))__pyx_f_10simplegeom_7_geom2d_surface_new, "struct __pyx_t_10simplegeom_7_geom2d_surface_t *(void)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("surface_new_paths", (void (*)(void))__pyx_f_10simplegeom_7_geom2d_surface_new_paths, "void (struct __pyx_t_10simplegeom_7_geom2d_surface_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("surface_add_path", (void (*)(void))__pyx_f_10simplegeom_7_geom2d_surface_add_path, "void (struct __pyx_t_10simplegeom_7_geom2d_surface_t *, struct __pyx_t_10simplegeom_7_geom2d_path_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -21947,9 +22182,9 @@ PyMODINIT_FUNC PyInit__geom2d(void)
   if (PyObject_SetAttrString(__pyx_m, "Geometry", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_Geometry) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_10simplegeom_7_geom2d_Geometry = &__pyx_type_10simplegeom_7_geom2d_Geometry;
   __pyx_type_10simplegeom_7_geom2d_Envelope.tp_base = __pyx_ptype_10simplegeom_7_geom2d_Geometry;
-  if (PyType_Ready(&__pyx_type_10simplegeom_7_geom2d_Envelope) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_10simplegeom_7_geom2d_Envelope) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_10simplegeom_7_geom2d_Envelope.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "Envelope", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_Envelope) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "Envelope", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_Envelope) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_10simplegeom_7_geom2d_Envelope = &__pyx_type_10simplegeom_7_geom2d_Envelope;
   __pyx_type_10simplegeom_7_geom2d_Point.tp_base = __pyx_ptype_10simplegeom_7_geom2d_Geometry;
   if (PyType_Ready(&__pyx_type_10simplegeom_7_geom2d_Point) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 519; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -21982,16 +22217,16 @@ PyMODINIT_FUNC PyInit__geom2d(void)
   if (PyObject_SetAttrString(__pyx_m, "LineString", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_LineString) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 688; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_10simplegeom_7_geom2d_LineString = &__pyx_type_10simplegeom_7_geom2d_LineString;
   __pyx_type_10simplegeom_7_geom2d_LinearRing.tp_base = __pyx_ptype_10simplegeom_7_geom2d_LineString;
-  if (PyType_Ready(&__pyx_type_10simplegeom_7_geom2d_LinearRing) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 969; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_10simplegeom_7_geom2d_LinearRing) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_10simplegeom_7_geom2d_LinearRing.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "LinearRing", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_LinearRing) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 969; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "LinearRing", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_LinearRing) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_10simplegeom_7_geom2d_LinearRing = &__pyx_type_10simplegeom_7_geom2d_LinearRing;
   __pyx_type_10simplegeom_7_geom2d_Polygon.tp_base = __pyx_ptype_10simplegeom_7_geom2d_Geometry;
-  if (PyType_Ready(&__pyx_type_10simplegeom_7_geom2d_Polygon) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1011; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_10simplegeom_7_geom2d_Polygon) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1017; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_10simplegeom_7_geom2d_Polygon.tp_print = 0;
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_10simplegeom_7_geom2d_Polygon, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1011; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_10simplegeom_7_geom2d_Polygon, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1017; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_10simplegeom_7_geom2d_7Polygon_2__init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_10simplegeom_7_geom2d_7Polygon_2__init__.doc = __pyx_doc_10simplegeom_7_geom2d_7Polygon_2__init__;
@@ -21999,12 +22234,12 @@ PyMODINIT_FUNC PyInit__geom2d(void)
     }
   }
   #endif
-  if (PyObject_SetAttrString(__pyx_m, "Polygon", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_Polygon) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1011; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "Polygon", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_Polygon) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1017; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_10simplegeom_7_geom2d_Polygon = &__pyx_type_10simplegeom_7_geom2d_Polygon;
   __pyx_type_10simplegeom_7_geom2d_Segment.tp_base = __pyx_ptype_10simplegeom_7_geom2d_Geometry;
-  if (PyType_Ready(&__pyx_type_10simplegeom_7_geom2d_Segment) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_10simplegeom_7_geom2d_Segment) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_10simplegeom_7_geom2d_Segment.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "Segment", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_Segment) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "Segment", (PyObject *)&__pyx_type_10simplegeom_7_geom2d_Segment) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_10simplegeom_7_geom2d_Segment = &__pyx_type_10simplegeom_7_geom2d_Segment;
   /*--- Type import code ---*/
   /*--- Variable import code ---*/
