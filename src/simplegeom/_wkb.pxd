@@ -14,7 +14,7 @@ cdef class EWKBReader(object):
     cdef bint has_m
     cdef int srid
     cdef object stream
-    cdef str _endianness 
+    cdef unicode _endianness 
     
     cpdef object read_geometry(self)
     cdef read_header(self)
@@ -41,7 +41,7 @@ cdef class EWKBWriter(object):
     cdef inline void write_polygon(self)
     cpdef as_hex(self)
 
-cpdef loads(data, cursor=?)
+cpdef loads(object data, object cursor=?) # maybe data should have type 'unicode' -- but this works for both py2+3
 cpdef load(fp)
 cpdef dumps(Geometry ob)
 cpdef dump(Geometry ob, fp)

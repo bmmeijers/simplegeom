@@ -1,5 +1,14 @@
-import ez_setup
-ez_setup.use_setuptools()
+#import ez_setup
+#ez_setup.use_setuptools()
+#from setuptools import setup, find_packages, Extension
+#import os
+#import sys
+#try:
+#    from Cython.Build import cythonize
+#    cython_available = True
+#except ImportError:
+#    cython_available = False
+
 from setuptools import setup, find_packages, Extension
 import os
 import sys

@@ -1,4 +1,4 @@
-#cython: profile=False,boundscheck=False
+# cython: language_level=3, boundscheck=False, profile=False
 """Provide Simple Feature like Geometry objects in 2 dimensions.
 
 @see: OGC specifications for Simple Features
@@ -15,7 +15,7 @@ Not defined in simple feature spec:
     Envelope
     Segment
 """
-from _wkb import dumps
+from ._wkb import dumps
 try:
     import psycopg2.extensions
     HAS_PSYCOPG2 = True
@@ -218,7 +218,7 @@ cdef void path_set_coord(path_t * path, int key, double x, double y):
 #    return
 
 cdef double path_length(path_t *path):
-    cdef int i
+    cdef unsigned int i
     cdef double result
     result = 0
     for i from 1 <= i < path.items:
@@ -239,7 +239,7 @@ cdef bint path_eq(path_t *one, path_t *other):
     """
     Finds if two path_t's are exactly similar
     """
-    cdef int i
+    cdef unsigned int i
     if one.items == other.items:
         for i from 0 <= i < one.items:
             if one.coords[i].x != other.coords[i].x or \
@@ -286,7 +286,7 @@ cdef void surface_dealloc(surface_t *surface):
     """
     Frees memory in use for a surface_t and its path_t's
     """
-    cdef int i
+    cdef unsigned int i
     for i from 0 <= i < surface.items:
         path_dealloc(surface.paths[i])
     free(surface.paths)
@@ -294,7 +294,7 @@ cdef void surface_dealloc(surface_t *surface):
 
 
 cdef double surface_area(surface_t *surface):
-    cdef int i
+    cdef unsigned int i
     cdef double area = 0.
     for i from 0 <= i < surface.items:
         area += path_signed_area(surface.paths[i])
@@ -336,7 +336,7 @@ cdef bint surface_eq(surface_t *one, surface_t *other):
     """
     Finds if two surface_t's are exactly similar
     """
-    cdef int i
+    cdef unsigned int i
     if one.items == other.items:
         for i from 0 <= i < one.items:
             if not path_eq(one.paths[i], \
@@ -396,7 +396,7 @@ cdef void path_box(path_t *path, box_t *mbr):
     """
     Sets a box for a path
     """
-    cdef int i
+    cdef unsigned int i
     if path.items == 0:
         return
     else:
@@ -417,7 +417,7 @@ cdef bint surface_box(surface_t *surface, box_t *mbr):
     """
     Sets a box for a surface
     """
-    cdef int i, j
+    cdef unsigned int i, j
     cdef bint first = True
     if surface.items != 0:
         for i from 0 <= i < surface.items:
@@ -507,7 +507,8 @@ cdef class Geometry:
         """Returns the HEXEWKB string for this Geometry.
         """
         def __get__(Geometry self):
-            return dumps(self)
+#            return dumps(self)
+            return "{0}".format(dumps(self))
 
     property srid:
         def __get__(Geometry self):
@@ -723,7 +724,7 @@ cdef class LineString(Geometry):
     def __reduce__(LineString self):
         """reduce for Pickle
         """
-        cdef int i
+        cdef unsigned int i
         ret = []
         for i from 0 <= i < self._path.items:
             ret.append((
@@ -735,7 +736,7 @@ cdef class LineString(Geometry):
         return self._path.items
     
     def __str__(LineString self):
-        cdef int i
+        cdef unsigned int i
         if self._path.items == 0:
             return "LINESTRING EMPTY"
         else:
@@ -746,7 +747,7 @@ cdef class LineString(Geometry):
             return "LINESTRING({0})".format(', '.join(ret))
     
     def __repr__(LineString self):
-        cdef int i
+        cdef unsigned int i
         if self._path.items == 0:
             return "LineString(srid={0})".format(self.srid)
         else:
@@ -777,21 +778,23 @@ cdef class LineString(Geometry):
             raise NotImplementedError('comparison op ({0}) not implemented'.format(op))
     
     def __getitem__(LineString self, object which):
-        cdef int i, j
+        cdef unsigned int i, j, k
         cdef path_t *path
         cdef LineString ln
         cdef int ct
+        ##cdef unsigned int k
         if isinstance(which, int):
             #
             # TODO: accept negative indices (just like list!!!)
             #
-            if which < 0:
+            while which < 0:
                 which += self._path.items
             if which < 0 or which >= self._path.items:
                 raise IndexError("No point there (#%d) for %s" % (which, self) )
             else:
-                return Point(self._path.coords[which].x,
-                             self._path.coords[which].y,
+                k = which
+                return Point(self._path.coords[k].x,
+                             self._path.coords[k].y,
                              srid=self.srid)
         elif isinstance(which, slice):
             # find number of items that will be result of slicing
@@ -819,15 +822,17 @@ cdef class LineString(Geometry):
         # TODO: method should also accept slice for replacing points !
         #       but this is a major revision => 0.6 Release
         #       as this can also change the length -> should be reallocated
-        if key < 0 or key >= self._path.items:
+        cdef unsigned int i
+        if key < 0 or key >=  <int>self._path.items:
             raise IndexError
         else:
-            path_set_coord(self._path, key, item.x, item.y)
+            path_set_coord(self._path, <unsigned int>key, item.x, item.y)
     
     def __delitem__(LineString self, int key):
         raise NotImplementedError
     
     def __reduce__(self):
+        cdef unsigned int i
         ret = []
         for i from 0 <= i < self._path.items:
             ret.append((self._path.coords[i].x, self._path.coords[i].y))
@@ -995,7 +1000,7 @@ cdef class LinearRing(LineString):
         return path_signed_area(self._path)
 
     def __repr__(LinearRing self):
-        cdef int i
+        cdef unsigned int i
         if self._path.items == 0:
             return "LinearRing(srid={0})".format(self.srid)
         else:
@@ -1064,9 +1069,7 @@ cdef class Polygon(Geometry):
 #
     def __getitem__(Polygon self, int key):
         cdef LinearRing l = LinearRing(srid = self.srid)
-        cdef int j
-        
-        if key < 0 or key >= self._surface.items:
+        if key < 0 or key >= <int>self._surface.items:
             raise IndexError
         else:
             try:
@@ -1101,7 +1104,7 @@ cdef class Polygon(Geometry):
     def __reduce__(Polygon self):
         """reduce for Pickle
         """
-        cdef int i, j
+        cdef unsigned int i, j
         if self._surface.items == 0:
             rings = []
         else:
@@ -1120,7 +1123,7 @@ cdef class Polygon(Geometry):
             return (Polygon, (rings[0], rings[1:], self.srid))
 
     def __str__(Polygon self):
-        cdef int i, j
+        cdef unsigned int i, j
         if self._surface.items == 0:
             return "POLYGON EMPTY"
         else:
@@ -1587,7 +1590,7 @@ cpdef Point point_in_polygon(Polygon poly):
       - Number of crossings per ring are kept to see whether a ring is only
         crossing the ray in exactly one point
     """
-    cdef int i, j
+    cdef unsigned int i, j
     cdef double ray_x, ray_y, x0, y0, x1, y1, max_dist, dist
     cdef double eps = 1e-8   
     cdef object ray_x_cross, crossings_per_ring

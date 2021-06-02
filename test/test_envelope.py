@@ -30,7 +30,7 @@ def _test():
     assert ev.xmax == 10
     assert ev.ymax == 11
     
-    print ev
+    print(ev)
     
 if __name__ == "__main__":
     _test()

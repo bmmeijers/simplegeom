@@ -5,10 +5,10 @@ def _test():
     assert poly.wkt == "POLYGON EMPTY"
 
     lr = LinearRing([(0, 0), (12, 0), (5, 10), (0, 0)])
-    print lr
+    print(lr)
     poly = Polygon(lr)
-    print poly
-    print poly.envelope
+    print(poly)
+    print(poly.envelope)
     assert poly.geom_type == "Polygon"
 
     lr0 = LinearRing([(0,0, 10), (10, 0, 2), (5, 10, 2), (0, 0, 10)])
@@ -21,26 +21,26 @@ def _test():
     
     lri = LinearRing([(100, 0, 10), (10, 0, 2), (5, 10, 2), (100, 0, 10)])
     try:
-        print lri.area
+        print(lri.area)
     except NotImplementedError:
         pass
-    print lri.signed_area()
+    print(lri.signed_area())
     poly = Polygon(lr, [lri])
-    print poly.envelope
+    print(poly.envelope)
     
     try:
-        print poly.area
+        print(poly.area)
     except NotImplementedError:
         pass
     
     lr = LinearRing([(0, 0), (10, 0), (10, 10), (0, 0)])
-    print lr
+    print(lr)
     assert lr.signed_area() == 50.
     poly = Polygon(lr)
     assert poly.representative_point() == Point(7.5, 5.0)
     
     lr = LinearRing([(0, 0), (10, 0), (10, 10), (0,10), (0, 0)])
-    print lr
+    print(lr)
     assert lr.signed_area() == 100.
     
     lr = LinearRing([(0, 0), (10, 0), (5, 10), (0, 0)])
@@ -50,7 +50,7 @@ def _test():
     assert lr.signed_area() == -50.
     assert not lr.is_ccw
     
-    print poly.wkb
+    print(poly.wkb)
     
     lr = LinearRing([(0,0), (10, 0), (10,10), (0,0)])
     assert lr.signed_area() == 50.

@@ -17,4 +17,5 @@ if __name__ == "__main__":
     assert pt.x == 5
     assert pt.y == 6
     
-    assert pt.wkb == "01010000200000000000000000000014400000000000001840"
+    print( pt.wkb )
+    assert str(pt.wkb) == str(b'01010000200000000000000000000014400000000000001840')

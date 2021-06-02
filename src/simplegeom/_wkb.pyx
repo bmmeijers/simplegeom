@@ -1,10 +1,17 @@
-# cython: profile=True
+# cython: language_level=3, boundscheck=False, profile=False
 """EWKB reader and writer functions
 """
 import logging
 from struct import unpack, pack
-from cStringIO import StringIO
-from binascii import a2b_hex, b2a_hex
+
+#try:
+#    from cStringIO import StringIO
+#except ImportError:
+#    from io import StringIO
+
+from io import BytesIO
+
+from binascii import a2b_hex, b2a_hex, hexlify
 
 log = logging.getLogger(__name__)
 
@@ -60,10 +67,10 @@ cdef class EWKBReader(object):
 
     cdef read_header(self):
         cdef long tp
-        cdef str byte_order = self.stream.read(1)
-        if byte_order == '\x00':
+        cdef bytes byte_order = self.stream.read(1)
+        if byte_order == b'\x00':
             self._endianness = '>'
-        elif byte_order == '\x01':
+        elif byte_order == b'\x01':
             self._endianness = '<'
         else:
             raise Exception('invalid EWKB encoding')
@@ -84,12 +91,15 @@ cdef class EWKBReader(object):
         return unpack(self._endianness + 'd', self.stream.read(8))[0]
 
     cdef Point read_point(self):
+        cdef double x, y
         x, y = self.read_double(), self.read_double()
         return Point(x, y, srid=self.srid)
         
     cdef LineString read_linestring(self):
+        cdef unsigned int i, sz
+        cdef double xx, yy, zz, mm
         ln = LineString(srid=self.srid)
-        sz = self.read_int()
+        sz = <unsigned int>self.read_int()
         try:
             path_grow(ln._path, sz)
         except MemoryError:
@@ -142,14 +152,15 @@ cdef class EWKBWriter(object):
 #    cdef object stream
 #    cdef Geometry geometry
 
-    def __init__(self, Geometry geometry, int srid = 0, object stream=None):
-        self.stream = stream or StringIO()
+    def __init__(self, Geometry geometry, int srid = 0):#, object stream=None):
+##        self.stream = stream or BytesIO()
+        self.stream = BytesIO()
         self.geometry = geometry
         self.srid = srid
         if self.srid < 0 or self.srid > 999999:
             self.srid = 0
         self.tp = self.geometry._geom_type
-        self.stream.write('\x01')
+        self.stream.write(b'\x01')
         # We do not do has_z nor has_m currently
 #        self.write_int(self.tp |
 #            (0x80000000 if self.geometry.has_z else 0) |
@@ -187,13 +198,13 @@ cdef class EWKBWriter(object):
     cdef inline void write_linestring(self):
         cdef LineString ln = self.geometry
         self.write_int(ln._path.items)
-        cdef int j
+        cdef unsigned int j
         for j from 0 <= j < ln._path.items:
             self.write_double(ln._path.coords[j].x)
             self.write_double(ln._path.coords[j].y)
 
     cdef inline void write_polygon(self):
-        cdef int k, j
+        cdef unsigned int k, j
         cdef Polygon pl = self.geometry
         self.write_int(pl._surface.items)
         for k from 0 <= k < pl._surface.items:
@@ -203,13 +214,16 @@ cdef class EWKBWriter(object):
                 self.write_double(pl._surface.paths[k].coords[j].y)
 
     cpdef as_hex(self):
-        return self.stream.getvalue().encode('hex')
+        return self.stream.getvalue().hex()
+##        return self.stream.getvalue().encode('hex')
 
-cpdef loads(data, cursor=None):
-    """Loads a geometry from *data*"""
+cpdef loads(object data, object cursor=None):
+    """Loads a geometry from *data*
+    *cursor* optional argument, used in combination with connection to database
+    """
     if data:
         try:
-            geom = EWKBReader(StringIO(a2b_hex(data))).read_geometry()
+            geom = EWKBReader(BytesIO(a2b_hex(data))).read_geometry()
         except:
             raise ValueError(
                 "Error creating geometry while reading input.")

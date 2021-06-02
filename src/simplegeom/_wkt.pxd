@@ -11,5 +11,5 @@ cdef class WKTReader:
     cdef LineString parse_linestring(self, wkt)
     cdef Point parse_point(self, wkt)
 
-cpdef loads(str text)
+cpdef loads(object text) # text - unicode
 cpdef dumps(Geometry geom, bint srid = ?)

@@ -1,4 +1,4 @@
-# cython: profile=True
+# cython: language_level=3, boundscheck=False, profile=False
 """EWKT reader and writer functions
 """
 
@@ -137,7 +137,7 @@ cdef class WKTReader(object):
                     else:
                         return Point(x, y)
 
-cpdef loads(str text):
+cpdef loads(object text):
     """
     Return a Geometry for a WKT representation
     """
