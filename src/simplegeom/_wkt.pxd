@@ -1,4 +1,4 @@
-from _geom2d cimport Geometry, Point, LineString, Polygon, \
+from simplegeom._geom2d cimport Geometry, Point, LineString, Polygon, \
     box_t, coord_t, path_t, surface_t, \
     path_new, path_new_coords, path_grow, path_dealloc, \
     path_set_coord, surface_add_path

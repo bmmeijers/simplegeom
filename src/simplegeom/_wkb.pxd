@@ -1,7 +1,7 @@
 cdef extern from "Python.h":
     object PyString_FromStringAndSize(char *v, int len)
 
-from _geom2d cimport Geometry, Point, LineString, LinearRing, Polygon, \
+from simplegeom._geom2d cimport Geometry, Point, LineString, LinearRing, Polygon, \
     Envelope, \
     box_t, coord_t, path_t, surface_t, \
     malloc, free, realloc, ceil, \
