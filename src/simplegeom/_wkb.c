@@ -1478,7 +1478,7 @@ static const char *__pyx_f[] = {
 
 /* #### Code section: numeric_typedefs ### */
 
-/* "simplegeom/_geom2d.pxd":20
+/* "simplegeom/_geom2d.pxd":24
  * #    int sprintf ( char *str, char *format, ... )
  * 
  * ctypedef unsigned int uint             # <<<<<<<<<<<<<<
@@ -1505,7 +1505,7 @@ struct __pyx_t_10simplegeom_7_geom2d_surface_t;
 struct __pyx_t_10simplegeom_7_geom2d_box_t;
 struct __pyx_opt_args_10simplegeom_7_geom2d_path_new_coords;
 
-/* "simplegeom/_geom2d.pxd":46
+/* "simplegeom/_geom2d.pxd":50
  * cdef inline double cabs(double a)
  * 
  * cdef enum:             # <<<<<<<<<<<<<<
@@ -1517,7 +1517,7 @@ enum  {
   __pyx_e_10simplegeom_7_geom2d_REALLOC_SURFACE = 1
 };
 
-/* "simplegeom/_geom2d.pxd":50
+/* "simplegeom/_geom2d.pxd":54
  *     REALLOC_SURFACE = 1
  * 
  * cdef enum:             # <<<<<<<<<<<<<<
@@ -1529,7 +1529,7 @@ enum  {
   __pyx_e_10simplegeom_7_geom2d_FAILURE = -1L
 };
 
-/* "simplegeom/_geom2d.pxd":54
+/* "simplegeom/_geom2d.pxd":58
  *     FAILURE = -1
  * 
  * cdef enum:             # <<<<<<<<<<<<<<
@@ -1543,7 +1543,7 @@ enum  {
   __pyx_e_10simplegeom_7_geom2d_WKB_ENVELOPE = 0x65
 };
 
-/* "simplegeom/_geom2d.pxd":60
+/* "simplegeom/_geom2d.pxd":64
  *     WKB_ENVELOPE = 101 # TODO: look at specs to see how this should be -> envelope was added "recently"
  * 
  * cdef struct coord_t:             # <<<<<<<<<<<<<<
@@ -1555,7 +1555,7 @@ struct __pyx_t_10simplegeom_7_geom2d_coord_t {
   double y;
 };
 
-/* "simplegeom/_geom2d.pxd":64
+/* "simplegeom/_geom2d.pxd":68
  *     double y
  * 
  * cdef struct path_t:             # <<<<<<<<<<<<<<
@@ -1568,7 +1568,7 @@ struct __pyx_t_10simplegeom_7_geom2d_path_t {
   struct __pyx_t_10simplegeom_7_geom2d_coord_t *coords;
 };
 
-/* "simplegeom/_geom2d.pxd":69
+/* "simplegeom/_geom2d.pxd":73
  *     coord_t *coords
  * 
  * cdef struct surface_t:             # <<<<<<<<<<<<<<
@@ -1581,7 +1581,7 @@ struct __pyx_t_10simplegeom_7_geom2d_surface_t {
   struct __pyx_t_10simplegeom_7_geom2d_path_t **paths;
 };
 
-/* "simplegeom/_geom2d.pxd":74
+/* "simplegeom/_geom2d.pxd":78
  *     path_t **paths
  * 
  * cdef struct box_t:             # <<<<<<<<<<<<<<
@@ -1595,7 +1595,7 @@ struct __pyx_t_10simplegeom_7_geom2d_box_t {
   double ymax;
 };
 
-/* "simplegeom/_geom2d.pxd":102
+/* "simplegeom/_geom2d.pxd":106
  * #==============================================================================
  * cdef path_t *path_new()
  * cdef void path_new_coords(path_t *path, int ct = ?)             # <<<<<<<<<<<<<<
@@ -1620,7 +1620,7 @@ struct __pyx_opt_args_10simplegeom_4_wkb_loads {
   PyObject *cursor;
 };
 
-/* "simplegeom/_geom2d.pxd":131
+/* "simplegeom/_geom2d.pxd":135
  * 
  * # --- Geometry
  * cdef class Geometry:             # <<<<<<<<<<<<<<
@@ -1634,7 +1634,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_Geometry {
 };
 
 
-/* "simplegeom/_geom2d.pxd":135
+/* "simplegeom/_geom2d.pxd":139
  *     cdef int _srid
  * 
  * cdef class Envelope(Geometry):             # <<<<<<<<<<<<<<
@@ -1647,7 +1647,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_Envelope {
 };
 
 
-/* "simplegeom/_geom2d.pxd":142
+/* "simplegeom/_geom2d.pxd":146
  *     #area
  * 
  * cdef class Point(Geometry):             # <<<<<<<<<<<<<<
@@ -1662,7 +1662,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_Point {
 };
 
 
-/* "simplegeom/_geom2d.pxd":147
+/* "simplegeom/_geom2d.pxd":151
  *     cdef bint _xinit, _yinit
  * 
  * cdef class LineString(Geometry):             # <<<<<<<<<<<<<<
@@ -1675,7 +1675,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_LineString {
 };
 
 
-/* "simplegeom/_geom2d.pxd":153
+/* "simplegeom/_geom2d.pxd":157
  *     #cdef void __recalc_bbox(LineString self)
  * 
  * cdef class LinearRing(LineString):             # <<<<<<<<<<<<<<
@@ -1687,7 +1687,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_LinearRing {
 };
 
 
-/* "simplegeom/_geom2d.pxd":157
+/* "simplegeom/_geom2d.pxd":161
  * #==============================================================================
  * #
  * cdef class Polygon(Geometry):             # <<<<<<<<<<<<<<
@@ -1700,7 +1700,7 @@ struct __pyx_obj_10simplegeom_7_geom2d_Polygon {
 };
 
 
-/* "simplegeom/_geom2d.pxd":160
+/* "simplegeom/_geom2d.pxd":164
  *     cdef surface_t *_surface
  * 
  * cdef class Segment(Geometry):             # <<<<<<<<<<<<<<
@@ -10373,15 +10373,15 @@ static int __Pyx_modinit_type_import_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_import_code", 0);
   /*--- Type import code ---*/
-  __pyx_t_1 = PyImport_ImportModule("simplegeom._geom2d"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 131, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("simplegeom._geom2d"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_10simplegeom_7_geom2d_Geometry = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Geometry", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Geometry), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Geometry),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Geometry) __PYX_ERR(2, 131, __pyx_L1_error)
-  __pyx_ptype_10simplegeom_7_geom2d_Envelope = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Envelope", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Envelope), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Envelope),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Envelope) __PYX_ERR(2, 135, __pyx_L1_error)
-  __pyx_ptype_10simplegeom_7_geom2d_Point = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Point", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Point), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Point),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Point) __PYX_ERR(2, 142, __pyx_L1_error)
-  __pyx_ptype_10simplegeom_7_geom2d_LineString = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "LineString", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_LineString), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_LineString),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_LineString) __PYX_ERR(2, 147, __pyx_L1_error)
-  __pyx_ptype_10simplegeom_7_geom2d_LinearRing = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "LinearRing", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_LinearRing), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_LinearRing),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_LinearRing) __PYX_ERR(2, 153, __pyx_L1_error)
-  __pyx_ptype_10simplegeom_7_geom2d_Polygon = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Polygon", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Polygon), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Polygon),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Polygon) __PYX_ERR(2, 157, __pyx_L1_error)
-  __pyx_ptype_10simplegeom_7_geom2d_Segment = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Segment", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Segment), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Segment),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Segment) __PYX_ERR(2, 160, __pyx_L1_error)
+  __pyx_ptype_10simplegeom_7_geom2d_Geometry = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Geometry", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Geometry), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Geometry),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Geometry) __PYX_ERR(2, 135, __pyx_L1_error)
+  __pyx_ptype_10simplegeom_7_geom2d_Envelope = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Envelope", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Envelope), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Envelope),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Envelope) __PYX_ERR(2, 139, __pyx_L1_error)
+  __pyx_ptype_10simplegeom_7_geom2d_Point = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Point", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Point), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Point),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Point) __PYX_ERR(2, 146, __pyx_L1_error)
+  __pyx_ptype_10simplegeom_7_geom2d_LineString = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "LineString", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_LineString), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_LineString),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_LineString) __PYX_ERR(2, 151, __pyx_L1_error)
+  __pyx_ptype_10simplegeom_7_geom2d_LinearRing = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "LinearRing", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_LinearRing), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_LinearRing),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_LinearRing) __PYX_ERR(2, 157, __pyx_L1_error)
+  __pyx_ptype_10simplegeom_7_geom2d_Polygon = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Polygon", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Polygon), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Polygon),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Polygon) __PYX_ERR(2, 161, __pyx_L1_error)
+  __pyx_ptype_10simplegeom_7_geom2d_Segment = __Pyx_ImportType_3_0_8(__pyx_t_1, "simplegeom._geom2d", "Segment", sizeof(struct __pyx_obj_10simplegeom_7_geom2d_Segment), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_10simplegeom_7_geom2d_Segment),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_10simplegeom_7_geom2d_Segment) __PYX_ERR(2, 164, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;

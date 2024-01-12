@@ -1,4 +1,4 @@
-# cython: language_level=3, boundscheck=False, profile=False
+# cython: language_level=3str, boundscheck=False, profile=False
 """Provide Simple Feature like Geometry objects in 2 dimensions.
 
 @see: OGC specifications for Simple Features
@@ -15,7 +15,10 @@ Not defined in simple feature spec:
     Envelope
     Segment
 """
-from ._wkb import dumps
+
+
+#def dumps(obj):
+#    pass
 try:
     import psycopg2.extensions
     HAS_PSYCOPG2 = True

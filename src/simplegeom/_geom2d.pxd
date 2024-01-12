@@ -5,11 +5,15 @@
 
 
 from libc.stdlib cimport malloc, free, realloc
-# cimport _wkb
+
+from simplegeom._wkb import dumps
+
+#cimport simplegeom._wkb
 # cimport _util
 # cimport _wkt
 
 #from _wkb cimport BinaryGeometryWriter
+#from simplegeom._wkb cimport dumps
 #cdef extern from "alloca.h":
 #    void *alloca(int size)
 
